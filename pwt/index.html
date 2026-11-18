@@ -24,7 +24,7 @@
     <p class="splash-credit">Developed by MrTech</p>
   </div>
 
-  <!-- MINIMAL APP INSTALLER POPUP GATE (Browser Mode Only — Zero Extra Text, Fixed Display) -->
+  <!-- MINIMAL APP INSTALLER POPUP GATE (Browser Mode Only) -->
   <main id="install-gate-view" class="gate-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="installer-title">
     <div class="gate-backdrop-preview" aria-hidden="true"></div>
     <div class="installer-popup">
@@ -41,12 +41,12 @@
     </div>
   </main>
 
-  <!-- INSTALLED STANDALONE PWA TRANSCEIVER UI (Fixed 100dvh Non-Scrolling Display) -->
+  <!-- INSTALLED STANDALONE PWA TRANSCEIVER UI (Fixed 100dvh Non-Scrolling Display — Phone & Laptop) -->
   <div id="app-shell-view" class="app-shell hidden">
     <div class="app-content">
-      <!-- Primary Tactical Transceiver Screen -->
+      <!-- 1. Primary Tactical Transceiver Screen -->
       <section id="screen-comm" class="screen active">
-        <!-- 1. Top Link & Dual Speaker Grilles -->
+        <!-- Top Link & Dual Speaker Grilles -->
         <div class="hw-link-panel">
           <div class="hw-speaker-col">
             <div class="hw-speaker-grille"></div>
@@ -59,17 +59,17 @@
           </div>
           <div class="hw-speaker-col">
             <div class="hw-speaker-grille"></div>
-            <span class="hw-sub-readout hw-vol-label">VOL 100</span>
+            <span class="hw-sub-readout hw-vol-label" id="hw-vol-label">VOL 100</span>
           </div>
         </div>
 
-        <!-- 2. Dark Brushed-Metal LCD Display -->
+        <!-- Dark Brushed-Metal LCD Display -->
         <div class="hw-lcd-panel">
           <div class="hw-lcd-top">
-            <div class="hw-signal-bars" aria-hidden="true">
+            <div class="hw-signal-bars" id="hw-signal-bars" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
             </div>
-            <span class="hw-online-count">1 ONLINE</span>
+            <span class="hw-online-count" id="hw-online-count">1 ONLINE</span>
           </div>
 
           <div class="hw-lcd-digits-row">
@@ -90,11 +90,11 @@
           <div class="hw-user-pill" id="hw-user-pill">USER: ALPHA-1 (YOU)</div>
 
           <p class="hw-lcd-footer" id="ptt-status-note">
-            OFFLINE READY • LOCAL WIRELESS
+            SET GROUP &amp; PASSWORD IN SECURE ROOM
           </p>
         </div>
 
-        <!-- 3. Honeycomb Grille + Giant Illuminated Blue PTT Dome -->
+        <!-- Honeycomb Grille + Illuminated Blue PTT Dome -->
         <div class="hw-ptt-stage">
           <div class="hw-honeycomb-panel"></div>
           <div id="ptt-button" role="button" tabindex="0" aria-label="Push to Talk" class="ptt-dome-btn">
@@ -103,23 +103,16 @@
         </div>
       </section>
 
-      <!-- Secondary Sub-Screens (Accessible via Bottom Hardware Dock) -->
+      <!-- 2. Create / Join Group Screen (ONLY Group Name + Password — NO Group ID) -->
       <section id="screen-create" class="screen screen-sub">
         <div class="panel-card">
           <div class="row-between">
-            <h2>Create Group</h2>
+            <h2>Channel Group</h2>
             <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back</button>
           </div>
           <div class="field-group">
             <label for="group-name-input">Group Name</label>
-            <input id="group-name-input" type="text" placeholder="DISPATCH" />
-          </div>
-          <div class="field-group">
-            <label for="group-id-input">Group ID</label>
-            <div class="input-inline">
-              <input id="group-id-input" type="text" readonly />
-              <button type="button" id="regen-gid-btn" class="btn btn-secondary">New</button>
-            </div>
+            <input id="group-name-input" type="text" placeholder="DISPATCH" value="DISPATCH" maxlength="24" />
           </div>
           <div class="field-group">
             <label for="group-pass-input">Password</label>
@@ -127,29 +120,51 @@
           </div>
           <p id="create-group-msg" class="helper-note"></p>
           <button type="button" id="create-group-submit" class="btn btn-primary">
-            Apply Channel
+            Apply &amp; Connect
           </button>
         </div>
       </section>
 
+      <!-- 3. Secure Room (Online Auto + Offline LAN / Hotspot Direct Pair for Phone & Laptop) -->
       <section id="screen-join" class="screen screen-sub">
-        <div class="panel-card">
+        <div class="panel-card compact-card">
           <div class="row-between">
             <h2>Secure Room</h2>
             <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back</button>
           </div>
-          <div class="warning-box">
-            <strong>Wi-Fi Direct (Android APK)</strong>
-            <p>
-              Multi-phone routerless Wi-Fi Direct voice relay requires the Native Android APK (com.pwt.offlinetalk).
-            </p>
+
+          <div class="room-mode-row">
+            <button type="button" class="btn btn-primary btn-sm flex-1" data-nav="create">
+              Group &amp; Password
+            </button>
+            <button type="button" id="disconnect-room-btn" class="btn btn-secondary btn-sm">
+              Reset
+            </button>
           </div>
-          <button type="button" class="btn btn-primary" data-nav="create">
-            Edit Channel Profile
-          </button>
+
+          <div class="lan-pair-box">
+            <div class="lan-pair-title">No-Internet Wi-Fi / Hotspot Pair (Phone &harr; Laptop)</div>
+            <div class="lan-btn-row">
+              <button type="button" id="lan-create-offer-btn" class="btn btn-secondary btn-sm flex-1">
+                1. Create Offer
+              </button>
+              <button type="button" id="lan-create-answer-btn" class="btn btn-secondary btn-sm flex-1">
+                2. Paste Offer &rarr; Reply
+              </button>
+              <button type="button" id="lan-accept-answer-btn" class="btn btn-primary btn-sm flex-1">
+                3. Apply Reply
+              </button>
+            </div>
+            <textarea id="lan-signal-box" class="lan-textarea" rows="3" placeholder="Offer / Reply code appears here..."></textarea>
+            <div class="row-between">
+              <span id="lan-pair-status" class="helper-note">Works on same Wi-Fi/Hotspot without internet.</span>
+              <button type="button" id="lan-copy-btn" class="btn btn-secondary btn-sm">Copy</button>
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- 4. Menu / Settings Screen -->
       <section id="screen-about" class="screen screen-sub">
         <div class="panel-card">
           <div class="row-between">
@@ -158,7 +173,11 @@
           </div>
           <div class="field-group">
             <label for="pwa-callsign">Callsign</label>
-            <input id="pwa-callsign" type="text" maxlength="24" value="Alpha-1" />
+            <input id="pwa-callsign" type="text" maxlength="20" value="Alpha-1" />
+          </div>
+          <div class="field-group">
+            <label for="pwa-volume">Speaker Volume (<span id="pwa-volume-val">100</span>%)</label>
+            <input id="pwa-volume" type="range" min="0" max="100" value="100" />
           </div>
           <div class="dev-box">
             <div><strong>Developer:</strong> MrTech</div>
@@ -166,13 +185,13 @@
               <strong>Website:</strong>
               <a href="https://Mrtech.nptrunamentbd.top" target="_blank" rel="noopener noreferrer">https://Mrtech.nptrunamentbd.top</a>
             </div>
-            <div><strong>Package:</strong> <code>com.pwt.offlinetalk</code></div>
+            <div><strong>Laptop PTT:</strong> Hold/Tap <code>Space</code> key or Mouse</div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- 4. Bottom 5-Key Hardware Dock -->
+    <!-- Bottom 5-Key Hardware Dock -->
     <nav class="hw-dock" aria-label="Radio Hardware Controls">
       <button type="button" class="hw-key" id="dock-mode-btn">
         <span class="hw-key-ico">&#9788;</span>
@@ -187,12 +206,12 @@
       <button type="button" class="hw-key" id="dock-people-btn" data-nav="comm">
         <span class="hw-key-ico">&#128101;</span>
         <span class="hw-key-title">PEOPLE</span>
-        <span class="hw-key-val">1 LIVE</span>
+        <span class="hw-key-val" id="dock-people-val">1 LIVE</span>
       </button>
-      <button type="button" class="hw-key" id="dock-secure-btn" data-nav="join">
+      <button type="button" class="hw-key" id="dock-secure-btn" data-nav="create">
         <span class="hw-key-ico">&#128274;</span>
-        <span class="hw-key-title">SECURE</span>
-        <span class="hw-key-val">ROOM</span>
+        <span class="hw-key-title">GROUP</span>
+        <span class="hw-key-val">SET</span>
       </button>
       <button type="button" class="hw-key" id="dock-menu-btn" data-nav="about">
         <span class="hw-key-ico">&#9776;</span>
@@ -203,9 +222,12 @@
 
     <footer class="mrtech-footer">
       <span>Developed by <strong>MrTech</strong></span>
+      <span class="dot-sep">&bull;</span>
+      <button type="button" class="link-btn" id="open-lan-pair-link" data-nav="join">LAN Pair</button>
     </footer>
   </div>
 
+  <div id="remote-audio-container" class="hidden" aria-hidden="true"></div>
   <script src="./assets/app.js"></script>
 </body>
 </html>
