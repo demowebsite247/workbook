@@ -187,6 +187,7 @@
     let stream = null;
 
     pttBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+    pttBtn.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
 
     async function startMic() {
       if (isTransmitting) return;
@@ -256,6 +257,19 @@
     });
     pttBtn.addEventListener('pointerleave', () => {
       if (pttMode === 'HOLD') stopMic();
+    });
+    pttBtn.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'Enter') {
+        e.preventDefault();
+        if (pttMode === 'HOLD') startMic();
+        else if (isTransmitting) stopMic();
+        else startMic();
+      }
+    });
+    pttBtn.addEventListener('keyup', (e) => {
+      if ((e.code === 'Space' || e.code === 'Enter') && pttMode === 'HOLD') {
+        stopMic();
+      }
     });
 
     document.addEventListener('visibilitychange', () => {
