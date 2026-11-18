@@ -260,6 +260,8 @@
       const pktType = header >> 4;
       if (pktType === 2) {
         messages.push({ type: 'CONNACK' });
+      } else if (pktType === 9) {
+        messages.push({ type: 'SUBACK' });
       } else if (pktType === 3) {
         const tLen = (bytes[i] << 8) | bytes[i + 1];
         let pos = i + 2 + tLen;
@@ -270,6 +272,22 @@
       i = end;
     }
     return messages;
+  }
+
+  function unlockRemoteAudio() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (Ctx) {
+        const ctx = new Ctx();
+        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+        setTimeout(() => ctx.close().catch(() => {}), 250);
+      }
+    } catch {}
+    peers.forEach((p) => {
+      if (p.audioEl && p.audioEl.paused && p.audioEl.srcObject) {
+        p.audioEl.play().catch(() => {});
+      }
+    });
   }
 
   async function publishSignal(obj) {
@@ -350,7 +368,7 @@
       } else if (!navigator.onLine) {
         note.textContent = 'NO INTERNET • USE LAN PAIR OR ANDROID APK';
       } else {
-        note.textContent = 'SET GROUP & PASSWORD TO CONNECT';
+        note.textContent = 'TAP GROUP (SET) TO ENTER NAME & PASSWORD';
       }
     }
   }
@@ -364,7 +382,13 @@
   }
 
   function createPeerRecord(peerId, peerName, useStun) {
-    const iceServers = useStun ? [{ urls: 'stun:stun.l.google.com:19302' }] : [];
+    const iceServers = useStun
+      ? [
+          { urls: 'stun:stun.l.google.com:19302' },
+          { urls: 'stun:stun1.l.google.com:19302' },
+          { urls: 'stun:stun.cloudflare.com:3478' }
+        ]
+      : [];
     const pc = new RTCPeerConnection({ iceServers });
     const transceiver = pc.addTransceiver('audio', { direction: 'sendrecv' });
     const audioEl = document.createElement('audio');
@@ -600,13 +624,19 @@
             clearTimeout(timeout);
             activeTransportLabel = 'WEBRTC';
             ws.send(buildMqttSubscribe(1, mqttTopic));
-            await publishSignal({ type: 'PRESENCE' });
             mqttKeepaliveTimer = setInterval(() => {
               if (ws.readyState === WebSocket.OPEN) {
                 ws.send(new Uint8Array([0xc0, 0x00]));
               }
             }, 25000);
+            setTimeout(() => {
+              if (peers.size === 0 && ws.readyState === WebSocket.OPEN) {
+                publishSignal({ type: 'PRESENCE' });
+              }
+            }, 350);
             updateTransceiverUi();
+          } else if (p.type === 'SUBACK') {
+            await publishSignal({ type: 'PRESENCE' });
           } else if (p.type === 'PUBLISH') {
             const decoded = await decryptEnvelope(p.payload);
             if (decoded) await handleIncomingSignal(decoded);
@@ -781,6 +811,7 @@
         return;
       }
       msgEl.textContent = '';
+      unlockRemoteAudio();
       switchScreen('comm');
       await connectOnlineRoom(gName, gPass);
     });
@@ -816,6 +847,7 @@
     pttBtn.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
 
     async function startMic() {
+      unlockRemoteAudio();
       if (isTransmitting) return;
       if (activeFloorSpeakerId && activeFloorSpeakerId !== localPeerId) return;
 
