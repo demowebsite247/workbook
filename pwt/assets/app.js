@@ -183,7 +183,10 @@
     const pttNote = document.getElementById('ptt-status-note');
     const channelStatus = document.getElementById('comm-channel-status');
     const linkState = document.getElementById('hw-link-state');
+    const radioWaves = document.getElementById('hw-radio-waves');
     let stream = null;
+
+    pttBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
     async function startMic() {
       if (isTransmitting) return;
@@ -194,10 +197,23 @@
       channelStatus.textContent = 'CHANNEL: MIC ACTIVE';
       linkState.textContent = 'LIVE MIC';
       linkState.classList.add('live');
+      if (radioWaves) radioWaves.classList.add('live');
 
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         try {
-          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              channelCount: 1,
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: true
+            }
+          });
+          if (!isTransmitting) {
+            stream.getTracks().forEach((t) => t.stop());
+            stream = null;
+            return;
+          }
           pttNote.textContent = 'LOCAL MIC ACTIVE • USE APK FOR P2P';
         } catch (err) {
           pttNote.textContent = `MIC UNAVAILABLE: ${err.message}`;
@@ -214,6 +230,7 @@
       channelStatus.textContent = 'CHANNEL: CLEAR';
       linkState.textContent = 'OFFLINE';
       linkState.classList.remove('live');
+      if (radioWaves) radioWaves.classList.remove('live');
       if (stream) {
         stream.getTracks().forEach((t) => t.stop());
         stream = null;
@@ -221,7 +238,8 @@
       pttNote.textContent = 'OFFLINE READY • LOCAL WIRELESS';
     }
 
-    pttBtn.addEventListener('pointerdown', () => {
+    pttBtn.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
       if (pttMode === 'HOLD') {
         startMic();
       } else if (isTransmitting) {
@@ -239,6 +257,12 @@
     pttBtn.addEventListener('pointerleave', () => {
       if (pttMode === 'HOLD') stopMic();
     });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopMic();
+    });
+    window.addEventListener('pagehide', stopMic);
+    window.addEventListener('blur', stopMic);
   }
 
   initServiceWorker();
