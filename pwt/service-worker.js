@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'pwt-shell-v1.0.4';
+const CACHE_VERSION = 'pwt-shell-v1.0.5';
 const APP_SHELL_URLS = [
   './',
   './index.html',
