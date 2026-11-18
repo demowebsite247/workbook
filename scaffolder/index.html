@@ -1,1 +1,365 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>স্ক্যাফোল্ডার ট্রেনিং A–Z</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--tx:#10151c;--mu:#5a6675;--bl:#0b5ed7;--or:#f57c00;--bd:#d9e1ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e131a;--card:#171e28;--tx:#eef2f7;--mu:#9aa7b8;--bd:#2a3442;--bl:#5b9bff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e131a;--card:#171e28;--tx:#eef2f7;--mu:#9aa7b8;--bd:#2a3442;--bl:#5b9bff;color-scheme:dark}
+html{scroll-padding-top:70px}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,"Noto Sans Bengali","Segoe UI",sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#10151c;color:#fff;display:flex;gap:8px;align-items:center;padding:8px 12px}
+header b{color:var(--or);white-space:nowrap}
+header input{flex:1;min-width:0;padding:8px 10px;border-radius:8px;border:0;font:inherit}
+button{font:inherit;cursor:pointer}
+#menu{background:var(--or);border:0;color:#fff;border-radius:8px;padding:6px 10px}
+nav{position:fixed;left:0;top:52px;bottom:0;width:270px;background:var(--card);border-right:1px solid var(--bd);overflow:auto;padding:8px;transform:translateX(-100%);transition:.2s;z-index:4}
+nav.open{transform:none}nav a{display:block;padding:8px 10px;border-radius:8px;color:var(--tx);text-decoration:none;font-size:14px}
+nav a:hover{background:var(--bg)}
+main{max-width:900px;margin:0 auto;padding:12px}
+@media(min-width:900px){nav{transform:none}main{margin-left:290px}#menu{display:none}}
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.dash div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center}
+.dash b{font-size:22px;color:var(--bl);display:block}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin-bottom:14px}.bar i{display:block;height:100%;background:var(--or);width:0}
+section{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+h2{margin:0 0 4px;color:var(--bl);font-size:19px}h3{margin:12px 0 4px;font-size:16px}
+.en{font-weight:700}.pr{color:var(--or);font-size:14px}.mu{color:var(--mu);font-size:14px}
+.q{background:rgba(245,124,0,.1);border-left:4px solid var(--or);padding:8px 10px;border-radius:6px;margin-top:8px;font-size:14px}
+.ex{background:rgba(11,94,215,.08);border-left:4px solid var(--bl);padding:8px 10px;border-radius:6px;margin-top:8px;font-size:14px}
+.done{margin-top:8px;font-size:14px}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left}th{background:#10151c;color:#fff}
+.az{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.az button{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:6px;min-width:30px;padding:3px 6px}
+.az button.on{background:var(--or);color:#fff;border-color:var(--or)}
+.ent{border-top:1px solid var(--bd);padding:8px 0}.tag{font-size:12px;background:var(--bd);border-radius:10px;padding:1px 8px;margin-left:6px}
+#cv{width:100%;height:320px;background:#e8eef7;border-radius:12px;touch-action:none;display:block}
+.opt{display:block;width:100%;text-align:left;margin:4px 0;padding:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:8px}
+.ok{background:#c8f0d0!important;color:#10151c}.no{background:#f7c9c9!important;color:#10151c}
+.note{font-size:13px;color:var(--mu)}
+main{padding-bottom:84px}
+#bn{position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;background:#10151c;padding-bottom:env(safe-area-inset-bottom,0px)}
+#bn a{flex:1;text-align:center;color:#fff;text-decoration:none;font-size:12px;padding:8px 2px}
+#bn a b{display:block;font-size:20px}
+@media(min-width:900px){#bn{display:none}}
+.pill{display:inline-block;margin:3px;padding:8px 12px;border-radius:20px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+.pill.on{background:var(--bl);color:#fff;border-color:var(--bl)}
+.act{background:var(--or);color:#fff;border:0;border-radius:10px;padding:10px 16px;margin:4px 4px 4px 0}
+.fc{background:var(--bg);border:2px dashed var(--or);border-radius:14px;padding:16px;text-align:center;min-height:110px}
+.fc .big{font-size:22px;font-weight:700;color:var(--bl)}
 
+.hero{background:radial-gradient(120% 120% at 80% 0%,#1d3a6e 0%,#10151c 60%);color:#fff;border-radius:18px;overflow:hidden;margin-bottom:14px;display:grid;gap:0;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.hero .ht{padding:22px 18px 6px}.badge{display:inline-block;font-size:11px;letter-spacing:1.5px;background:rgba(245,124,0,.18);color:#ffb15c;border:1px solid rgba(245,124,0,.5);padding:3px 10px;border-radius:20px}
+.hero h1{margin:10px 0 6px;font-size:30px;line-height:1.2}.hero h1 em{font-style:normal;color:var(--or)}
+.hero p{margin:0 0 12px;color:#c9d4e3;font-size:15px}
+.hero canvas{width:100%;height:250px;display:block;touch-action:pan-y}
+.cta a{display:inline-block;text-decoration:none;background:var(--or);color:#fff;border-radius:10px;padding:10px 16px;margin:4px 6px 4px 0;font-weight:700}
+.cta a.gh{background:transparent;border:1px solid rgba(255,255,255,.45)}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px 14px 18px}
+.feat div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 4px;text-align:center;font-size:12px;color:#c9d4e3}
+.feat b{display:block;font-size:20px;color:#fff}
+@media(min-width:700px){.hero{grid-template-columns:1.1fr 1fr}.hero canvas{height:100%;min-height:320px;grid-column:2;grid-row:1/3}.hero .ht{padding:30px 26px 6px}.hero h1{font-size:38px}.feat{grid-column:1;padding:6px 26px 24px}}
+#bn a.hm{color:#ffb15c;font-weight:700}#bn a.hm b{width:52px;height:52px;line-height:52px;margin:-24px auto 0;background:var(--or);color:#fff;border-radius:50%;border:4px solid #10151c;font-size:24px}
+#hm{margin-bottom:14px}.how{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.how div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 6px;text-align:center;font-size:14px}.how b{display:block;width:30px;height:30px;line-height:30px;margin:0 auto 4px;border-radius:50%;background:var(--or);color:#fff}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.menu a{display:block;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 10px;text-decoration:none;color:var(--tx);text-align:center;font-weight:700}.menu a span{display:block;font-size:30px}.menu a small{display:block;font-weight:400;color:var(--mu);font-size:12px}
+@media(min-width:700px){.menu{grid-template-columns:repeat(3,1fr)}}
+body[data-p=home] :is(#lessons,#m,#d,#fcs,#v,#v2,#qz,#i2,main>.note){display:none}
+body[data-p=lessons] :is(.hero,#hm,#prog,.bar,#m,#d,#fcs,#v,#v2,#qz,#i2,#lessons>#i,#lessons>#e,main>.note){display:none}
+body[data-p=dict] :is(.hero,#hm,#prog,.bar,#lessons,#v,#v2,#qz,#i2,main>.note){display:none}
+body[data-p=d3] :is(.hero,#hm,#prog,.bar,#lessons,#m,#d,#fcs,#qz,#i2){display:none}
+body[data-p=iv] :is(.hero,#hm,#prog,.bar,#m,#d,#fcs,#v,#v2,#qz,#lessons>section:not(#i):not(#e),main>.note){display:none}
+body[data-p=qz] :is(.hero,#hm,#prog,.bar,#lessons,#m,#d,#fcs,#v,#v2,#i2,main>.note){display:none}
+body[data-p=search] :is(.hero,#hm,#prog,.bar,#m,#fcs,#v,#v2,#qz,#i2,#lessons>#i,#lessons>#e,main>.note){display:none}
+</style></head><body data-p="home">
+<header><button id="menu" aria-label="মেনু">☰</button><b>স্ক্যাফোল্ডার এ–জেড</b><input id="s" placeholder="🔍 খুঁজুন (যেমন: কাপলার)"></header>
+<nav id="nav"></nav>
+<div id="bn"><a href="#l0"><b>📚</b>পাঠ</a><a href="#v2"><b>🧊</b>৩ডি</a><a href="#home" class="hm"><b>🏠</b>হোম</a><a href="#qz"><b>📝</b>কুইজ</a><a href="#prog"><b>📈</b>অগ্রগতি</a></div>
+<main>
+<div class="hero"><div class="ht"><span class="badge">পেশাদার প্রশিক্ষণ</span><h1>স্ক্যাফোল্ডার ট্রেনিং <em>A–Z</em></h1><p>স্ক্যাফোল্ডিং শেখার সম্পূর্ণ গাইড — প্রতিটি কাপলার, পাইপ, বোর্ড ও ধাপ <b>৩ডি মডেলে ঘুরিয়ে দেখে</b> সহজে শিখুন। কোনো ঝামেলা নেই—সব বাংলায়, এক জায়গায়।</p><div class="cta"><a href="#l0">📚 পড়া শুরু করুন</a><a class="gh" href="#v2">🧊 ৩ডি দেখুন</a></div></div><canvas id="hc"></canvas>
+<div class="feat"><div><b id="f1">13</b>পাঠ</div><div><b>৩ডি</b>মডেল</div><div><b>৮</b>ধাপে সাজানো</div><div><b id="f2">A–Z</b>শব্দকোষ</div><div><b>🎤</b>ইন্টারভিউ</div><div><b>📝</b>কুইজ</div></div></div>
+<div id="hm"><h2>কীভাবে শিখবেন? ৩টি সহজ ধাপ</h2><div class="how"><div><b>১</b>পাঠ পড়ুন</div><div><b>২</b>৩ডি-তে ঘুরিয়ে দেখুন</div><div><b>৩</b>কুইজ দিন</div></div><div class="menu"><a href="#l0"><span>📚</span>পাঠসমূহ<small>ধাপে ধাপে শিখুন</small></a><a href="#v2"><span>🧊</span>৩ডি মডেল<small>ঘুরিয়ে দেখুন</small></a><a href="#d"><span>📖</span>শব্দকোষ<small>এ থেকে জেড</small></a><a href="#m"><span>📏</span>মাপ<small>পাইপ ও বোর্ড</small></a><a href="#i"><span>🎤</span>ইন্টারভিউ<small>প্রশ্ন ও উত্তর</small></a><a href="#qz"><span>📝</span>কুইজ<small>নিজেকে যাচাই করুন</small></a></div></div>
+<div class="dash" id="prog"><div><b id="t">0</b>মোট পাঠ</div><div><b id="c">0</b>সম্পন্ন</div><div><b id="p">0%</b>অগ্রগতি</div></div>
+<div class="bar"><i id="pb"></i></div>
+<div id="lessons"></div>
+
+<section id="m"><h2>📏 মাপ</h2><p class="mu">নিচের মাপগুলো <b>সাধারণ উদাহরণ</b>। প্রস্তুতকারক ও অনুমোদিত ডিজাইন অনুযায়ী সাইটে আসল মাপ আলাদা হতে পারে—সবসময় সুপারভাইজার/ডিজাইন দেখে নিন।</p>
+<h3>Steel Scaffold Tube (OD 48.3 mm)</h3><div class="wrap"><table>
+<tr><th>Wall thickness</th><th>Inside Dia. (প্রায়)</th><th>ওজন/মিটার (প্রায়)</th></tr>
+<tr><td>3.2 mm</td><td>41.9 mm</td><td>3.56 kg</td></tr>
+<tr><td>4.0 mm</td><td>40.3 mm</td><td>4.37 kg</td></tr></table></div>
+<h3>সাধারণ Tube length</h3><div class="wrap"><table>
+<tr><th>মিটার</th><th>মিলিমিটার</th><th>ওজন (4.0 mm, প্রায়)</th></tr>
+<tr><td>1.0 m</td><td>1000</td><td>4.4 kg</td></tr><tr><td>2.0 m</td><td>2000</td><td>8.7 kg</td></tr>
+<tr><td>3.0 m</td><td>3000</td><td>13.1 kg</td></tr><tr><td>6.0 m</td><td>6000</td><td>26.2 kg</td></tr></table></div>
+<h3>Scaffold Board (কাঠের পাটাতন, সাধারণ)</h3><div class="wrap"><table>
+<tr><th>Width</th><th>Thickness</th><th>Length (সাধারণ)</th></tr>
+<tr><td>225 mm</td><td>38 mm</td><td>1.2 m – 3.9 m</td></tr></table></div>
+<h3>ইঞ্চিতে সহজ হিসাব</h3><div class="wrap"><table>
+<tr><th>জিনিস</th><th>মিমি</th><th>ইঞ্চি / ফুট (প্রায়)</th></tr>
+<tr><td>পাইপের বাইরের ব্যাস</td><td>48.3</td><td>1.9 ইঞ্চি (১½ ইঞ্চি পাইপ)</td></tr>
+<tr><td>পাইপের দেয়াল (পাতলা)</td><td>3.2</td><td>0.126 ইঞ্চি (প্রায় ⅛)</td></tr>
+<tr><td>পাইপের দেয়াল (মোটা)</td><td>4.0</td><td>0.157 ইঞ্চি (প্রায় ⁵⁄₃₂)</td></tr>
+<tr><td>বোর্ডের প্রস্থ</td><td>225</td><td>প্রায় ৯ ইঞ্চি</td></tr>
+<tr><td>বোর্ডের পুরুত্ব</td><td>38</td><td>১½ ইঞ্চি</td></tr>
+<tr><td>বোর্ডের দৈর্ঘ্য</td><td>1.2 / 1.8 / 2.4 / 3.0 / 3.9 মি</td><td>৪ / ৬ / ৮ / ১০ / ১৩ ফুট</td></tr></table></div>
+<p class="note">৩ডি মডেলে এই মাপগুলো লেখা আছে: ৩ডি যন্ত্রাংশ থেকে "টিউব" ও "কাঠের বোর্ড" বেছে নিন।</p>
+<p class="note">Steel/aluminium plank-এর মাপ ব্র্যান্ড ও সিস্টেম অনুযায়ী ভিন্ন—নির্দিষ্ট মাপ এখানে দেওয়া হয়নি।</p></section>
+
+<section id="d"><h2>📖 শব্দকোষ (এ–জেড)</h2><p class="mu">শুধু বাস্তব ও পরিচিত শব্দ দেওয়া হয়েছে। যে শব্দ কম প্রচলিত বা সিস্টেম-নির্ভর, সেখানে ট্যাগ আছে।</p>
+<div class="az" id="az"></div><div id="dl"></div></section>
+
+<section id="v"><h2>🧊 ৩ডি স্ক্যাফোল্ড মডেল</h2><p class="mu">আঙুল/মাউস দিয়ে ঘোরান, পিঞ্চ/স্ক্রল করে জুম করুন। লাল-নীল-কমলা: <b>স্ট্যান্ডার্ড</b> (নীল), <b>লেজার</b> (কমলা), <b>ট্রান্সম</b> (সাদা), <b>ব্রেস</b> (লাল), <b>বোর্ড</b> (বাদামী)।</p>
+<canvas id="cv"></canvas><p class="note" id="fb"></p></section>
+
+<section id="fcs"><h2>🃏 ফ্ল্যাশকার্ড (আজকের পুনরাবৃত্তি)</h2><p class="mu">নাম দেখে আগে নিজে মনে করুন, তারপর উত্তর দেখুন।</p><div class="fc"><div class="big" id="fcf"></div><div id="fcb" hidden></div></div><button class="act" id="fcs1">উত্তর দেখুন</button><button class="act" id="fcn">পরের কার্ড →</button></section>
+<section id="v2"><h2>🔩 ৩ডি যন্ত্রাংশ ও সাজানোর ধাপ</h2><p class="mu">নিচ থেকে একটি বেছে নিন। ঘোরান, জুম করুন। কাপলারে <b>▶ Animation</b> চাপলে সংযোগ হওয়া দেখা যাবে। রঙ: নীল=Standard, কমলা=Ledger/Coupler, সাদা=Transom, লাল=Brace, বাদামী=Board, সবুজ=Tie, হলুদ=Guardrail।</p><div id="mb"></div><canvas id="cv2" style="width:100%;height:320px;background:#e8eef7;border-radius:12px;touch-action:none;display:block"></canvas><div class="ex" id="cap2"></div><button class="act" id="pl">▶ জোড়া লাগানো দেখুন</button><p class="note" id="fb2">এগুলো শিক্ষার জন্য সরল মডেল; আসল মাপ ও ডিজাইন প্রস্তুতকারক ও অনুমোদিত প্ল্যান অনুযায়ী হবে।</p></section>
+<section id="qz"><h2>📝 কুইজ ও পরীক্ষা</h2><div id="qb"></div><p><b id="sc"></b></p></section>
+<p class="note">ছবি: এই ফাইলে বাইরের ছবি লোড হয় না, তাই আসল ফটোর বদলে মৌলিক 3D মডেল ব্যবহার করা হয়েছে। আসল ছবির জন্য সাইটে সরাসরি ছবি যোগ করতে হবে।</p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const L=[
+["Scaffold Clamps/Couplers","স্ক্যাফোল্ড ক্ল্যাম্প","সবচেয়ে গুরুত্বপূর্ণ ক্ল্যাম্প","Tube-কে অন্য Tube-এর সাথে আটকাতে Coupler/Clamp লাগে। প্রধান তিনটি: Right Angle (Double) Coupler—৯০° সংযোগ; Swivel Coupler—যেকোনো কোণে; Sleeve Coupler—দুই Tube লম্বালম্বি জোড়া। আরও আছে Putlog, Board Retaining, Girder Coupler।","Ledger-কে Standard-এর সাথে আটকানো","Standard-এ Ledger বসাতে Right Angle Coupler নিন।","Right angle coupler আর swivel coupler-এর পার্থক্য কী?"],
+["Main Components","মেইন কম্পোনেন্ট","প্রধান অংশ","Standard (খাড়া Tube), Ledger (লম্বা আড়াআড়ি), Transom (প্রস্থ বরাবর), Brace (কোণাকুণি), Base Plate/Jack, Board (পাটাতন), Guardrail, Toe board।","ভার বহন ও কাঠামো স্থির রাখা","Standard মাটিতে Base Plate-এর উপর দাঁড়ায়।","Ledger আর Transom-এর পার্থক্য বলুন।"],
+["Scaffold Pipe/Tube","স্ক্যাফোল্ড পাইপ","পাইপের মাপ","সাধারণ Steel Tube-এর Outside Diameter (OD) 48.3 mm। Wall thickness সাধারণত 3.2 বা 4.0 mm। ওজন ও দৈর্ঘ্য ওপরের Measurement টেবিলে দেখুন।","Standard, Ledger, Transom তৈরি","6 m Tube ক্রেন ছাড়াই দুইজনে বহন করা হয়।","Scaffold tube-এর OD কত?"],
+["Scaffold Boards/Planks","স্ক্যাফোল্ড বোর্ড","পাটাতন","Working Platform-এর মেঝে। কাঠের Board সাধারণ 225 × 38 mm। Steel বা Aluminium Plank-ও হয়। ফাটা, পচা বা বাঁকা Board ব্যবহার নিষেধ।","কাজের জায়গায় হাঁটার মেঝে","Board-এর দুই প্রান্ত Transom-এ ঠিকমতো বসাতে হয়।","ভাঙা board পেলে কী করবেন?"],
+["Couplers & Fittings","কাপলার ও ফিটিংস","সব ফিটিং","Right Angle, Swivel, Sleeve, Putlog, Board Retaining, Girder, Joint Pin ইত্যাদি। প্রতিটির কাজ আলাদা—ভুল ফিটিং বিপদ ডেকে আনে।","Tube জোড়া ও Board আটকানো","Beam-এ ঝুলাতে Girder Coupler ব্যবহৃত হয়।","Sleeve coupler কখন লাগে?"],
+["Base Materials","বেস ম্যাটেরিয়াল","বেস ও জ্যাক","Base Plate ভার ছড়ায়। Adjustable Base Jack উচ্চতা ঠিক করে। নরম মাটিতে Sole Board দেওয়া হয়। U-Head Jack উপরে Beam ধরে।","ভিত্তি সমতল ও মজবুত রাখা","ঢালু জমিতে Adjustable Base Jack লাগে।","Sole board কেন দরকার?"],
+["Tools & Equipment","টুলস","স্ক্যাফোল্ড টুল","Scaffold Spanner (Podger), Spirit Level, Tape Measure, Hammer, Tool Pouch/Lanyard, Rope ও Gin Wheel (মালপত্র তোলার জন্য)।","কাপলার টাইট ও লেভেল চেক","Spanner দিয়ে Coupler নাট টাইট করা হয়।","Scaffold spanner-এর কাজ কী?"],
+["PPE & Safety","পিপিই ও সেফটি","ব্যক্তিগত সুরক্ষা","Safety Helmet, Safety Shoes, Hi-Vis Vest, Gloves, Safety Glasses, Full Body Harness + Double Lanyard। উচ্চতায় কাজে সবসময় Harness ব্যবহার ও সঠিক Anchor Point-এ Hook লাগান।","পড়ে যাওয়া ও আঘাত থেকে রক্ষা","Erection-এর সময় সবসময় ১০০% Tie-off।","উচ্চতায় কাজে কোন PPE বাধ্যতামূলক?"],
+["Scaffolding Types","স্ক্যাফোল্ডিংয়ের ধরন","ধরন","Independent (নিজস্ব Standard), Putlog/Single, Mobile (চাকা সহ), Cantilever, Frame, System (Cuplock/Ringlock), Hanging/Suspended, Stair Tower।","কাজের ধরন অনুযায়ী সঠিক স্ক্যাফোল্ড","Plant/Tank এলাকায় System Scaffold বেশি দেখা যায়।","Mobile scaffold-এ কী সতর্কতা?"],
+["Erection & Dismantling","ইরেকশন ও ডিসম্যান্টলিং","বানানো ও খোলা","ক্রম: Base → Standard → Ledger → Transom → Brace → Board → Guardrail → Toe board → Ladder। খোলার সময় উল্টো ক্রম, উপর থেকে নিচে। নিচে Barricade ও Warning Sign দিন। Approved Plan ও Supervisor ছাড়া কাজ নয়।","নিরাপদে স্ক্যাফোল্ড তৈরি ও খোলা","Dismantling-এর সময় নিচে কেউ থাকা নিষেধ।","Erection-এর ধাপগুলো বলুন।"],
+["Inspection & Tags","ইন্সপেকশন ও ট্যাগ","পরিদর্শন ও ট্যাগ","Competent/Qualified Person ব্যবহারের আগে ও নিয়মিত পরীক্ষা করেন। Green Tag—ব্যবহারযোগ্য, Red Tag—ব্যবহার নিষেধ। ট্যাগের রং ও নিয়ম সাইট/কোম্পানি অনুযায়ী আলাদা হতে পারে—সাইটের নিয়ম মানুন।","ব্যবহারের আগে নিরাপত্তা নিশ্চিত","Tag ছাড়া স্ক্যাফোল্ডে উঠবেন না।","Red tag দেখলে কী করবেন?"],
+["Material Identification","ম্যাটেরিয়াল চেনা","মালামাল চেনা","Tube (লম্বা, গোল), Coupler (লোহার ক্ল্যাম্প), Board (পাটাতন), Base Plate (চ্যাপ্টা প্লেট), Ladder। ক্ষয়, বাঁক ও ফাটল দেখে নষ্ট মাল আলাদা করুন।","স্টোর থেকে সঠিক মাল আনা","Supervisor বললে “6 m tube” আনুন।","নষ্ট tube কীভাবে চিনবেন?"],
+["Site Practical Knowledge","সাইটের বাস্তব জ্ঞান","সাইটে কাজ","Work Permit, Toolbox Talk, Housekeeping, Safe Load, Weather (বাতাস/গরম) সতর্কতা, মালপত্র হাতে নয় Rope-এ তোলা। Saudi সাইটে গরমে পানি ও বিশ্রামের নিয়ম মানুন।","দৈনন্দিন নিরাপদ কাজ","সকালে Toolbox Talk দিয়ে কাজ শুরু।","Toolbox talk কী?"]
+];
+const D=[
+["A","Anchor","অ্যাংকর","নোঙর/বাঁধন","স্ক্যাফোল্ডকে বিল্ডিং/কাঠামোর সাথে বাঁধা","Tie-এর জন্য দেওয়ালে বসানো"],
+["A","Adjustable Base Jack","অ্যাডজাস্টেবল বেস জ্যাক","উচ্চতা বদলানো যায় এমন পা","অসমতল জমিতে লেভেল করা","ঢালু মাটিতে"],
+["A","Aluminium Plank","অ্যালুমিনিয়াম প্ল্যাংক","হালকা ধাতুর পাটাতন","হালকা ওজনের প্ল্যাটফর্ম","বহন সহজ"],
+["B","Base Plate","বেস প্লেট","গোড়ার প্লেট","Standard-এর ভার মাটিতে ছড়ানো","Standard-এর নিচে"],
+["B","Brace","ব্রেস","কোণাকুণি Tube","কাঠামো বাঁকা হওয়া রোধ","দৈর্ঘ্যের দিকে লাগানো"],
+["B","Board Retaining Coupler","বোর্ড রিটেইনিং কাপলার","বোর্ড ধরে রাখার ক্ল্যাম্প","বোর্ডকে সরে যাওয়া থেকে আটকানো","Overhang Board ধরতে"],
+["B","Beam Clamp","বিম ক্ল্যাম্প","বিমে আটকানোর ক্ল্যাম্প","Steel Beam-এ Tube ঝুলানো","Girder Coupler-ও বলা হয়"],
+["C","Coupler","কাপলার","জোড়ার ক্ল্যাম্প","দুই Tube সংযোগ","Ledger-Standard সংযোগ"],
+["C","Castor Wheel","ক্যাস্টর হুইল","চাকা","Mobile Scaffold সরানো","ব্রেক লক করে ব্যবহার"],
+["C","Cantilever Scaffold","ক্যান্টিলিভার স্ক্যাফোল্ড","বাইরে বেরিয়ে থাকা স্ক্যাফোল্ড","নিচে জায়গা না থাকলে","Beam থেকে বের করে"],
+["D","Double Coupler","ডাবল কাপলার","Right Angle Coupler-এর অন্য নাম","৯০° সংযোগ","Ledger-Standard"],
+["D","Deck","ডেক","মেঝে/প্ল্যাটফর্ম","কাজ ও হাঁটার জায়গা","Board বিছানো"],
+["D","Diagonal Brace","ডায়াগোনাল ব্রেস","তির্যক ব্রেস","স্থিরতা","বাইরের মুখে"],
+["D","Dismantling","ডিসম্যান্টলিং","খুলে ফেলা","কাজ শেষে নিরাপদে খোলা","উপর থেকে নিচে"],
+["E","Erection","ইরেকশন","বানানো","স্ক্যাফোল্ড দাঁড় করানো","Plan অনুযায়ী"],
+["E","Edge Protection","এজ প্রোটেকশন","কিনারার সুরক্ষা","পড়ে যাওয়া রোধ","Guardrail + Toe board"],
+["E","Extension Ladder","এক্সটেনশন ল্যাডার","বাড়ানো যায় এমন মই","উচ্চতায় ওঠা","সঠিক কোণে বসান"],
+["F","Frame Scaffold","ফ্রেম স্ক্যাফোল্ড","তৈরি ফ্রেমের স্ক্যাফোল্ড","দ্রুত তৈরি","H-frame সিস্টেম"],
+["F","Foot Plate","ফুট প্লেট","পায়ের প্লেট","ভার ছড়ানো","Base Plate-এর সমার্থক হিসেবে কখনও"],
+["F","Fitting","ফিটিং","জোড়ার যন্ত্রাংশ","Tube জোড়া","Coupler ইত্যাদি"],
+["G","Guardrail","গার্ডরেইল","রেলিং","পড়ে যাওয়া রোধ","Platform-এর কিনারায়"],
+["G","Girder Coupler","গার্ডার কাপলার","বিমে ধরার কাপলার","Beam-এ Tube আটকানো","ঝুলন্ত কাঠামো"],
+["G","Gin Wheel","জিন হুইল","দড়ির পুলি","মাল তোলা","Rope দিয়ে উপরে পাঠানো"],
+["H","Harness","হারনেস","শরীরের সেফটি বেল্ট","পড়ে গেলে ধরে রাখা","Lanyard সহ"],
+["H","Horizontal Ledger","হরাইজন্টাল লেজার","আড়াআড়ি Tube","Standard সংযোগ","প্রতি Lift-এ"],
+["I","Inspection","ইন্সপেকশন","পরিদর্শন","নিরাপত্তা যাচাই","ব্যবহারের আগে"],
+["I","Internal Ladder","ইন্টারনাল ল্যাডার","ভেতরের মই","Platform-এ ওঠা","Hatch দিয়ে"],
+["I","Independent Scaffold","ইন্ডিপেন্ডেন্ট স্ক্যাফোল্ড","নিজের Standard-এর স্ক্যাফোল্ড","দেওয়ালের উপর নির্ভর নয়","দুই সারি Standard"],
+["J","Joint Pin","জয়েন্ট পিন","জোড়ার পিন","Tube লম্বালম্বি জোড়া","Sleeve-এর বিকল্প (Internal)"],
+["J","Jack","জ্যাক","উঠানামার স্ক্রু","উচ্চতা সমন্বয়","Base/U-Head"],
+["K","Kickboard","কিকবোর্ড","পায়ের বোর্ড (Toe Board-এর অন্য নাম)","জিনিস পড়া রোধ","Platform-এর কিনারায়"],
+["L","Ledger","লেজার","লম্বা আড়াআড়ি Tube","Standard সংযোগ","Coupler দিয়ে"],
+["L","Ladder","ল্যাডার","মই","ওঠানামা","Scaffold-এর সাথে বাঁধা"],
+["L","Lifeline","লাইফলাইন","জীবনরক্ষক দড়ি/তার","Harness আটকানো","Anchor Point"],
+["M","Midrail","মিডরেইল","মাঝের রেইল","মাঝখান দিয়ে পড়া রোধ","Guardrail-এর নিচে"],
+["M","Mobile Scaffold","মোবাইল স্ক্যাফোল্ড","চাকা সহ স্ক্যাফোল্ড","সরিয়ে কাজ","Brake লক"],
+["N","Netting","নেটিং","জাল","জিনিস পড়া রোধ","Debris Net"],
+["N","Node Point","নোড পয়েন্ট","সংযোগ বিন্দু (System Scaffold, সিস্টেম-নির্ভর)","Cuplock/Ringlock-এ জোড়া","Rosette/Cup"],
+["O","Outside Diameter (OD)","আউটসাইড ডায়ামিটার","বাইরের ব্যাস","Tube-এর মাপ","48.3 mm"],
+["O","Outrigger","আউটরিগার","বাইরের সাপোর্ট","স্থিরতা বাড়ানো","Mobile Tower-এ"],
+["P","Platform","প্ল্যাটফর্ম","কাজের মেঝে","কাজ ও চলাচল","Board বিছিয়ে"],
+["P","Putlog","পাটলগ","দেওয়ালে ঠেকানো Tube","Single scaffold-এর Transom","Putlog Coupler সহ"],
+["P","Parallel Coupler","প্যারালাল কাপলার","সমান্তরাল ক্ল্যাম্প","দুই Tube পাশাপাশি আটকানো","Swivel-এর পাশে ব্যবহার"],
+["P","PPE","পিপিই","ব্যক্তিগত সুরক্ষা সরঞ্জাম","শরীর রক্ষা","Helmet, Shoes, Harness"],
+["Q","Qualified Inspector","কোয়ালিফাইড ইন্সপেক্টর","যোগ্য পরিদর্শক","Tag দেওয়া (দেশ/কোম্পানি অনুযায়ী পদবি আলাদা)","Competent Person-ও বলা হয়"],
+["R","Right Angle Coupler","রাইট অ্যাঙ্গেল কাপলার","৯০° ক্ল্যাম্প","আড়াআড়ি জোড়া","Standard-Ledger"],
+["R","Raker","রেকার","তির্যক ঠেকনা","পাশ থেকে সাপোর্ট","Raking Shore (বিশেষ কাজ)"],
+["R","Risk Assessment","রিস্ক অ্যাসেসমেন্ট","ঝুঁকি মূল্যায়ন","কাজের আগে বিপদ চিহ্নিত","JSA/RA ফর্ম"],
+["R","Rope","রোপ","দড়ি","মাল তোলা","Gin Wheel সহ"],
+["S","Standard","স্ট্যান্ডার্ড","খাড়া Tube","ভার বহন","Base Plate-এর উপর"],
+["S","Sole Board","সোল বোর্ড","মাটির উপরের তক্তা","নরম মাটিতে ভার ছড়ানো","Base Plate-এর নিচে"],
+["S","Scaffold Spanner","স্ক্যাফোল্ড স্প্যানার","স্ক্যাফোল্ডের রেঞ্চ","Coupler টাইট","Belt-এ ঝোলানো"],
+["S","Swivel Coupler","সুইভেল কাপলার","ঘোরানো ক্ল্যাম্প","যেকোনো কোণে জোড়া","Brace-এ"],
+["S","Sleeve Coupler","স্লিভ কাপলার","হাতা কাপলার","Tube লম্বালম্বি জোড়া","Standard লম্বা করতে"],
+["S","Stair Tower","স্টেয়ার টাওয়ার","সিঁড়ির টাওয়ার","নিরাপদ ওঠানামা","বড় সাইটে"],
+["T","Transom","ট্রান্সম","প্রস্থ বরাবর Tube","Board-এর সাপোর্ট","Ledger-এর উপর"],
+["T","Toe Board","টো বোর্ড","পায়ের বোর্ড","জিনিস পড়া রোধ","Platform-এর কিনারায়"],
+["T","Tie","টাই","বাঁধন","কাঠামোর সাথে বাঁধা","Ties নিয়মিত দূরত্বে"],
+["T","Tube / Tube and Coupler","টিউব","নল/পাইপ","স্ক্যাফোল্ডের মূল উপাদান","Tube and Coupler System"],
+["U","U-Head Jack","ইউ-হেড জ্যাক","U আকৃতির মাথার জ্যাক","Beam ধরে রাখা","Formwork/Shoring-এ"],
+["U","Upright","আপরাইট","খাড়া অংশ (Standard-এর সমার্থক)","ভার বহন","—"],
+["U","Universal Fitting","ইউনিভার্সাল ফিটিং","সব জায়গার ফিটিং (সিস্টেম-নির্ভর শব্দ)","—","প্রস্তুতকারক অনুযায়ী পরীক্ষা করুন"],
+["V","Vertical Standard","ভার্টিকাল স্ট্যান্ডার্ড","খাড়া Tube","ভার বহন","—"],
+["V","Vertical Brace","ভার্টিকাল ব্রেস","খাড়া মুখের ব্রেস","স্থিরতা","—"],
+["W","Working Platform","ওয়ার্কিং প্ল্যাটফর্ম","কাজের মেঝে","কাজ করা","—"],
+["W","Working at Height","ওয়ার্কিং অ্যাট হাইট","উচ্চতায় কাজ","বিশেষ সতর্কতা","Harness বাধ্যতামূলক"],
+["W","Wedge","ওয়েজ","গোঁজ","Ringlock/Wedge System-এ জোড়া","সিস্টেম-নির্ভর"],
+["W","Wheel","হুইল","চাকা","Mobile Tower","Castor Wheel"],
+["X","X-Bracing","এক্স ব্রেসিং","X আকৃতির ব্রেস","দৃঢ়তা","Frame Scaffold-এ"],
+["Y","Yard","ইয়ার্ড","স্টোর এলাকা (সাধারণ শব্দ, স্ক্যাফোল্ডের নির্দিষ্ট অংশ নয়)","মাল জমা রাখা","Scaffold Yard"],
+["Y","Yield Capacity","ইয়েল্ড ক্যাপাসিটি","ধাতুর সহ্যসীমা (প্রকৌশল শব্দ, স্ক্যাফোল্ডের অংশ নয়)","শক্তির হিসাব","—"],
+["Z","Zinc-Coated (Galvanised) Tube","জিঙ্ক-কোটেড টিউব","জিঙ্ক প্রলেপ দেওয়া নল","মরিচা রোধ","Galvanised Tube"]
+];
+const Q=[
+["Scaffold tube-এর সাধারণ OD কত?",["48.3 mm","60 mm","25 mm"],0],
+["৯০° সংযোগে কোন Coupler?",["Sleeve","Right Angle","Joint Pin"],1],
+["Tube লম্বালম্বি জোড়ায় কোনটি?",["Sleeve Coupler","Base Plate","Toe Board"],0],
+["নরম মাটিতে Base Plate-এর নিচে কী?",["Brace","Sole Board","Netting"],1],
+["Red Tag মানে কী?",["ব্যবহার করুন","ব্যবহার নিষেধ","শুধু উপরে"],1],
+["Dismantling-এর ক্রম কেমন?",["নিচ থেকে উপর","উপর থেকে নিচ","যেকোনো"],1],
+["উচ্চতায় কাজে কী বাধ্যতামূলক?",["Full Body Harness","Sunglasses","Radio"],0],
+["Toe Board-এর কাজ?",["জিনিস পড়া রোধ","মই","ওজন মাপা"],0]
+];
+const IQ=[["Tell me about yourself.","আমি [নাম], বাংলাদেশ থেকে। আমি scaffolding-এ কাজ শিখেছি: I know tubes, couplers and boards. I follow safety rules."],["Why do you want this job?","আমি নিরাপদে কাজ করতে চাই ও দক্ষতা বাড়াতে চাই।"],["What PPE do you wear?","Helmet, safety shoes, gloves, hi-vis vest, harness."],["What is a ledger?","Ledger is a horizontal tube along the length of scaffold."],["What do you do if you see a damaged board?","I stop work, tell the supervisor, and replace it."]];
+const $=id=>document.getElementById(id);
+const LM=[0,12,9,10,7,3,14,"A7","A7","A0",13,9,"A7"];
+const BM=[['Right Angle Coupler','রাইট অ্যাঙ্গেল কাপলার'],['Right Angle','রাইট অ্যাঙ্গেল'],['Swivel Coupler','সুইভেল কাপলার'],['Sleeve Coupler','স্লিভ কাপলার'],['Sleeve','স্লিভ'],['Putlog Coupler','পাটলগ কাপলার'],['Putlog','পাটলগ'],['Girder Coupler','গার্ডার কাপলার'],['Board Retaining Coupler','বোর্ড রিটেইনিং কাপলার'],['Double Coupler','ডাবল কাপলার'],['Coupler','কাপলার'],['Clamp','ক্ল্যাম্প'],['Joint Pin','জয়েন্ট পিন'],['Adjustable Base Jack','অ্যাডজাস্টেবল বেস জ্যাক'],['U-Head Jack','ইউ-হেড জ্যাক'],['Base Plate','বেস প্লেট'],['Base Jack','বেস জ্যাক'],['Sole Board','সোল বোর্ড'],['Toe Board','টো বোর্ড'],['Guardrail','গার্ডরেইল'],['Midrail','মিডরেইল'],['Standard','স্ট্যান্ডার্ড'],['Ledger','লেজার'],['Transom','ট্রান্সম'],['Brace','ব্রেস'],['Board','বোর্ড'],['Tube','টিউব'],['Platform','প্ল্যাটফর্ম'],['Tie-off','টাই-অফ'],['Tie','টাই'],['Full Body Harness','ফুল বডি হারনেস'],['Harness','হারনেস'],['Double Lanyard','ডাবল ল্যানিয়ার্ড'],['Lanyard','ল্যানিয়ার্ড'],['Anchor Point','অ্যাংকর পয়েন্ট'],['Safety Helmet','সেফটি হেলমেট'],['Safety Shoes','সেফটি জুতা'],['Safety Glasses','সেফটি চশমা'],['Hi-Vis Vest','হাই-ভিস ভেস্ট'],['Gloves','গ্লাভস'],['PPE','পিপিই'],['Supervisor','সুপারভাইজার'],['Toolbox Talk','টুলবক্স টক'],['Work Permit','ওয়ার্ক পারমিট'],['Housekeeping','হাউসকিপিং'],['Scaffold Spanner','স্ক্যাফোল্ড স্প্যানার'],['Spanner','স্প্যানার'],['Podger','পডগার'],['Spirit Level','স্পিরিট লেভেল'],['Tape Measure','মাপার ফিতা'],['Hammer','হাতুড়ি'],['Tool Pouch','টুল পাউচ'],['Rope','দড়ি'],['Gin Wheel','জিন হুইল'],['Green Tag','সবুজ ট্যাগ'],['Red Tag','লাল ট্যাগ'],['Tag','ট্যাগ'],['Erection','ইরেকশন'],['Dismantling','ডিসম্যান্টলিং'],['Barricade','ব্যারিকেড'],['Warning Sign','সতর্কতা চিহ্ন'],['Ladder','মই'],['Independent','ইনডিপেনডেন্ট'],['Mobile','মোবাইল'],['Cantilever','ক্যান্টিলিভার'],['Stair Tower','সিঁড়ি টাওয়ার'],['Cuplock','কাপলক'],['Ringlock','রিংলক'],['Beam','বিম'],['Outside Diameter','বাইরের ব্যাস'],['Wall thickness','দেয়ালের পুরুত্ব'],['Approved Plan','অনুমোদিত প্ল্যান'],['Steel','স্টিল'],['Aluminium','অ্যালুমিনিয়াম'],['Plank','প্ল্যাংক'],['Joint','জয়েন্ট'],['Sunglasses','সানগ্লাস'],['Radio','রেডিও'],['Netting','জাল']].sort((a,b)=>b[0].length-a[0].length);
+const BR=new RegExp('(?<![A-Za-z])('+BM.map(x=>x[0].replace(/[-\/]/g,'\\$&')).join('|')+')(?:s|es)?(?![A-Za-z])','gi');
+const BD=Object.fromEntries(BM.map(x=>[x[0].toLowerCase(),x[1]]));
+function bn(s){return typeof s!='string'?s:s.replace(BR,(m,k)=>BD[k.toLowerCase()]).replace(/(\d) ?mm\b/g,'$1 মিমি').replace(/(\d) ?kg\b/g,'$1 কেজি').replace(/(\d) m\b/g,'$1 মি')}
+L.forEach(l=>{for(let k=2;k<7;k++)l[k]=bn(l[k])});D.forEach(d=>{for(let k=3;k<6;k++)d[k]=bn(d[k])});Q.forEach(q=>{q[0]=bn(q[0]);q[1]=q[1].map(bn)});
+function go(id){let p='home';if(/^l\d+$/.test(id))p='lessons';else if(['m','d','fcs'].includes(id))p='dict';else if(['v','v2'].includes(id))p='d3';else if(['i','i2','e'].includes(id))p='iv';else if(id=='qz')p='qz';
+if($('s').value){$('s').value='';render();dic()}document.body.dataset.p=p;dispatchEvent(new Event('resize'));
+setTimeout(()=>{const el=(id=='home'||!id)?null:$(id);el?el.scrollIntoView():scrollTo(0,0)},60)}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();go(a.getAttribute('href').slice(1))});
+
+let done={};try{done=JSON.parse(localStorage.getItem('sd')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('sd',JSON.stringify(done))}catch(e){}}
+function prog(){const c=Object.values(done).filter(Boolean).length;$('t').textContent=L.length;$('c').textContent=c;$('p').textContent=Math.round(c/L.length*100)+'%';$('pb').style.width=(c/L.length*100)+'%'}
+function render(f){f=(f||'').toLowerCase();let h='',n='<a href="#home">🏠 হোম</a>';
+L.forEach((l,i)=>{const id='l'+i;n+=`<a href="#${id}">${i+1}. ${l[1]}</a>`;
+if(f&&!(l.join(' ').toLowerCase().includes(f)))return;
+h+=`<section id="${id}"><h2>পাঠ ${i+1}</h2><div class="en">${l[0]}</div><div class="pr">উচ্চারণ: ${l[1]}</div><div class="mu">অর্থ: ${l[2]}</div><p>${l[3]}</p><p><b>মূল কাজ:</b> ${l[4]}</p><div class="ex">🏗️ সাইটের উদাহরণ: ${l[5]}</div><div class="q">🎤 Interview: ${l[6]}</div><button class="act" onclick="show3d(LM[${i}])">🧊 ৩ডি-তে দেখুন</button><label class="done"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}> সম্পন্ন করেছি</label></section>`});
+n+='<a href="#m">📏 মাপ</a><a href="#d">📖 শব্দকোষ</a><a href="#v">🧊 ৩ডি মডেল</a><a href="#v2">🔩 ৩ডি যন্ত্রাংশ</a><a href="#i">🎤 ইন্টারভিউ</a><a href="#e">🗣️ ইংরেজি অনুশীলন</a><a href="#qz">📝 কুইজ</a>';
+$('lessons').innerHTML=h+`<section id="i"><h2>🎤 ইন্টারভিউ প্রশ্ন-উত্তর (নমুনা)</h2>${IQ.map(q=>`<div class="ent"><b>${q[0]}</b><br>${q[1]}</div>`).join('')}</section><section id="e"><h2>🗣️ ইংরেজি বলার অনুশীলন</h2><p>প্রতিদিন জোরে বলুন:</p><div class="ex">“I am a scaffolder. I always wear my harness at height.”</div><div class="ex">“Please check the tag before you use the scaffold.”</div><div class="ex">“I need a sleeve coupler and a base plate.”</div></section>`;
+$('nav').innerHTML=n;prog();
+document.querySelectorAll('[data-i]').forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;save();prog()})}
+let cur='A';
+function dic(){const f=$('s').value.toLowerCase();$('az').innerHTML=[...new Set(D.map(d=>d[0]))].map(x=>`<button class="${x==cur&&!f?'on':''}">${x}</button>`).join('');
+document.querySelectorAll('#az button').forEach(b=>b.onclick=()=>{$('s').value='';cur=b.textContent;dic()});
+$('dl').innerHTML=D.filter(d=>f?d.join(' ').toLowerCase().includes(f):d[0]==cur).map(d=>`<div class="ent"><span class="en">${d[1]}</span>${/সিস্টেম-নির্ভর|সাধারণ শব্দ|প্রকৌশল শব্দ/.test(d[4])?'<span class="tag">কম প্রচলিত/সাধারণ শব্দ</span>':''}<br><span class="pr">উচ্চারণ: ${d[2]}</span><br>অর্থ: ${d[3]}<br><span class="mu">কাজ: ${d[4]} | ব্যবহার: ${d[5]}</span></div>`).join('')||'<p class="mu">কিছু পাওয়া যায়নি।</p>'}
+$('s').oninput=()=>{render($('s').value);dic();document.body.dataset.p=$('s').value?'search':'home'};
+$('menu').onclick=()=>$('nav').classList.toggle('open');
+$('nav').onclick=()=>$('nav').classList.remove('open');
+render();dic();
+// quiz
+let sc=0,ans=0;
+$('qb').innerHTML=Q.map((q,i)=>`<div class="ent"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="opt" data-q="${i}" data-j="${j}">${o}</button>`).join('')}</div>`).join('');
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const q=Q[b.dataset.q];if(b.parentNode.dataset.d)return;b.parentNode.dataset.d=1;ans++;const ok=+b.dataset.j===q[2];if(ok)sc++;b.classList.add(ok?'ok':'no');if(!ok)b.parentNode.querySelector(`[data-j="${q[2]}"]`).classList.add('ok');$('sc').textContent=`স্কোর: ${sc}/${ans} (মোট ${Q.length})`});
+// 3D
+(function(){const cv=$('cv');if(!window.THREE){$('fb').textContent='3D লোড হয়নি। ইন্টারনেট চেক করে পেজ রিফ্রেশ করুন।';return}
+try{const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});const s=new THREE.Scene();const cam=new THREE.PerspectiveCamera(45,2,.1,100);let dist=9;
+s.add(new THREE.AmbientLight(0xffffff,.7));const dl=new THREE.DirectionalLight(0xffffff,.8);dl.position.set(5,8,6);s.add(dl);
+const g=new THREE.Group();s.add(g);
+function tube(a,b,col){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b);const len=A.distanceTo(B);const m=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,len,12),new THREE.MeshStandardMaterial({color:col,metalness:.5,roughness:.4}));m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());g.add(m)}
+const X=[-2.5,2.5],Z=[-1,1],H=[0,1.8,3.6];
+X.forEach(x=>Z.forEach(z=>{tube([x,0,z],[x,4,z],0x0b5ed7);const p=new THREE.Mesh(new THREE.BoxGeometry(.5,.05,.5),new THREE.MeshStandardMaterial({color:0x444444}));p.position.set(x,-.02,z);g.add(p)}));
+H.slice(1).forEach(y=>{Z.forEach(z=>tube([-2.5,y,z],[2.5,y,z],0xf57c00));X.forEach(x=>tube([x,y,-1],[x,y,1],0xffffff))});
+tube([-2.5,0,1],[2.5,3.6,1],0xd32f2f);
+const bd=new THREE.Mesh(new THREE.BoxGeometry(5.4,.12,2.2),new THREE.MeshStandardMaterial({color:0x8d6e63}));bd.position.set(0,3.66,0);g.add(bd);
+g.position.y=-1.8;let rx=.3,ry=.6;
+function size(){const w=cv.clientWidth,h=cv.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+function draw(){g.rotation.y=ry;g.rotation.x=rx;cam.position.set(0,1,dist);cam.lookAt(0,0,0);r.render(s,cam)}
+let d=false,lx,ly,pts={},pd=0;
+cv.onpointerdown=e=>{cv.setPointerCapture(e.pointerId);pts[e.pointerId]=e;d=true;lx=e.clientX;ly=e.clientY};
+cv.onpointermove=e=>{if(!pts[e.pointerId])return;pts[e.pointerId]=e;const k=Object.values(pts);if(k.length==2){const dd=Math.hypot(k[0].clientX-k[1].clientX,k[0].clientY-k[1].clientY);if(pd)dist=Math.min(16,Math.max(4,dist-(dd-pd)*.03));pd=dd}else if(d){ry+=(e.clientX-lx)*.01;rx=Math.max(-1,Math.min(1,rx+(e.clientY-ly)*.01));lx=e.clientX;ly=e.clientY}draw()};
+cv.onpointerup=cv.onpointercancel=e=>{delete pts[e.pointerId];pd=0;d=false};
+cv.onwheel=e=>{e.preventDefault();dist=Math.min(16,Math.max(4,dist+e.deltaY*.01));draw()};
+addEventListener('resize',()=>{size();draw()});size();draw()}catch(e){$('fb').textContent='এই ডিভাইসে 3D চালানো যাচ্ছে না।'}})();
+(function(){let fi=0;const c=()=>{const d=D[Math.floor(Math.random()*D.length)];$('fcf').textContent=d[1];$('fcb').innerHTML='<span class="pr">উচ্চারণ: '+d[2]+'</span><br>অর্থ: '+d[3]+'<br><span class="mu">কাজ: '+d[4]+'</span>';$('fcb').hidden=true};$('fcs1').onclick=()=>{$('fcb').hidden=!$('fcb').hidden};$('fcn').onclick=c;c()})();
+(function(){const cv=$('cv2');if(!window.THREE){$('fb2').textContent='3D লোড হয়নি। ইন্টারনেট চেক করে রিফ্রেশ করুন।';return}
+try{const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,2,.1,100);
+s.add(new THREE.AmbientLight(0xffffff,.7));const dl=new THREE.DirectionalLight(0xffffff,.8);dl.position.set(5,8,6);s.add(dl);
+const g=new THREE.Group();s.add(g);let cp=null,off=[0,0,0],rx=.35,ry=.6,dist=7;
+const mat=c=>new THREE.MeshStandardMaterial({color:c,metalness:.5,roughness:.4});
+function tube(a,b,col,rad,gr){rad=rad||.06;const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,A.distanceTo(B),14),mat(col));m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());(gr||g).add(m);return m}
+function box(w,h,d,x,y,z,col,gr){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(col));m.position.set(x,y,z);(gr||g).add(m);return m}
+function ring(x,y,z,ay,gr){const m=new THREE.Mesh(new THREE.TorusGeometry(.1,.035,8,20),mat(0xf57c00));m.position.set(x,y,z);m.rotation.y=ay;gr.add(m)}
+function lab(t,x,y,z,w){const c=document.createElement('canvas');c.width=720;c.height=120;const q=c.getContext('2d');q.fillStyle='rgba(16,21,28,.9)';q.fillRect(0,0,720,120);q.strokeStyle='#f57c00';q.lineWidth=6;q.strokeRect(3,3,714,114);q.font='bold 44px sans-serif';q.textAlign='center';q.textBaseline='middle';q.fillStyle='#fff';q.fillText(t,360,62,690);const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false}));sp.position.set(x,y,z);sp.scale.set(w,w*120/720,1);g.add(sp)}
+const ST=0x9aa5b1,BL=0x0b5ed7,OR=0xf57c00,WH=0xf2f2f2,RD=0xd32f2f,BR=0x8d6e63,GR=0x2e9d4f,YL=0xfbc02d;
+const M=[
+['Double Coupler','ডাবল কাপলার','দুটি পাইপকে ৯০° কোণে আটকায়। Standard ও Ledger জোড়ায় ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);tube([0,.13,-1.5],[0,.13,1.5],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);ring(0,.13,0,0,cp);box(.22,.12,.22,0,.065,0,OR,cp);tube([0,.12,0],[0,.45,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
+['Swivel Coupler','সুইভেল কাপলার','দুটি পাইপকে যেকোনো কোণে আটকায়, কাপলার ঘোরানো যায়। Brace লাগাতে ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);tube([-.96,.13,-1.15],[.96,.13,1.15],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);ring(0,.13,0,.7,cp);const d=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.05,20),mat(OR));d.position.y=.065;cp.add(d);tube([0,.1,0],[0,.45,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
+['Sleeve Coupler','স্লিভ কাপলার','দুটি পাইপ লম্বালম্বি জোড়া লাগায়।',()=>{tube([-1.6,0,0],[-.05,0,0],ST);tube([.05,0,0],[1.6,0,0],ST);cp=new THREE.Group();tube([-.45,0,0],[.45,0,0],OR,.1,cp);g.add(cp);off=[1.8,0,0]}],
+['Base Plate + Jack','বেস প্লেট ও বেস জ্যাক','Standard-এর ভার মাটিতে ছড়ায়; জ্যাক ঘুরিয়ে উচ্চতা ঠিক হয়। নিচে Sole Board থাকে।',()=>{box(2,.1,.8,0,-.05,0,BR);box(.5,.04,.5,0,.02,0,ST);tube([0,.04,0],[0,.9,0],ST,.05);box(.26,.1,.26,0,.4,0,OR);tube([0,.9,0],[0,3,0],BL)}],
+['Putlog (Single) Coupler','পাটলগ/সিঙ্গেল কাপলার','শুধু একটি পাইপ ধরে, অন্য প্রান্তে চ্যাপ্টা ব্লেড থাকে। Putlog/Transom আটকাতে ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);box(.1,.04,.7,0,.05,.4,OR,cp);tube([0,.05,0],[0,.4,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
+['Girder Coupler','গার্ডার কাপলার','স্টিল বিমের ফ্ল্যাঞ্জ ধরে Tube ঝুলিয়ে আটকায়।',()=>{box(.6,.06,2,0,.4,0,ST);box(.6,.06,2,0,0,0,ST);box(.08,.4,2,0,.2,0,ST);tube([-1.2,.65,0],[1.2,.65,0],BL);cp=new THREE.Group();ring(0,.65,0,Math.PI/2,cp);box(.7,.04,.14,0,-.06,0,OR,cp);box(.04,.2,.14,.33,.04,0,OR,cp);box(.04,.2,.14,-.33,.04,0,OR,cp);g.add(cp);off=[0,1.5,0]}],
+['Board Retaining Coupler','বোর্ড রিটেইনিং কাপলার','Tube ধরে বোর্ডের কিনারা চেপে রাখে, বোর্ড যাতে সরে না যায়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);box(2.4,.05,.5,0,.09,.4,BR);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);box(.14,.03,.3,0,.14,.12,OR,cp);g.add(cp);off=[0,1.5,0]}],
+['Joint Pin','জয়েন্ট পিন','দুই Tube-এর ভেতরে ঢুকিয়ে লম্বালম্বি জোড়া লাগায়। পিন ভেতরে থাকে, বাইরে থেকে দেখা যায় না।',()=>{tube([-1.6,0,0],[-.25,0,0],ST);tube([.25,0,0],[1.6,0,0],ST);cp=new THREE.Group();tube([-.5,0,0],[.5,0,0],OR,.04,cp);g.add(cp);off=[0,1.5,0]}],
+['Guardrail, Midrail, Toe Board','গার্ডরেইল, মিডরেইল, টো বোর্ড','উপরের রেল ও মাঝের রেল পড়ে যাওয়া রোধ করে, নিচের Toe Board জিনিস পড়া রোধ করে। উচ্চতা অনুমোদিত নিয়ম অনুযায়ী হবে।',()=>{[-1.2,1.2].forEach(x=>tube([x,0,0],[x,1.4,0],BL));tube([-1.2,1.1,0],[1.2,1.1,0],YL);tube([-1.2,.6,0],[1.2,.6,0],YL);box(2.4,.15,.03,0,.075,0,BR)}],
+['Scaffold Tube (Pipe)','স্ক্যাফোল্ড টিউব / পাইপ','ফাঁপা স্টিল নল। বাইরের ব্যাস 48.3 মিমি = প্রায় 1.9 ইঞ্চি (১½ ইঞ্চি পাইপ বলা হয়)। দেয়াল 3.2 বা 4.0 মিমি। মাপ প্রস্তুতকারক ও ডিজাইন অনুযায়ী একটু আলাদা হতে পারে।',()=>{const ds=c=>new THREE.MeshStandardMaterial({color:c,metalness:.5,roughness:.4,side:THREE.DoubleSide});const o=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,3,28,1,true),ds(ST));o.rotation.z=Math.PI/2;g.add(o);const n=new THREE.Mesh(new THREE.CylinderGeometry(.16,.16,3,28,1,true),ds(0x55606b));n.rotation.z=Math.PI/2;g.add(n);const c=new THREE.Mesh(new THREE.RingGeometry(.16,.2,28),ds(OR));c.rotation.y=Math.PI/2;c.position.x=1.5;g.add(c);tube([0,-.2,.3],[0,.2,.3],YL,.018);tube([-1.5,-.55,0],[1.5,-.55,0],YL,.018);lab('বাইরের ব্যাস 48.3 মিমি = 1.9 ইঞ্চি',0,.85,0,3.4);lab('দেয়াল 3.2 বা 4.0 মিমি (প্রায় ⅛ ইঞ্চি)',0,-.9,0,3.4);lab('দৈর্ঘ্য: ১, ২, ৩, ৬ মি (প্রায় ৩–২০ ফুট)',0,-1.35,0,3.4)}],
+['Wooden Scaffold Board','কাঠের স্ক্যাফোল্ড বোর্ড','পাটাতনের কাঠের বোর্ড। সাধারণ মাপ: প্রস্থ 225 মিমি (৯ ইঞ্চি) × পুরুত্ব 38 মিমি (১½ ইঞ্চি)। দৈর্ঘ্য 1.2 থেকে 3.9 মি (৪ থেকে ১৩ ফুট)। ফাটা বা পচা বোর্ড ব্যবহার নিষেধ।',()=>{box(3.6,.15,.9,0,0,0,BR);tube([-1.8,.12,.55],[1.8,.12,.55],YL,.018);tube([1.95,.08,-.45],[1.95,.08,.45],YL,.018);tube([-1.9,-.075,.5],[-1.9,.075,.5],YL,.025);lab('দৈর্ঘ্য 1.2–3.9 মি (প্রায় ৪–১৩ ফুট)',0,.95,0,3.4);lab('প্রস্থ 225 মিমি = প্রায় ৯ ইঞ্চি',1.2,-.65,0,3);lab('পুরুত্ব 38 মিমি = ১½ ইঞ্চি',-1.2,-1.1,0,3)}],
+['Metal Plank (Steel/Aluminium)','মেটাল প্ল্যাংক','স্টিল বা অ্যালুমিনিয়ামের পাটাতন। আকার ও মাপ ব্র্যান্ড/সিস্টেম অনুযায়ী আলাদা। এখানের আকৃতি সাধারণ উদাহরণ।',()=>{box(3.6,.06,.9,0,0,0,ST);box(.1,.14,.9,-1.75,-.04,0,ST);box(.1,.14,.9,1.75,-.04,0,ST)}],
+['Standard, Ledger, Transom, Brace','স্ট্যান্ডার্ড, লেজার, ট্রান্সম, ব্রেস','নীল=Standard (খাড়া), কমলা=Ledger (লম্বা আড়াআড়ি), সাদা=Transom (প্রস্থের দিকে), লাল=Brace (কোণাকুণি)।',()=>{tube([0,0,0],[0,2,0],BL);tube([-1.8,.8,0],[1.8,.8,0],OR);tube([0,.93,-1],[0,.93,1],WH);tube([-1.8,.1,.01],[.9,1.9,.01],RD)}],
+['Inspection Tag (Green / Red)','ইন্সপেকশন ট্যাগ','সবুজ ট্যাগ = ব্যবহারযোগ্য, লাল ট্যাগ = ব্যবহার নিষেধ। ট্যাগ ছাড়া স্ক্যাফোল্ডে উঠবেন না। রং সাইটের নিয়ম অনুযায়ী ভিন্ন হতে পারে।',()=>{[-.9,.9].forEach(x=>tube([x,0,0],[x,2.2,0],BL));box(.7,.9,.05,-.9,1.4,.12,GR);box(.7,.9,.05,.9,1.4,.12,RD);box(.7,.12,.06,-.9,1.7,.13,WH);box(.7,.12,.06,.9,1.7,.13,WH)}],
+['Scaffold Spanner','স্ক্যাফোল্ড স্প্যানার','Coupler-এর নাট টাইট ও খোলার টুল। এক প্রান্তে ষড়ভুজ (hex) মাথা, অন্য প্রান্তে ছুঁচালো পডগার।',()=>{box(2.6,.14,.22,0,0,0,ST);const hx=new THREE.Mesh(new THREE.CylinderGeometry(.3,.3,.22,6),mat(ST));hx.rotation.x=Math.PI/2;hx.position.x=1.4;g.add(hx);box(.4,.14,.1,-1.45,0,0,OR)}],
+['Ladder (মই)','মই','প্ল্যাটফর্মে ওঠার নিরাপদ পথ। মই কাঠামোর সাথে বাঁধা থাকবে এবং প্ল্যাটফর্মের ১ মিটার উপরে উঠে থাকবে (সাইটের নিয়ম মানুন)।',()=>{[-.35,.35].forEach(x=>tube([x,0,0],[x+.0,3,.9],ST,.05));for(let k=0;k<8;k++){const t=k/8+.08;tube([-.35,3*t,.9*t],[.35,3*t,.9*t],OR,.035)}}]];
+const X=[-2.5,2.5],Z=[-.8,.8],Y=[1,2.8];
+const A=[
+['ধাপ ১: Sole Board, Base Plate ও Base Jack','প্রতিটি Standard-এর নিচে Sole Board ও Base Plate বসান, জ্যাক দিয়ে লেভেল ঠিক করুন।',()=>{X.forEach(x=>Z.forEach(z=>{box(.9,.08,.9,x,-.04,z,BR);box(.4,.04,.4,x,.02,z,ST);tube([x,.04,z],[x,.5,z],ST,.04)}))}],
+['ধাপ ২: Standard','খাড়া Tube (Standard) Base Jack-এর উপর বসান।',()=>{X.forEach(x=>Z.forEach(z=>tube([x,.5,z],[x,4.2,z],BL)))}],
+['ধাপ ৩: Ledger','Standard-এর সাথে লম্বা আড়াআড়ি Ledger লাগান (Right Angle Coupler দিয়ে)।',()=>{Y.forEach(y=>Z.forEach(z=>tube([-2.5,y,z],[2.5,y,z],OR)))}],
+['ধাপ ৪: Transom','Ledger-এর উপর প্রস্তের দিকে Transom বসান; এর উপর Board থাকবে।',()=>{Y.forEach(y=>X.forEach(x=>tube([x,y+.13,-.8],[x,y+.13,.8],WH)))}],
+['ধাপ ৫: Brace','কাঠামো শক্ত রাখতে কোণাকুণি Brace লাগান (Swivel Coupler দিয়ে)।',()=>{tube([-2.5,1,.8],[2.5,2.8,.8],RD);tube([2.5,2.8,.8],[-2.5,4.2,.8],RD)}],
+['ধাপ ৬: Scaffold Tie','কাঠামোর সাথে স্ক্যাফোল্ড বাঁধুন। Tie-এর সংখ্যা ও দূরত্ব অনুমোদিত ডিজাইন অনুযায়ী হবে।',()=>{const w=box(5.8,4.4,.1,0,2.2,-2,0x888888);w.material.transparent=true;w.material.opacity=.35;X.forEach(x=>tube([x,2.8,-.8],[x,2.8,-1.95],GR,.04))}],
+['ধাপ ৭: Platform (Board)','Transom-এর উপর Board বিছিয়ে কাজের মেঝে বানান। ভাঙা Board ব্যবহার নিষেধ।',()=>{box(5.4,.08,1.8,0,2.97,0,BR)}],
+['ধাপ ৮: Guardrail, Midrail ও Toe Board','কিনারায় Guardrail, Midrail ও Toe Board লাগান যাতে কেউ বা কিছু পড়ে না যায়।',()=>{Z.forEach(z=>{tube([-2.5,3.9,z],[2.5,3.9,z],YL);tube([-2.5,3.4,z],[2.5,3.4,z],YL);box(5.4,.15,.03,0,3.1,z,BR)})}]];
+let cur=0;const all=M.map(m=>m[1]).concat(A.map((a,i)=>'ধাপ '+(i+1)));
+function draw(){g.rotation.y=ry;g.rotation.x=rx;cam.position.set(0,1,dist);cam.lookAt(0,g.position.y>0?0:0,0);r.render(s,cam)}
+function build(i){cur=i;g.clear();cp=null;off=[0,0,0];let cap;if(i<M.length){M[i][3]();g.position.y=0;dist=5;cap='<b>'+M[i][1]+'</b> <span class="mu">('+M[i][0]+')</span><br>'+bn(M[i][2])}else{const n=i-M.length;for(let k=0;k<=n;k++)A[k][2]();g.position.y=-2;dist=11;cap='<b>'+A[n][0]+'</b><br>'+bn(A[n][1])}
+$('cap2').innerHTML=cap;$('pl').style.display=cp?'':'none';document.querySelectorAll('#mb .pill').forEach((b,j)=>b.classList.toggle('on',j==i));draw()}
+$('mb').innerHTML=all.map((n,i)=>'<button class="pill" data-i="'+i+'">'+n+'</button>').join('');
+document.querySelectorAll('#mb .pill').forEach(b=>b.onclick=()=>build(+b.dataset.i));
+$('pl').onclick=()=>{if(!cp)return;let t=0;(function f(){t+=.02;const k=Math.min(1,t),e=1-Math.pow(1-k,3);cp.position.set(off[0]*(1-e),off[1]*(1-e),off[2]*(1-e));draw();if(k<1)requestAnimationFrame(f)})()};
+let d=false,lx,ly,pts={},pd=0;
+cv.onpointerdown=e=>{cv.setPointerCapture(e.pointerId);pts[e.pointerId]=e;d=true;lx=e.clientX;ly=e.clientY};
+cv.onpointermove=e=>{if(!pts[e.pointerId])return;pts[e.pointerId]=e;const k=Object.values(pts);if(k.length==2){const dd=Math.hypot(k[0].clientX-k[1].clientX,k[0].clientY-k[1].clientY);if(pd)dist=Math.min(16,Math.max(2.5,dist-(dd-pd)*.03));pd=dd}else if(d){ry+=(e.clientX-lx)*.01;rx=Math.max(-1,Math.min(1,rx+(e.clientY-ly)*.01));lx=e.clientX;ly=e.clientY}draw()};
+cv.onpointerup=cv.onpointercancel=e=>{delete pts[e.pointerId];pd=0;d=false};
+cv.onwheel=e=>{e.preventDefault();dist=Math.min(16,Math.max(2.5,dist+e.deltaY*.01));draw()};
+function size(){r.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix();draw()}
+addEventListener('resize',size);size();build(0);window.show3d=k=>{go('v2');build(typeof k=='string'?M.length+ +k.slice(1):k)};(function sp(){const b=cv.getBoundingClientRect();if(!d&&b.bottom>0&&b.top<innerHeight){ry+=.006;draw()}requestAnimationFrame(sp)})()}catch(e){$('fb2').textContent='এই ডিভাইসে 3D চালানো যাচ্ছে না।'}})();
+(function(){const Q2=[
+['What is scaffolding?','হোয়াট ইজ স্ক্যাফোল্ডিং?','স্ক্যাফোল্ডিং কী?','A temporary structure for workers to work safely at height.','উচ্চতায় নিরাপদে কাজের জন্য অস্থায়ী কাঠামো।'],
+['What are the main parts of a scaffold?','হোয়াট আর দ্য মেইন পার্টস অফ আ স্ক্যাফোল্ড?','স্ক্যাফোল্ডের প্রধান অংশ কী কী?','Standard, ledger, transom, brace, base plate, board and guardrail.','খাড়া, আড়াআড়ি, প্রস্থ, কোণাকুণি Tube, বেস, বোর্ড ও রেলিং।'],
+['What is a standard?','হোয়াট ইজ আ স্ট্যান্ডার্ড?','Standard কী?','A vertical tube that carries the load to the ground.','খাড়া Tube যা ভার মাটিতে পাঠায়।'],
+['What is the difference between ledger and transom?','হোয়াট ইজ দ্য ডিফারেন্স বিটুইন লেজার অ্যান্ড ট্রান্সম?','Ledger ও Transom-এর পার্থক্য কী?','Ledger runs along the length; transom runs across the width.','Ledger লম্বা দিকে, Transom প্রস্থের দিকে।'],
+['What is a double coupler?','হোয়াট ইজ আ ডাবল কাপলার?','ডাবল কাপলার কী?','A clamp that joins two tubes at 90 degrees.','দুই Tube ৯০° কোণে আটকানোর ক্ল্যাম্প (Right Angle Coupler)।'],
+['What is a swivel coupler?','হোয়াট ইজ আ সুইভেল কাপলার?','সুইভেল কাপলার কী?','A clamp that joins two tubes at any angle.','যেকোনো কোণে Tube আটকায়; Brace-এ ব্যবহৃত।'],
+['What is a sleeve coupler?','হোয়াট ইজ আ স্লিভ কাপলার?','স্লিভ কাপলার কী?','It joins two tubes end to end.','দুই Tube লম্বালম্বি জোড়া লাগায়।'],
+['Why do we use a base plate and sole board?','হোয়াই ডু উই ইউজ আ বেস প্লেট অ্যান্ড সোল বোর্ড?','Base Plate ও Sole Board কেন?','To spread the load and stop the scaffold sinking.','ভার ছড়াতে ও মাটিতে দেবে যাওয়া ঠেকাতে।'],
+['What PPE do you wear?','হোয়াট পিপিই ডু ইউ ওয়্যার?','কোন PPE পরেন?','Helmet, safety shoes, gloves, hi-vis vest and harness.','হেলমেট, সেফটি জুতা, গ্লাভস, ভেস্ট ও হারনেস।'],
+['When do you use a harness?','হোয়েন ডু ইউ ইউজ আ হারনেস?','হারনেস কখন পরেন?','When working at height, and I tie off to a safe anchor point.','উচ্চতায় কাজে, নিরাপদ Anchor Point-এ হুক লাগিয়ে।'],
+['What is a toe board?','হোয়াট ইজ আ টো বোর্ড?','Toe Board কী?','A board at the platform edge that stops tools from falling.','প্ল্যাটফর্মের কিনারার বোর্ড, জিনিস পড়া ঠেকায়।'],
+['What is a guardrail?','হোয়াট ইজ আ গার্ডরেইল?','গার্ডরেইল কী?','A rail at the edge that stops people from falling.','কিনারার রেলিং, মানুষ পড়া ঠেকায়।'],
+['What is a scaffold tag?','হোয়াট ইজ আ স্ক্যাফোল্ড ট্যাগ?','স্ক্যাফোল্ড ট্যাগ কী?','A tag showing if the scaffold is safe to use.','স্ক্যাফোল্ড ব্যবহারযোগ্য কি না তা জানায়।'],
+['What will you do if the tag is red?','হোয়াট উইল ইউ ডু ইফ দ্য ট্যাগ ইজ রেড?','Red tag হলে কী করবেন?','I will not use it and I will tell my supervisor.','ব্যবহার করব না, সুপারভাইজারকে জানাব।'],
+['What do you check before using a scaffold?','হোয়াট ডু ইউ চেক বিফোর ইউজিং আ স্ক্যাফোল্ড?','ব্যবহারের আগে কী দেখেন?','Tag, base, ties, boards, guardrails and ladder.','ট্যাগ, বেস, Tie, বোর্ড, রেলিং ও মই।'],
+['What is working at height?','হোয়াট ইজ ওয়ার্কিং অ্যাট হাইট?','Working at Height কী?','Any work where a person can fall and be injured.','যেখানে পড়ে গিয়ে আঘাত পাওয়ার ঝুঁকি আছে।'],
+['What is the order of dismantling?','হোয়াট ইজ দ্য অর্ডার অফ ডিসম্যান্টলিং?','খোলার ক্রম কী?','Top to bottom, in the reverse order of erection.','উপর থেকে নিচে, বানানোর উল্টো ক্রমে।'],
+['What will you do if you see an unsafe condition?','হোয়াট উইল ইউ ডু ইফ ইউ সি অ্যান আনসেফ কন্ডিশন?','অনিরাপদ অবস্থা দেখলে কী করবেন?','I stop work and report to the supervisor.','কাজ থামিয়ে সুপারভাইজারকে জানাব।'],
+['What is a toolbox talk?','হোয়াট ইজ আ টুলবক্স টক?','Toolbox Talk কী?','A short safety talk before starting work.','কাজ শুরুর আগে ছোট নিরাপত্তা আলোচনা।'],
+['What is a scaffold tie?','হোয়াট ইজ আ স্ক্যাফোল্ড টাই?','স্ক্যাফোল্ড টাই কী?','It fixes the scaffold to a structure to keep it stable.','কাঠামোর সাথে বেঁধে স্ক্যাফোল্ড স্থির রাখে।']];
+const s=document.createElement('section');s.id='i2';s.innerHTML='<h2>🎤 আরও ইন্টারভিউ প্রশ্ন-উত্তর (২০টি)</h2><p class="mu">জোরে বলে অনুশীলন করুন।</p>'+Q2.map((q,i)=>'<div class="ent"><b>'+(i+6)+'. '+q[0]+'</b><br><span class="pr">উচ্চারণ: '+q[1]+'</span><br>অর্থ: '+q[2]+'<br>Answer: <i>'+q[3]+'</i><br><span class="mu">ব্যাখ্যা: '+q[4]+'</span></div>').join('');$('fcs').parentNode.insertBefore(s,$('fcs'))})();
+
+(function(){$('f1').textContent=L.length;$('f2').textContent=D.length+'+';const cv=$('hc');if(!window.THREE)return;
+try{const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,100);
+s.add(new THREE.AmbientLight(0xffffff,.8));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(5,8,6);s.add(dl);const g=new THREE.Group();s.add(g);
+const mt=c=>new THREE.MeshStandardMaterial({color:c,metalness:.5,roughness:.35});
+function tb(a,b,c){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),m=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,A.distanceTo(B),12),mt(c));m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());g.add(m)}
+const X=[-2.5,2.5],Z=[-1,1];
+X.forEach(x=>Z.forEach(z=>{tb([x,0,z],[x,4,z],0x4b8dff);const p=new THREE.Mesh(new THREE.BoxGeometry(.6,.06,.6),mt(0x555b64));p.position.set(x,-.03,z);g.add(p)}));
+[1,2,3,4].forEach(y=>{Z.forEach(z=>tb([-2.5,y-.2,z],[2.5,y-.2,z],0xf57c00));X.forEach(x=>tb([x,y-.07,-1],[x,y-.07,1],0xffffff))});
+tb([-2.5,0,1],[2.5,4,1],0xe53935);tb([2.5,0,-1],[-2.5,4,-1],0xe53935);
+const bd=new THREE.Mesh(new THREE.BoxGeometry(5.4,.12,2.2),mt(0x8d6e63));bd.position.y=2.9;g.add(bd);
+g.position.y=-2;g.rotation.x=.25;
+function size(){r.setPixelRatio(Math.min(devicePixelRatio||1,2));const w=cv.clientWidth,h=cv.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.position.set(0,1.5,w/h<1.2?13:10.5);cam.lookAt(0,0,0);cam.updateProjectionMatrix()}
+let drag=false,lx=0;cv.onpointerdown=e=>{drag=true;lx=e.clientX;cv.setPointerCapture(e.pointerId)};cv.onpointermove=e=>{if(drag){g.rotation.y+=(e.clientX-lx)*.01;lx=e.clientX}};cv.onpointerup=cv.onpointercancel=()=>drag=false;
+addEventListener('resize',size);size();
+(function f(){const b=cv.getBoundingClientRect();if(b.bottom>0&&b.top<innerHeight){if(!drag)g.rotation.y+=.008;r.render(s,cam)}requestAnimationFrame(f)})()}catch(e){}})();
+</script></body></html>
