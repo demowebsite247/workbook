@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>PWT – Private Wireless Talk</title>
-  <meta name="description" content="PWT – Private Wireless Talk: Offline Encrypted Walkie-Talkie PWA & Native Android App by MrTech." />
+  <meta name="description" content="PWT – Private Wireless Talk by MrTech." />
   <meta name="theme-color" content="#0b1220" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -20,104 +20,31 @@
     <div class="splash-inner">
       <img src="./assets/pwt-logo.jpg" alt="PWT Logo" class="splash-logo" />
       <h1 class="splash-title">PWT</h1>
-      <p class="splash-subtitle">PWT – Private Wireless Talk</p>
-      <span class="enc-badge">AES-256-GCM • OFFLINE READY</span>
     </div>
     <p class="splash-credit">Developed by MrTech</p>
   </div>
 
-  <!-- MANDATORY INSTALLATION GATE (Shown when opened in a browser tab, NOT installed standalone) -->
-  <main id="install-gate-view" class="gate-shell hidden">
-    <header class="gate-topbar">
-      <div class="brand-lockup">
-        <img src="./assets/pwt-logo.jpg" alt="PWT" class="brand-icon" />
-        <div>
-          <span class="brand-title">PWT – Private Wireless Talk</span>
-          <span class="brand-sub" data-i18n="gateTagline">Install PWT to unlock the application</span>
-        </div>
+  <!-- MINIMAL APP INSTALLER POPUP GATE (Browser Mode Only — Zero Extra Text, Fixed Display) -->
+  <main id="install-gate-view" class="gate-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="installer-title">
+    <div class="gate-backdrop-preview" aria-hidden="true"></div>
+    <div class="installer-popup">
+      <img src="./assets/pwt-logo.jpg" alt="PWT" class="installer-logo" />
+      <h1 id="installer-title" class="installer-title">PWT</h1>
+      <p class="installer-sub" id="installer-sub">Install app to open</p>
+      <button id="pwa-install-btn" type="button" class="btn btn-primary installer-btn">
+        INSTALL &amp; OPEN
+      </button>
+      <p id="pwa-prompt-status" class="installer-hint hidden"></p>
+      <div class="installer-credit">
+        Developed by <strong>MrTech</strong>
       </div>
-      <div class="lang-switch" role="group" aria-label="Language switcher">
-        <button type="button" class="lang-btn active" data-lang="en">EN</button>
-        <button type="button" class="lang-btn" data-lang="bn">বাংলা</button>
-      </div>
-    </header>
-
-    <section class="hero-card">
-      <div class="hero-media">
-        <img src="./assets/hero-radio.jpg" alt="PWT Wireless Mesh Artwork" class="hero-img" />
-        <div class="hero-overlay">
-          <span class="status-pill status-pending" id="gate-install-pill">
-            <span class="dot"></span>
-            <span id="gate-install-pill-text">Not Installed (Browser Mode)</span>
-          </span>
-          <h2 data-i18n="gateHeading">Installation Required Before Use</h2>
-          <p data-i18n="gateDesc">
-            For offline App Shell caching and standalone operation, Create Group, Join Group, and Voice Communication stay locked until PWT is installed and opened as an installed app.
-          </p>
-        </div>
-      </div>
-
-      <div class="gate-actions">
-        <button id="pwa-install-btn" type="button" class="btn btn-primary btn-lg">
-          <span data-i18n="installPwaBtn">INSTALL PWT APP</span>
-        </button>
-        <p id="pwa-prompt-status" class="helper-note"></p>
-      </div>
-
-      <div class="diag-grid" aria-label="PWA Readiness Status">
-        <div class="diag-item">
-          <span class="diag-label">Display Mode</span>
-          <strong id="diag-display" class="diag-val">Browser Tab</strong>
-        </div>
-        <div class="diag-item">
-          <span class="diag-label">HTTPS / Context</span>
-          <strong id="diag-https" class="diag-val">Checking...</strong>
-        </div>
-        <div class="diag-item">
-          <span class="diag-label">Service Worker</span>
-          <strong id="diag-sw" class="diag-val">Checking...</strong>
-        </div>
-        <div class="diag-item">
-          <span class="diag-label">Manifest</span>
-          <strong id="diag-manifest" class="diag-val">Checking...</strong>
-        </div>
-      </div>
-    </section>
-
-    <section id="manual-install-card" class="panel-card">
-      <h3 data-i18n="manualInstallTitle">Manual Installation Guide (Android &amp; Desktop)</h3>
-      <div id="manual-install-steps" class="manual-steps"></div>
-    </section>
-
-    <section class="panel-card apk-card">
-      <div class="apk-header">
-        <div>
-          <span class="enc-badge">NATIVE ANDROID • Wi-Fi DIRECT P2P</span>
-          <h3 data-i18n="apkTitle">Native Android APK (com.pwt.offlinetalk)</h3>
-        </div>
-      </div>
-      <p class="muted-text" data-i18n="apkDesc">
-        Full routerless Wi-Fi Direct (WifiP2pManager) multi-phone communication and screen-off Foreground Service require the native Android APK built from this repository.
-      </p>
-      <div class="apk-action-row">
-        <a id="apk-download-btn" class="btn btn-secondary disabled" aria-disabled="true" href="javascript:void(0)">
-          <span data-i18n="apkPendingBtn">Release APK Not Uploaded Yet</span>
-        </a>
-        <span id="apk-status-note" class="helper-note"></span>
-      </div>
-    </section>
-
-    <footer class="mrtech-footer">
-      <span>Developed by <strong>MrTech</strong></span>
-      <span>&bull;</span>
-      <a href="https://Mrtech.nptrunamentbd.top" target="_blank" rel="noopener noreferrer">https://Mrtech.nptrunamentbd.top</a>
-    </footer>
+    </div>
   </main>
 
-  <!-- INSTALLED STANDALONE PWA TRANSCEIVER UI (Unlocked ONLY when launched from installed PWA) -->
+  <!-- INSTALLED STANDALONE PWA TRANSCEIVER UI (Fixed 100dvh Non-Scrolling Display) -->
   <div id="app-shell-view" class="app-shell hidden">
     <div class="app-content">
-      <!-- Primary Tactical Transceiver Screen (Matches Reference Hardware UI) -->
+      <!-- Primary Tactical Transceiver Screen -->
       <section id="screen-comm" class="screen active">
         <!-- 1. Top Link & Dual Speaker Grilles -->
         <div class="hw-link-panel">
@@ -142,7 +69,7 @@
             <div class="hw-signal-bars" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
             </div>
-            <span class="hw-online-count">1 LOCAL</span>
+            <span class="hw-online-count">1 ONLINE</span>
           </div>
 
           <div class="hw-lcd-digits-row">
@@ -163,7 +90,7 @@
           <div class="hw-user-pill" id="hw-user-pill">USER: ALPHA-1 (YOU)</div>
 
           <p class="hw-lcd-footer" id="ptt-status-note">
-            Offline PWA App Shell active — For routerless multi-phone Wi-Fi Direct, use the Native Android APK.
+            OFFLINE READY • LOCAL WIRELESS
           </p>
         </div>
 
@@ -177,82 +104,75 @@
       </section>
 
       <!-- Secondary Sub-Screens (Accessible via Bottom Hardware Dock) -->
-      <section id="screen-create" class="screen">
+      <section id="screen-create" class="screen screen-sub">
         <div class="panel-card">
           <div class="row-between">
-            <h2 data-i18n="createGroupHeading">Create Local Group Profile</h2>
-            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back to Radio</button>
+            <h2>Create Group</h2>
+            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back</button>
           </div>
           <div class="field-group">
-            <label for="group-name-input" data-i18n="groupNameLabel">Group Name</label>
+            <label for="group-name-input">Group Name</label>
             <input id="group-name-input" type="text" placeholder="DISPATCH" />
           </div>
           <div class="field-group">
-            <label for="group-id-input" data-i18n="groupIdLabel">Unique Group ID</label>
+            <label for="group-id-input">Group ID</label>
             <div class="input-inline">
               <input id="group-id-input" type="text" readonly />
-              <button type="button" id="regen-gid-btn" class="btn btn-secondary">New ID</button>
+              <button type="button" id="regen-gid-btn" class="btn btn-secondary">New</button>
             </div>
           </div>
           <div class="field-group">
-            <label for="group-pass-input" data-i18n="groupPassLabel">Group Password</label>
-            <input id="group-pass-input" type="password" placeholder="Minimum 4 characters" />
+            <label for="group-pass-input">Password</label>
+            <input id="group-pass-input" type="password" placeholder="Min 4 chars" />
           </div>
           <p id="create-group-msg" class="helper-note"></p>
-          <button type="button" id="create-group-submit" class="btn btn-primary" data-i18n="createGroupBtn">
-            Apply Channel Profile
+          <button type="button" id="create-group-submit" class="btn btn-primary">
+            Apply Channel
           </button>
         </div>
       </section>
 
-      <section id="screen-join" class="screen">
+      <section id="screen-join" class="screen screen-sub">
         <div class="panel-card">
           <div class="row-between">
-            <h2 data-i18n="joinGroupHeading">Secure Room &amp; Wi-Fi Direct</h2>
-            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back to Radio</button>
+            <h2>Secure Room</h2>
+            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back</button>
           </div>
           <div class="warning-box">
-            <strong data-i18n="browserLimitTitle">Browser Hardware Limitation</strong>
-            <p data-i18n="browserLimitDesc">
-              Web browsers/PWAs cannot access Android Wi-Fi Direct (WifiP2pManager) peer discovery APIs. Install the Native Android APK (com.pwt.offlinetalk) for multi-phone routerless voice relay.
+            <strong>Wi-Fi Direct (Android APK)</strong>
+            <p>
+              Multi-phone routerless Wi-Fi Direct voice relay requires the Native Android APK (com.pwt.offlinetalk).
             </p>
           </div>
-          <button type="button" class="btn btn-primary" data-nav="create" data-i18n="tabCreate">
-            Create Group Profile
+          <button type="button" class="btn btn-primary" data-nav="create">
+            Edit Channel Profile
           </button>
         </div>
       </section>
 
-      <section id="screen-about" class="screen">
+      <section id="screen-about" class="screen screen-sub">
         <div class="panel-card">
           <div class="row-between">
-            <h2 data-i18n="aboutTitle">Menu &amp; Settings</h2>
-            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back to Radio</button>
+            <h2>Menu</h2>
+            <button type="button" class="btn btn-secondary btn-sm" data-back-comm>Back</button>
           </div>
           <div class="field-group">
-            <label for="pwa-callsign" data-i18n="callsignLabel">Your Callsign</label>
+            <label for="pwa-callsign">Callsign</label>
             <input id="pwa-callsign" type="text" maxlength="24" value="Alpha-1" />
           </div>
-          <div class="row-between">
-            <span data-i18n="chooseLangLabel">Language</span>
-            <div class="lang-switch">
-              <button type="button" class="lang-btn active" data-lang="en">EN</button>
-              <button type="button" class="lang-btn" data-lang="bn">বাংলা</button>
-            </div>
-          </div>
           <div class="dev-box">
-            <div><strong>Developer Name:</strong> MrTech</div>
+            <div><strong>Developer:</strong> MrTech</div>
             <div>
-              <strong>Official Website:</strong>
+              <strong>Website:</strong>
               <a href="https://Mrtech.nptrunamentbd.top" target="_blank" rel="noopener noreferrer">https://Mrtech.nptrunamentbd.top</a>
             </div>
-            <div><strong>Android Package:</strong> <code>com.pwt.offlinetalk</code></div>
+            <div><strong>Package:</strong> <code>com.pwt.offlinetalk</code></div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- 4. Bottom 5-Key Hardware Dock (Matches Screenshot) -->
+    <!-- 4. Bottom 5-Key Hardware Dock -->
     <nav class="hw-dock" aria-label="Radio Hardware Controls">
       <button type="button" class="hw-key" id="dock-mode-btn">
         <span class="hw-key-ico">&#9788;</span>
@@ -283,8 +203,6 @@
 
     <footer class="mrtech-footer">
       <span>Developed by <strong>MrTech</strong></span>
-      <span>&bull;</span>
-      <a href="https://Mrtech.nptrunamentbd.top" target="_blank" rel="noopener noreferrer">https://Mrtech.nptrunamentbd.top</a>
     </footer>
   </div>
 
