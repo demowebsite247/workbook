@@ -1,1 +1,391 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d3342">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="পাইপ ফিটার">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231d3342'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E🔧%3C/text%3E%3C/svg%3E">
+<title>পাইপ ফিটার ও ফেব্রিকেটার – শেখার বই</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f4f6;--card:#fff;--ink:#14202b;--mut:#57656f;--st:#2f4858;--ac:#f2b400;--ln:#d5dde2;--hl:#fff3c4}
+@media(prefers-color-scheme:dark){:root{--bg:#10171c;--card:#18222a;--ink:#e8eef2;--mut:#9fb0ba;--st:#7fa6bd;--ln:#2b3a44;--hl:#4a3d00}}
+*{box-sizing:border-box}
+html{scroll-padding-top:110px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans Bengali","Kalpurush","Siyam Rupali",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:5;background:var(--st);color:#fff;padding:10px 14px;border-bottom:4px solid var(--ac)}
+header b{display:block;font-size:17px}
+#q{width:100%;margin-top:6px;padding:9px 12px;border:0;border-radius:8px;font:inherit;font-size:15px;background:#fff;color:#14202b}
+main{max-width:760px;margin:0 auto;padding:12px}
+.intro{padding:6px 2px 10px;color:var(--mut);font-size:14px}
+details{background:var(--card);border:1px solid var(--ln);border-left:5px solid var(--st);border-radius:8px;margin:10px 0}
+details[open]{border-left-color:var(--ac)}
+summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";float:right;color:var(--mut)}
+details[open]>summary::after{content:"－"}
+.b{padding:0 14px 12px}
+h3{font-size:16px;margin:16px 0 4px;color:var(--st)}
+p{margin:6px 0}ul,ol{margin:6px 0;padding-left:22px}li{margin:3px 0}
+.f{background:var(--bg);border:1px dashed var(--st);border-radius:6px;padding:8px 10px;margin:8px 0;font-weight:600;overflow-x:auto}
+.n{background:var(--hl);border-radius:6px;padding:8px 10px;margin:8px 0;font-size:14px}
+.t{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}
+th,td{border:1px solid var(--ln);padding:5px 8px;text-align:left}
+th{background:var(--st);color:#fff}
+.en{color:var(--mut);font-size:14px}
+mark{background:var(--ac);color:#000}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:18px 12px 30px}
 
+body{padding-bottom:88px}
+header{background:linear-gradient(135deg,#1d3342,#2f4858);border-bottom:0;border-radius:0 0 22px 22px;box-shadow:0 6px 18px #0005}
+details{border:0;border-radius:16px;box-shadow:0 2px 10px #0002}
+details[open]{box-shadow:0 0 0 2px var(--ac)}
+.hero{background:linear-gradient(135deg,#2f4858,#101b24);color:#fff;border-radius:22px;padding:18px;margin:6px 0 12px;box-shadow:0 8px 22px #0004}
+.hero h1{margin:0 0 4px;font-size:22px;line-height:1.35}.hero p{margin:0;color:#cfe0ea;font-size:14px}
+.chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}.chips span{background:#ffffff1f;border-radius:20px;padding:3px 10px;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.grid button{background:var(--card);color:var(--ink);border:0;border-radius:16px;padding:10px 4px;font:inherit;font-size:12px;line-height:1.35;box-shadow:0 2px 8px #0002}
+.grid i{display:block;font-style:normal;font-size:24px}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gc{background:linear-gradient(160deg,var(--card),var(--bg));border:1px solid var(--ln);border-radius:16px;padding:8px 6px;text-align:center;font-size:13px;font-weight:600}
+.gc svg{width:100%;height:auto;filter:drop-shadow(0 6px 5px #0004)}.gc small{display:block;color:var(--mut);font-weight:400}
+nav{position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:9;display:flex;background:var(--st);border-radius:22px;box-shadow:0 6px 20px #0006;max-width:520px;margin:auto}
+nav button{flex:1;background:none;border:0;color:#fff;padding:9px 0;font:inherit;font-size:12px}
+nav i{display:block;font-style:normal;font-size:20px}
+
+html,body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+header{padding-top:calc(10px + env(safe-area-inset-top))}
+#fs{position:absolute;right:12px;top:calc(10px + env(safe-area-inset-top));background:#ffffff26;border:0;color:#fff;border-radius:10px;width:34px;height:30px;font-size:16px}
+#splash{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 30%,#2f4858,#0d161d);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .35s}
+#splash.off{opacity:0;pointer-events:none}
+#splash .lg{font-size:76px;filter:drop-shadow(0 8px 12px #000a)}
+#splash h2{margin:10px 0 4px;font-size:24px}#splash p{margin:0 0 26px;color:#b8cdda;font-size:14px}
+#splash button{background:var(--ac);color:#14202b;border:0;border-radius:30px;padding:14px 38px;font:inherit;font-size:17px;font-weight:700;box-shadow:0 8px 22px #0007}
+#splash small{margin-top:18px;color:#8fa6b5;font-size:12px;max-width:300px}
+</style>
+</head>
+<body>
+<div id="splash"><div class="lg">🔧</div><h2>পাইপ ফিটার ও ফেব্রিকেটার</h2><p>সম্পূর্ণ শেখার অ্যাপ</p><button id="go">অ্যাপ চালু করুন</button><small id="ios"></small></div>
+
+<header><button id="fs" title="ফুল স্ক্রিন">⛶</button><b>🔧 পাইপ ফিটার ও ফেব্রিকেটার</b><input id="q" type="search" placeholder="খুঁজুন: elbow, flange, বেভেল, CF…"></header>
+<main>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="gh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c3e4b"/><stop offset=".3" stop-color="#9fc0d4"/><stop offset=".42" stop-color="#eaf5fa"/><stop offset=".75" stop-color="#5d7d90"/><stop offset="1" stop-color="#26384a"/></linearGradient>
+<radialGradient id="gr" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#f2f9fc"/><stop offset=".55" stop-color="#85a5b8"/><stop offset="1" stop-color="#3f5565"/></radialGradient></defs></svg>
+<section class="hero"><h1>পাইপ ফিটার ও ফেব্রিকেটার<br>সম্পূর্ণ গাইড</h1><p>সূত্র, টেবিল, ফিটিংস, ভালভ, ফ্লেঞ্জ ও ইন্টারভিউ প্রশ্ন, এক অ্যাপে।</p><div class="chips"><span>১৪ অধ্যায়</span><span>৩D ছবি</span><span>অফলাইন-বান্ধব</span></div></section>
+<div class="grid" id="grid"></div>
+<details open id="gal"><summary>🧊 ৩D রেফারেন্স ছবি</summary><div class="b"><div class="gal" id="galg"></div><div class="n">এগুলো ৩D-স্টাইলে আঁকা ইলাস্ট্রেশন, বাস্তব ফটো নয়।</div></div></details>
+
+<details open><summary>১. পাইপ ড্রয়িং ও দিক</summary><div class="b">
+<h3>ড্রয়িং ৩ প্রকার</h3>
+<ul><li><b>Isometric Drawing</b> – 30°</li><li><b>P&amp;ID</b> (Piping and Instrumentation Diagram) – 90°</li><li><b>Master Drawing</b> – 360°</li></ul>
+<h3>৬টি দিক</h3>
+<p>North (উত্তর), South (দক্ষিণ), East (পূর্ব), West (পশ্চিম), Up (উপরে), Down (নিচে)।</p>
+<h3>Rolling কী?</h3>
+<p>90° ছাড়া অন্য যেকোনো ডিগ্রির এলবো যে দিকে ঘুরে, তাকে Rolling বলে।</p>
+<ul><li>Vertical Rolling (উপর-নিচ)</li><li>Horizontal Rolling (N, S, E, W)</li><li>Box Rolling</li></ul>
+<h3>ড্রয়িং দেখে যা জিজ্ঞেস করা হয়</h3>
+<p class="en">Revision No, Isometric No, Set No, Flow direction, কত ডিগ্রি এলবো (90°/45°), কোন Outlet (Weldolet/Thredolet/Sockolet), কত পিস Spool, কত পিস Support, Slope আছে কি না।</p>
+</div></details>
+
+<details><summary>২. পাইপের মাপ: OD, ID, CF, Thickness</summary><div class="b">
+<p>OD = Outside Diameter · ID = Inside Diameter · CF = Circumference (পরিধি)</p>
+<div class="f">CF = OD × 3.142<br>OD = CF ÷ 3.142<br>ID = OD − (2 × Thickness)<br>Thickness = (OD − ID) ÷ 2</div>
+<div class="n">উদাহরণ: ১০" পাইপ, OD 273 → CF = 273 × 3.142 = 857 mm</div>
+<div class="n">১২" এর উপরের পাইপে OD = ইঞ্চি × 25.4। যেমন ১৬" = 16 × 25.4 = 406.4 mm।</div>
+<div class="t"><table><tr><th>সাইজ</th><th>OD (mm)</th></tr>
+<tr><td>1/2"</td><td>21.3</td></tr><tr><td>3/4"</td><td>26.7</td></tr><tr><td>1"</td><td>33.4</td></tr><tr><td>1.5"</td><td>48.26</td></tr><tr><td>2"</td><td>60.3</td></tr><tr><td>2.5"</td><td>73</td></tr><tr><td>3"</td><td>88.9</td></tr><tr><td>4"</td><td>114.3</td></tr><tr><td>5"</td><td>141.3</td></tr><tr><td>6"</td><td>168.3</td></tr><tr><td>8"</td><td>219.1</td></tr><tr><td>10"</td><td>273.1</td></tr><tr><td>12"</td><td>323.9</td></tr></table></div>
+<h3>একক</h3><p>1 cm = 10 mm · 100 cm = 1 meter = 1000 mm · 1" = 25.4 mm</p>
+<h3>NPS ও DN</h3>
+<p><b>NPS</b> (Nominal Pipe Size) ইঞ্চিতে সাইজ। <b>DN</b> (Diameter Nominal) mm-এ সাইজ।</p>
+<div class="f">ইঞ্চি = DN ÷ 25 (বা NPS mm ÷ 25.4)<br>যেমন 250 ÷ 25.4 ≈ 10"</div>
+</div></details>
+
+<details><summary>৩. স্কেজিউল (Schedule) ও পাইপের ধরন</summary><div class="b">
+<p>Schedule দেখায় পাইপের দেয়াল কত পুরু। Schedule যত বেশি, পাইপ তত পুরু ও বেশি প্রেসার সহনশীল।</p>
+<p class="en">SCH 5S, 10S, 10, 20, 30, 40S, STD, 40, 60, 80S, XS, 80, 100, 120, 140, 160, XXS</p>
+<ul><li>STD = 40 · XS = 80 · XXS = 160</li><li>ইন্ডাস্ট্রিতে বেশি ব্যবহার হয় SCH 40।</li></ul>
+<div class="f">Thickness = √(Schedule × Pipe size) ÷ 2<br>Schedule = (Thickness × 2)² ÷ Pipe size</div>
+<h3>পাইপ ২ প্রকার</h3>
+<ul><li><b>Seamless</b> – জোড়াবিহীন</li><li><b>Seamed</b> – জোড়াযুক্ত (Twisted/Straight)</li></ul>
+<h3>ম্যাটেরিয়াল ও কোড</h3>
+<ul><li>CS (Carbon Steel): A105, A106, API 5L-B</li><li>SS (Stainless Steel): 305, 306, 309, 312, 319</li><li>GI (Galvanized Iron): A53</li><li>LTCS (Low Temp. Carbon Steel): 333</li><li>Alloy: 335 · Copper: 145</li></ul>
+<h3>ওজন বের করা</h3>
+<div class="f">Density = 0.00000785<br>পাইপ: Length × CF × Thickness × Density<br>স্টিল প্লেট: Length × Width × Thickness × Density</div>
+</div></details>
+
+<details><summary>৪. ফিটিংস (Elbow, Tee, Reducer…)</summary><div class="b">
+<h3>Elbow</h3>
+<p>পাইপের দিক বদলাতে লাগে। মূলত 90° ও 45°, ২২.৫°ও হয়। দুই মাথার সাইজ আলাদা হলে Reducing Elbow।</p>
+<ul><li>Short Radius = 1D (25.4 mm/ইঞ্চি)</li><li>Long/Standard Radius = 1.5D (38.1 mm/ইঞ্চি)</li><li>Extra Long = 2D, 3D, 4D, 5D (নোটে Long = 50.8 লেখা)</li></ul>
+<h3>এলবো সেন্টার বের করা</h3>
+<div class="f">Tan(ডিগ্রি ÷ 2) × 1.5 × এলবো সাইজ × 25.4</div>
+<ul><li>90° (প্রতি ইঞ্চি): 25.4 × 1.5 = 38.1 mm</li><li>45° (প্রতি ইঞ্চি): 25.4 × 0.625 = 15.9 mm</li></ul>
+<div class="n">৪" 90° এলবো: tan 45 × 38.1 × 4 = 152.4 mm</div>
+<h3>Tee</h3>
+<p>মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করে। ২ প্রকার: Equal Tee ও Reducing/Unequal Tee।</p>
+<h3>Reducer</h3>
+<p>বড় সাইজ থেকে ছোট সাইজে পাইপ বদলায়।</p>
+<ul><li><b>Eccentric</b> – সাধারণত Horizontal লাইনে বেশি</li><li><b>Concentric</b> – সাধারণত Vertical লাইনে বেশি</li></ul>
+<h3>অন্যান্য ফিটিংস</h3>
+<p>Elbow, Reducer, Tee, Cross, Coupling (Full/Half/Reducing), Adapter, Union, Valve, Bush, Return Bend (180°), Cap, Plug, Swage Nipple, Expansion Joint, Steam Trap, Nipple (Barrel, Close, Hex, Hose, Welding)।</p>
+<h3>ব্রাঞ্চ আউটলেট</h3>
+<p>Weldolet, Sockolet, Threadolet, Latrolet, Elbolet, Nipolet, Sweepolet, Flangeolet, Brazolet, Coupolet।</p>
+<h3>মূল মাপের টেবিল (mm)</h3>
+<div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>CF</th><th>90° LR</th><th>45° LR</th><th>Tee</th><th>Red.</th></tr>
+<tr><td>1/2"</td><td>21.3</td><td>67</td><td>20</td><td>12</td><td>25</td><td>–</td></tr>
+<tr><td>1"</td><td>33.4</td><td>104.9</td><td>38.1</td><td>22</td><td>38</td><td>50.8</td></tr>
+<tr><td>2"</td><td>60.3</td><td>189.5</td><td>76</td><td>35.1</td><td>64</td><td>76.2</td></tr>
+<tr><td>3"</td><td>88.9</td><td>279.2</td><td>114</td><td>51</td><td>86</td><td>88.9</td></tr>
+<tr><td>4"</td><td>114.3</td><td>359</td><td>152</td><td>63.5</td><td>105</td><td>101.6</td></tr>
+<tr><td>6"</td><td>168.2</td><td>528.6</td><td>229</td><td>95</td><td>143</td><td>139.7</td></tr>
+<tr><td>8"</td><td>219</td><td>688.2</td><td>306</td><td>126</td><td>176</td><td>152.4</td></tr>
+<tr><td>10"</td><td>273</td><td>857.8</td><td>381</td><td>159</td><td>216</td><td>177.8</td></tr>
+<tr><td>12"</td><td>323.8</td><td>1017.4</td><td>457</td><td>190</td><td>254</td><td>203.2</td></tr>
+<tr><td>14"</td><td>355.6</td><td>1117.1</td><td>533</td><td>222</td><td>279</td><td>330.2</td></tr>
+<tr><td>16"</td><td>406.4</td><td>1276.7</td><td>610</td><td>254</td><td>304</td><td>355.6</td></tr>
+<tr><td>18"</td><td>457.2</td><td>1436.3</td><td>686</td><td>286</td><td>343</td><td>381</td></tr>
+<tr><td>20"</td><td>508.2</td><td>1596.5</td><td>762</td><td>317</td><td>381</td><td>508</td></tr>
+<tr><td>24"</td><td>609.6</td><td>1915.1</td><td>914</td><td>381</td><td>432</td><td>508</td></tr></table></div>
+<p class="en">Carbon steel fitting: Butt weld, ASTM A234 WPB, ANSI B16.9, Sch 40/80/STD/XS/XXS, 1/2"–24"।</p>
+</div></details>
+
+<details><summary>৫. ফ্লেঞ্জ (Flange)</summary><div class="b">
+<p>পাইপ, ভালভ, পাম্প ও অন্য যন্ত্র জুড়তে ব্যবহার হয়। খোলা, পরিষ্কার ও পরিদর্শন সহজ হয়।</p>
+<h3>জয়েন্ট পদ্ধতি অনুযায়ী</h3>
+<ol><li>Weld Neck</li><li>Socket Weld</li><li>Threaded (Screwed)</li><li>Slip-on</li><li>Lap Joint</li><li>Blind (পাইপের মুখ বন্ধ করে)</li><li>Spectacle Blind</li></ol>
+<h3>ফেস অনুযায়ী</h3>
+<p>Plate/Flat, Raised Face (RF), Ring Type Joint (RTJ), Tongue &amp; Groove, Male &amp; Female।</p>
+<h3>স্পেশাল ফ্লেঞ্জ</h3>
+<p>Orifice, Ring Joint, Reducing, Long Weld Neck, Weldo, Nipo, Expander, Swivel Ring, Elbow Flange, Puddle, Split।</p>
+<h3>হোল দূরত্ব বের করা (PCD দিয়ে)</h3>
+<div class="f">ডিগ্রি = 360 ÷ হোল সংখ্যা<br>দূরত্ব = Sin(ডিগ্রি ÷ 2) × PCD</div>
+<div class="n">৬" ফ্লেঞ্জ, ৮ হোল, PCD 241: 360÷8 = 45° → Sin 22.5 × 241 = 0.3826 × 241 = <b>92.22 mm</b></div>
+<h3>Class 150# ফ্লেঞ্জ (mm)</h3>
+<div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>PCD</th><th>হোল ⌀</th><th>হোল</th></tr>
+<tr><td>1/2"</td><td>90</td><td>60.5</td><td>15.9</td><td>4</td></tr>
+<tr><td>1"</td><td>108</td><td>79.2</td><td>15.9</td><td>4</td></tr>
+<tr><td>2"</td><td>152.4</td><td>120.6</td><td>19</td><td>4</td></tr>
+<tr><td>3"</td><td>190.5</td><td>152.4</td><td>19</td><td>4</td></tr>
+<tr><td>4"</td><td>228.6</td><td>190.5</td><td>19</td><td>8</td></tr>
+<tr><td>6"</td><td>279.4</td><td>241.3</td><td>22.2</td><td>8</td></tr>
+<tr><td>8"</td><td>343</td><td>298.4</td><td>22.2</td><td>8</td></tr>
+<tr><td>10"</td><td>406.4</td><td>362</td><td>25.4</td><td>12</td></tr>
+<tr><td>12"</td><td>483</td><td>432</td><td>25.4</td><td>12</td></tr>
+<tr><td>14"</td><td>533.4</td><td>476</td><td>28.6</td><td>12</td></tr>
+<tr><td>16"</td><td>597</td><td>540</td><td>28.6</td><td>16</td></tr></table></div>
+<div class="n">300#, 600#, 900# ইত্যাদি ক্লাসের টেবিল মূল PDF-এর পৃষ্ঠা ২৪ ও ৫৮ দেখুন।</div>
+<h3>ফ্লেঞ্জ পরিষ্কার করতে</h3>
+<p>Wire Brush (ওয়্যার ব্রাশ), ঝুট/কাপড়, WD-40।</p>
+<h3>ফ্লেঞ্জ ফিট-আপে চেক</h3>
+<ul><li>নাইনটি (90°) চেক</li><li>Spirit Level চেক</li><li>Horizontal-এ: প্যারালাল চেক ও হোল চেক</li></ul>
+</div></details>
+
+<details><summary>৬. ভালভ (Valve)</summary><div class="b">
+<p>ভালভ পাইপলাইন চালু/বন্ধ করে এবং প্রবাহ ও প্রেসার নিয়ন্ত্রণ করে।</p>
+<ol>
+<li><b>Gate</b> – সবচেয়ে বেশি ব্যবহৃত। Full open / full close। পানি, তেল, স্টিম ইত্যাদি।</li>
+<li><b>Globe</b> – প্রবাহ ও হাই প্রেসার কন্ট্রোল।</li>
+<li><b>Ball</b> – ছোট ও হালকা, দ্রুত খোলা-বন্ধ।</li>
+<li><b>Plug</b> – প্লাগের মতো দেখতে, খুব দ্রুত খোলা-বন্ধ।</li>
+<li><b>Butterfly</b> – লো প্রেসার; ফ্লো অন/অফ ও কমানো-বাড়ানো।</li>
+<li><b>Check (NRV)</b> – এক দিকে ফ্লো, ফিরে আসে না।</li>
+<li><b>Needle</b> – সূক্ষ্ম ফ্লো কন্ট্রোল।</li>
+<li><b>Pinch</b> – ভিতরে রাবার টিউব, তা চেপে ফ্লো কন্ট্রোল।</li>
+<li><b>Pressure Relief</b> – বেশি প্রেসার থেকে যন্ত্র বাঁচায়, বিস্ফোরণ ঠেকায়।</li>
+<li><b>Control</b> – অটোমেটিক ভালভ।</li>
+<li><b>Strainer (Y-type)</b> – লাইনের ময়লা আটকে পরিষ্কার রাখে।</li>
+<li><b>PICV</b> – Pressure Independent Control Valve।</li></ol>
+<h3>গ্যাসকেট ৩ প্রকার</h3>
+<ul><li><b>Non-metallic</b>: CNAF, PTFE, Rubber</li><li><b>Metallic</b>: Flat/Grooved, Corrugated, Round, Oval &amp; Octagonal Ring, Lens, Delta, Welded, Bridgeman</li><li><b>Composite</b>: Kammprofile, Spiral Wound, Envelope, Metal Jacketed</li></ul>
+<p class="en">স্ট্যান্ডার্ড: ASME B16.5 ও B16.47 (Series A, B)।</p>
+</div></details>
+
+<details><summary>৭. জয়েন্ট, বেভেল ও ওয়েল্ডিং</summary><div class="b">
+<h3>জয়েন্ট ৪ প্রকার</h3>
+<ul><li><b>Butt joint</b> – গ্যাপ 4 mm</li><li><b>Socket joint</b> – 2 / 1.6 mm গ্যাপ রাখতে হয়, না রাখলে ওয়েল্ডিংয়ের পর ট্র্যাক ফাটতে পারে</li><li><b>Threaded joint</b></li><li><b>Flange joint</b></li></ul>
+<p>ফিল্ডে করা জয়েন্ট = Field Joint (FW)। ওয়ার্কশপে করা = Shop Joint।</p>
+<h3>Bevel</h3>
+<ul><li><b>V Bevel</b> – 37.5° এ কাটা হয়</li><li><b>J Bevel</b> – 22–25° ; পাইপের Thickness 22–25 mm-এর বেশি হলে</li></ul>
+<div class="f">Bevel length = Tan(37.5) × Thickness<br>Bevel ডিগ্রি = Shift Tan⁻¹(Length ÷ Thickness)</div>
+<div class="n">Length 7, Thickness 9: tan⁻¹(7÷9) = 37.87°</div>
+<ul><li>Root Face: 1 mm বা 1.6 mm (সাধারণত 1 mm; কোথাও 1.5–2 mm)</li><li>Root Gap: WPS অনুযায়ী 3.2 বা 1.6, সাধারণত 4 mm</li><li>বেভেলের ভিতর ও বাইরে ন্যূনতম 1" পরিষ্কার করতে হয়</li><li>WPS = Welding Procedure Specification</li></ul>
+<h3>ফিট-আপে চেক</h3>
+<ul><li>নাইনটি চেক, Spirit Level চেক, Taking Rod দিয়ে ট্যাকিং</li><li>পাইপ কাটতে: টেপ, মার্কার, র‍্যাপ-অ্যারাউন্ড/রেপিণ পেপার, সেন্টার পাঞ্চ, গ্রাইন্ডার, কাটিং ডিস্ক</li></ul>
+<h3>Fabrication ও Erection</h3>
+<p><b>Fabrication</b>: পাইপ, টি, এলবো, প্লাগ, ফ্ল্যাঞ্জ ইত্যাদি। <b>Erection</b>: ফ্যাব্রিকেশনের কাজে ব্যবহৃত Nut, Bolt, Valve, Gasket ইত্যাদি।</p>
+</div></details>
+
+<details><summary>৮. রোলিং ও ট্রাভেল হিসাব</summary><div class="b">
+<div class="f">Travel = √(Ran² + Sat²)<br>ডিগ্রি = Tan⁻¹(Ran ÷ Sat)<br>Ran = Sin(ডিগ্রি) × Travel<br>Sat = Cos(ডিগ্রি) × Travel</div>
+<h3>Double Rolling উদাহরণ</h3>
+<p>Set 500, Run 1200, উচ্চতা 600:</p>
+<ul><li>A এলবো: √(500² + 600²) = 781 → Tan⁻¹(781 ÷ 1200) = <b>33°</b></li><li>B এলবো: √(500² + 1200²) = 1300 → Tan⁻¹(1300 ÷ 600) = <b>65.2°</b></li><li>C (travel): √(1300² + 600²) = <b>1431.7 mm</b></li></ul>
+<div class="n">সাধারণ ভুল: শুধু Tan⁻¹(600÷1200) করা, বা 90° − 33° = 57° ধরা। ঠিক পদ্ধতি উপরের।</div>
+<h3>আয়তক্ষেত্রের কর্ণ</h3>
+<div class="f">কর্ণ = √(L² + B²)<br>L=10, B=5 → √125 = 11.18 m</div>
+</div></details>
+
+<details><summary>৯. মাইটার কাট এলবো</summary><div class="b">
+<div class="f">Cut Back = (CF × ডিগ্রি) ÷ (360 × 2 × কাট সংখ্যা)<br>Middle Piece = Cut Back × স্ট্যান্ডার্ড<br>Side Piece = Middle ÷ 2</div>
+<p>স্ট্যান্ডার্ড সংখ্যা: Long Radius = 8, Standard Radius = 6, Short Radius = 4।</p>
+<div class="n"><b>৮" মাইটার (৩ কাট):</b> CF 687.66 → 687.66 × 90 ÷ (360×2×3) = 28.65 → Middle = 28.65 × 6 = 171.9 → Side = 85.95</div>
+<div class="n"><b>৪" মাইটার (২ কাট):</b> CF 358 → Cut Back 22.4 → Middle 134 → Side 67</div>
+<div class="f">কাটের কোণ = মোট ডিগ্রি ÷ (2 × ওয়েল্ড সংখ্যা)<br>১৪" 90°, ৪ ওয়েল্ড (৫ পিস): 90 ÷ 8 = 11.25°</div>
+</div></details>
+
+<details><summary>১০. হাইড্রোটেস্ট পানির আয়তন</summary><div class="b">
+<div class="f">আয়তন = π × r² × h</div>
+<div class="n">২০" পাইপ, দৈর্ঘ্য 10 m, ID 490 mm → r = 0.245 m → 3.1416 × 0.060025 × 10 = 1.8857 m³ = <b>1885.7 লিটার</b> (1 m³ = 1000 L)</div>
+</div></details>
+
+<details><summary>১১. সাপোর্ট ও বোল্ট-নাট</summary><div class="b">
+<h3>পাইপ সাপোর্ট</h3>
+<p>Shoe, Saddle, Clamp, U-bolt, Wear Pad (Cradle), Trunnion/Dummy, Spring, Hanger, Guide, Anchor, Angle, Stopper (Limit stop), Resting।</p>
+<h3>বোল্ট</h3>
+<p>Hex, Serrated Flange, T-head, Anchor, U-bolt, J-bolt, Allen (Socket head), Stud, Hanger, Carriage, Plow, Eye, Flange, Shoulder, Lag, Elevator, Square।</p>
+<h3>নাট</h3>
+<p>Hex, Heavy Hex, Hexagonal, Coupling, Jam, Square, Cap, Acorn, Wing, Castle (Slotted), Tee, Nylon Insert Lock, Prevailing Torque, K-lock, Knurled।</p>
+<h3>বোল্ট ও রেঞ্চ সাইজ (মেট্রিক)</h3>
+<div class="t"><table><tr><th>বোল্ট</th><th>M6</th><th>M8</th><th>M10</th><th>M12</th><th>M16</th><th>M20</th></tr>
+<tr><td>রেঞ্চ (mm)</td><td>10</td><td>13</td><td>17</td><td>19</td><td>24</td><td>30</td></tr>
+<tr><td>Hex key (mm)</td><td>5</td><td>6</td><td>8</td><td>10</td><td>14</td><td>17</td></tr></table></div>
+<h3>স্প্যানার থিওরি (ইঞ্চি → mm)</h3>
+<div class="f">ইঞ্চি ÷ ... × 25.4 × 1.5 + 3<br>1/2" → 12.7 × 1.5 + 3 = 22.05 mm</div>
+<h3>ফ্ল্যাঞ্জ বোল্ট (150#)</h3>
+<div class="t"><table><tr><th>সাইজ</th><th>বোল্ট ⌀</th><th>লম্বা mm</th><th>স্প্যানার</th><th>সংখ্যা</th></tr>
+<tr><td>1/2"–1.5"</td><td>1/2"</td><td>60–70</td><td>22</td><td>4</td></tr>
+<tr><td>2"–4"</td><td>5/8"</td><td>85–90</td><td>27</td><td>4–8</td></tr>
+<tr><td>5"–8"</td><td>3/4"</td><td>95–110</td><td>32</td><td>8</td></tr>
+<tr><td>10"–12"</td><td>7/8"</td><td>115–120</td><td>36</td><td>8–12</td></tr>
+<tr><td>14"–16"</td><td>1"</td><td>130–135</td><td>41</td><td>12–16</td></tr></table></div>
+</div></details>
+
+<details><summary>১২. টুলস ও যন্ত্রপাতি</summary><div class="b">
+<h3>ফিট-আপ টুলস</h3>
+<p>Measuring Tape, CF Tape, মার্কার চক/পেন, Wrap Around, Teflon Tape, Power Cable ও Extension, Grinder, Pencil Grinder, Grinding Key, Bowing/Grinding/Cutting Disc, হোলবারি (Hole bari), Line Dori, Jack/Pipe Stand, File, Spanner, Right Angle, Spirit Level, Wear Brush, Slip Hammer, Pipe Wrench, Chock/Wedge, Center Punch, Water Level (Tube), Plumb Bob, Taking Rod, Gap Rod, Welding Rod, Hammer, Screwdriver, Plier, Adjustable, Hose Pipe, WD-40, Cutting Torch, Gas Cutter Set, Divider/Compass, Degree Protractor, Hi-Low Gauge, Ratchet, Ring Spanner, Tool Box, Pipe Vise, Chain Block, Crane, Fork Lift, Highlander, Hilti ও Drill Machine।</p>
+<h3>সেফটি</h3><p>Face Shield, Apron, Helmet, Fire Blanket।</p>
+<h3>মাপের যন্ত্র</h3><p>Caliper, Vernier Caliper, Micrometer, Steel Rule, Set Square, Bevel Protractor।</p>
+<h3>Water Level</h3><p>পাইপ লেভেল করতে ও সোলাপ (slope) বের করতে। Spirit Level দিয়ে প্যারালাল ও লেভেল চেক।</p>
+<h3>গ্রাইন্ডার</h3>
+<div class="t"><table><tr><th>সাইজ</th><th>RPM</th><th>ওজন</th></tr>
+<tr><td>4"</td><td>12000</td><td>1.8 kg</td></tr><tr><td>4.5"</td><td>~12000</td><td>2.8 kg</td></tr><tr><td>5"</td><td>~11000</td><td>3.3 kg</td></tr><tr><td>7"</td><td>7000</td><td>9.2 kg</td></tr><tr><td>9"</td><td>5600</td><td>9.5 kg</td></tr></table></div>
+<ul><li>গ্রাইন্ডার ৩ ধরন: Pencil, Angle, Straight (Die)।</li><li>ডিস্ক: 5/6 mm গ্রাইন্ডিং, বাফিং/ফ্ল্যাপ, 1/1.2 mm কাটিং, 3 mm কাটিং।</li><li>Pencil Grinder বিট: Stone Bit → SS পাইপ; Metal Bit → CS পাইপ।</li></ul>
+<div class="n">নোটের RPM 4.5" ও 5"-এর মান মূল নোটে ছাপার ভুল থাকতে পারে (1200/1100), তাই ~ চিহ্ন দিয়েছি।</div>
+</div></details>
+
+<details><summary>১৩. সিম্বল ও শব্দসংক্ষেপ</summary><div class="b">
+<h3>ভালভ জয়েন্ট ও লাইন (Iso সিম্বল)</h3>
+<p>ড্রয়িংয়ে Butt weld = ফোঁটা (●), Socket = [ আকার, Threaded = ঘাট আকার। Gate, Globe (ভরাট বৃত্ত), Ball (X বৃত্ত), Plug, Butterfly, Needle (ভরাট ত্রিভুজ), Check (তীর), Diaphragm, Y-type, 3-way, Relief, Control (উপরে গোল) এর আলাদা সিম্বল আছে — মূল PDF-এর পৃষ্ঠা ২০, ২৬, ৩৬ দেখুন।</p>
+<h3>শব্দসংক্ষেপ</h3>
+<div class="t"><table>
+<tr><th>সংক্ষেপ</th><th>পূর্ণরূপ</th></tr>
+<tr><td>BW / SW / THD</td><td>Butt weld / Socket weld / Threaded</td></tr>
+<tr><td>BE, PE, BBE, POE</td><td>Bevel end, Plain end, Bevel both ends, Plain one end</td></tr>
+<tr><td>CS / SS / GI</td><td>Carbon / Stainless steel / Galvanized iron</td></tr>
+<tr><td>Conc / Ecc</td><td>Concentric / Eccentric</td></tr>
+<tr><td>LR / SR</td><td>Long radius / Short radius</td></tr>
+<tr><td>WN / SO / LJ / Bld</td><td>Weld neck / Slip-on / Lap joint / Blind</td></tr>
+<tr><td>RF / FF / RTJ</td><td>Raised face / Flat face / Ring type joint</td></tr>
+<tr><td>WOL / SOL / TOL / LOL / EOL</td><td>Weldolet / Sockolet / Threadolet / Latrolet / Elbolet</td></tr>
+<tr><td>PCD</td><td>Pitch Circle Diameter</td></tr>
+<tr><td>NPS / DN / NB / NS</td><td>Nominal pipe size / Diameter nominal / Nominal bore / Nominal size</td></tr>
+<tr><td>SCH / STD / XS / XXS</td><td>Schedule / Standard / Extra strong / Double extra strong</td></tr>
+<tr><td>THK / WT</td><td>Thickness / Wall thickness</td></tr>
+<tr><td>ISO / P&amp;ID / MTO / BOM</td><td>Isometric / Piping &amp; instrument diagram / Material take-off / Bill of materials</td></tr>
+<tr><td>FW / TYP / REV / EL</td><td>Field weld / Typical / Revision / Elevation</td></tr>
+<tr><td>PSV / CV / VS</td><td>Pressure safety valve / Control valve / Vessel</td></tr>
+<tr><td>XR / WPS</td><td>X-ray / Welding procedure specification</td></tr>
+<tr><td>ASME / ASTM / API / ANSI</td><td>American societies/institutes: Mechanical Engineers / Testing &amp; Materials / Petroleum / National Standards</td></tr>
+<tr><td>Pc / PS / Sol Sht</td><td>Piece (spool mark) / Pipe support / Spool sheet</td></tr>
+<tr><td>N / E / M / M½ / F / B / G</td><td>Nozzle / Elevation / Motor / Manhole / Flange / Bolt / Gasket</td></tr>
+<tr><td>SMLS / GR / CL / PSL</td><td>Seamless / Grade / Class / Product specification level</td></tr>
+</table></div>
+</div></details>
+
+<details><summary>১৪. ইন্টারভিউ প্রশ্ন-উত্তর</summary><div class="b">
+<h3>ফিটিংয়ের ধাপ (Pipe ও Flange ফিট-আপ)</h3>
+<ol><li>পেছনে (Taking) মেজারমেন্ট</li><li>র‍্যাপিং পেপার দিয়ে মার্ক, পাইপ কাটা</li><li>Right Angle দিয়ে ফেস চেক</li><li>37.5° বেভেল, 1–2 mm রুট ফেস</li><li>ভিতরের ময়লা বাদে চেক, 4 mm রড গ্যাপ</li><li>Pipe ও Flange মিলিয়ে নেওয়া</li><li>Spirit Level ও Right Angle দিয়ে সব দিক চেক</li><li>ট্যাক করে আবার চেক, তারপর ফিটিং শেষ</li></ol>
+<h3>সাধারণ প্রশ্ন</h3>
+<p><b>Tee এর কাজ?</b> মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করা।</p>
+<p><b>Reducer এর কাজ?</b> বড় লাইন থেকে ছোট লাইনে রূপান্তর।</p>
+<p><b>Elbow কেন?</b> পাইপের দিক বদলাতে।</p>
+<p><b>Elbow এর প্রকার?</b> 90°, 45°, Long/Short/Standard Radius, Reducing।</p>
+<p><b>Flange কী?</b> পাইপ, ভালভ, পাম্প ইত্যাদি জুড়ে পাইপিং সিস্টেম বানানোর যান্ত্রিক উপাদান।</p>
+<p><b>Valve কী?</b> খুলে, বন্ধ করে বা আংশিক আটকে তরল/গ্যাসের প্রবাহ নিয়ন্ত্রণকারী যন্ত্র।</p>
+<p><b>Bevelling কী?</b> ওয়েল্ডিংয়ের জন্য ধাতুর কিনারা ঢালু করে কাটা, হাতে গ্রাইন্ড করে বা মেশিনে।</p>
+<p><b>তোমার অভিজ্ঞতা কত?</b> I have worked as a pipe fitter for [X] years, installing, maintaining and repairing piping systems.</p>
+<p><b>Rolling কী?</b> 90° ছাড়া অন্য কোণে পাইপের দিক বদল।</p>
+<p><b>NPS ও DN?</b> NPS ইঞ্চিতে, DN mm-এ নামমাত্র সাইজ।</p>
+<p><b>Tee কত প্রকার?</b> Equal/Straight ও Reducing/Unequal।</p>
+<p><b>Reducer কত প্রকার?</b> Concentric ও Eccentric।</p>
+</div></details>
+
+<footer>মূল নোট: MD. Mizanur Rahman<br>এই বই সহজ মোবাইল পাঠের জন্য নতুন করে সাজানো।</footer>
+</main>
+<nav><button onclick="scrollTo({top:0,behavior:'smooth'})"><i>🏠</i>হোম</button><button onclick="document.getElementById('gal').scrollIntoView({behavior:'smooth'})"><i>🧊</i>৩D ছবি</button><button onclick="scrollTo(0,0);document.getElementById('q').focus()"><i>🔎</i>সার্চ</button></nav>
+<script>
+(function(){
+function T(d){return '<path d="'+d+'" fill="none" stroke="#25384a" stroke-width="26"/><path d="'+d+'" fill="none" stroke="#6f93a8" stroke-width="18"/><path d="'+d+'" fill="none" stroke="#e3f3fa" stroke-width="5" opacity=".85" transform="translate(-3,-3)"/>'}
+function R(x,y,w,h){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="url(#gh)"/>'}
+function P(p){return '<polygon points="'+p+'" fill="url(#gh)"/>'}
+function E(x,y,a,b,f){return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+a+'" ry="'+b+'" fill="'+f+'"/>'}
+function F(){var s=E(60,54,44,26,'#1f2f3b')+E(60,46,44,26,'url(#gr)');for(var i=0;i<8;i++){var a=i*Math.PI/4;s+=E((60+32*Math.cos(a)).toFixed(1),(46+18*Math.sin(a)).toFixed(1),4,2.6,'#1f2f3b')}return s+E(60,46,17,10,'#0e1820')}
+var red='#d63a2f';
+var items=[
+['পাইপ','Pipe',R(8,34,104,24)+E(112,46,5,12,'#1b2a35')],
+['৯০° এলবো','90° Elbow',T('M12,72 H46 A26 26 0 0 0 72 46 V12')],
+['৪৫° এলবো','45° Elbow',T('M10,72 H46 Q64,72 76,58 L104,26')],
+['টি (Tee)','Equal Tee',T('M8,64 H112')+T('M60,64 V14')],
+['কনসেন্ট্রিক রিডিউসার','Concentric Reducer',R(2,18,10,54)+P('12,18 84,34 84,56 12,72')+R(84,34,34,22)],
+['এক্সেন্ট্রিক রিডিউসার','Eccentric Reducer',R(2,18,10,54)+P('12,18 84,44 84,72 12,72')+R(84,44,34,28)],
+['ফ্লেঞ্জ','Flange',F()],
+['বল ভালভ','Ball Valve',R(4,34,112,24)+E(60,46,22,22,'url(#gr)')+'<rect x="57" y="18" width="6" height="12" fill="#444"/><rect x="26" y="10" width="62" height="8" rx="4" fill="'+red+'"/>'],
+['গেট ভালভ','Gate Valve',R(4,40,112,22)+'<rect x="38" y="26" width="44" height="42" rx="7" fill="url(#gr)"/>'+R(52,10,16,18)+E(60,8,22,6,red)],
+['ক্যাপ','Cap',R(14,18,34,56)+'<path d="M48,18 A28 28 0 0 1 48,74 Z" fill="url(#gh)"/>'+E(14,46,5,28,'#1b2a35')]
+];
+var g=document.getElementById('galg');
+items.forEach(function(x){g.innerHTML+='<div class="gc"><svg viewBox="0 0 120 90">'+x[2]+'</svg>'+x[0]+'<small>'+x[1]+'</small></div>'});
+var ic=['📐','📏','🧮','🔩','⭕','🚰','🔥','📈','✂️','💧','🔧','🛠️','🔤','❓'];
+var gr=document.getElementById('grid');
+[].slice.call(document.querySelectorAll('main>details:not(#gal)')).forEach(function(d,i){
+var b=document.createElement('button');
+b.innerHTML='<i>'+ic[i]+'</i>'+d.firstChild.textContent.replace(/^\s*[০-৯]+\.\s*/,'');
+b.onclick=function(){d.open=true;d.scrollIntoView({behavior:'smooth'})};gr.appendChild(b)});
+})();
+</script>
+<script>
+(function(){
+var q=document.getElementById('q'),ds=[].slice.call(document.querySelectorAll('details'));
+q.addEventListener('input',function(){
+var v=q.value.trim().toLowerCase();
+ds.forEach(function(d){
+if(!v){d.style.display='';return;}
+var m=d.textContent.toLowerCase().indexOf(v)>-1;
+d.style.display=m?'':'none';d.open=m;
+});
+});
+})();
+</script>
+<script>
+(function(){
+var d=document,e=d.documentElement,sp=d.getElementById('splash');
+var app=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone;
+function on(){return d.fullscreenElement||d.webkitFullscreenElement}
+function enter(){var f=e.requestFullscreen||e.webkitRequestFullscreen;if(f){try{var r=f.call(e,{navigationUI:'hide'});if(r&&r.catch)r.catch(function(){})}catch(x){}}}
+function exit(){var f=d.exitFullscreen||d.webkitExitFullscreen;if(f)try{f.call(d)}catch(x){}}
+d.getElementById('go').onclick=function(){enter();sp.classList.add('off');setTimeout(function(){sp.style.display='none'},400)};
+d.getElementById('fs').onclick=function(){on()?exit():enter()};
+if(app){sp.style.display='none'}
+var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+if(ios&&!app)d.getElementById('ios').textContent='আইফোনে পুরো স্ক্রিনের জন্য Safari-র Share বাটন চেপে "Add to Home Screen" দিন।';
+if(!(e.requestFullscreen||e.webkitRequestFullscreen))d.getElementById('fs').style.display='none';
+})();
+</script>
+</body>
+</html>
