@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="bn"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#10151c"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Scaffolder"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
 <title>স্ক্যাফোল্ডার ট্রেনিং A–Z</title>
 <style>
 :root{--bg:#f4f7fb;--card:#fff;--tx:#10151c;--mu:#5a6675;--bl:#0b5ed7;--or:#f57c00;--bd:#d9e1ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
@@ -69,14 +70,25 @@ body[data-p=d3] :is(.hero,#hm,#prog,.bar,#lessons,#m,#d,#fcs,#qz,#i2){display:no
 body[data-p=iv] :is(.hero,#hm,#prog,.bar,#m,#d,#fcs,#v,#v2,#qz,#lessons>section:not(#i):not(#e),main>.note){display:none}
 body[data-p=qz] :is(.hero,#hm,#prog,.bar,#lessons,#m,#d,#fcs,#v,#v2,#i2,main>.note){display:none}
 body[data-p=search] :is(.hero,#hm,#prog,.bar,#m,#fcs,#v,#v2,#qz,#i2,#lessons>#i,#lessons>#e,main>.note){display:none}
+.cpg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:6px 0 10px}.cpg .pill{margin:0;border-radius:12px;text-align:left;padding:10px;font-size:14px;line-height:1.3}.cpg .pill small{display:block;color:var(--mu);font-size:12px}.cpg .pill.on small{color:#dbe8ff}
+@media(min-width:700px){.cpg{grid-template-columns:repeat(4,1fr)}}
+.credit{text-align:center;font-size:14px;color:var(--mu);margin:6px 0 18px}.credit a{color:var(--or);font-weight:700;text-decoration:none}
+.hero .ht,.hero .feat{display:none!important}
+.hero,.hero canvas{display:block}.hero canvas{width:100%;height:300px;min-height:0;cursor:grab}
+@media(min-width:700px){.hero{display:block}.hero canvas{height:380px;min-height:0;grid-column:auto;grid-row:auto}}
+#ib{position:fixed;left:10px;right:10px;bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:9;background:#10151c;color:#fff;border:2px solid var(--or);border-radius:14px;padding:12px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.4);max-width:520px;margin:0 auto}
+#ib b{color:var(--or)}#ib .r{display:flex;gap:8px;margin-top:8px}#ib button{border:0;border-radius:10px;padding:9px 14px;font-weight:700}#ib .go{background:var(--or);color:#fff;flex:1}#ib .no{background:#2a3442;color:#fff}
+@media(min-width:900px){#ib{bottom:16px}}
+#fs{background:#2a3442;border:0;color:#fff;border-radius:8px;padding:6px 10px}#ins{display:none;background:var(--or);border:0;color:#fff;border-radius:8px;padding:6px 10px;white-space:nowrap}
 </style></head><body data-p="home">
-<header><button id="menu" aria-label="মেনু">☰</button><b>স্ক্যাফোল্ডার এ–জেড</b><input id="s" placeholder="🔍 খুঁজুন (যেমন: কাপলার)"></header>
+<header><button id="menu" aria-label="মেনু">☰</button><b>স্ক্যাফোল্ডার এ–জেড</b><button id="ins">📲 ইনস্টল</button><button id="fs" title="ফুলস্ক্রিন">⛶</button><input id="s" placeholder="🔍 খুঁজুন (যেমন: কাপলার)"></header>
 <nav id="nav"></nav>
+<div id="ib"><div id="ibt"></div><div class="r"><button class="go" id="ibg">📲 ইনস্টল করুন</button><button class="no" id="ibn">পরে</button></div></div>
 <div id="bn"><a href="#l0"><b>📚</b>পাঠ</a><a href="#v2"><b>🧊</b>৩ডি</a><a href="#home" class="hm"><b>🏠</b>হোম</a><a href="#qz"><b>📝</b>কুইজ</a><a href="#prog"><b>📈</b>অগ্রগতি</a></div>
 <main>
 <div class="hero"><div class="ht"><span class="badge">পেশাদার প্রশিক্ষণ</span><h1>স্ক্যাফোল্ডার ট্রেনিং <em>A–Z</em></h1><p>স্ক্যাফোল্ডিং শেখার সম্পূর্ণ গাইড — প্রতিটি কাপলার, পাইপ, বোর্ড ও ধাপ <b>৩ডি মডেলে ঘুরিয়ে দেখে</b> সহজে শিখুন। কোনো ঝামেলা নেই—সব বাংলায়, এক জায়গায়।</p><div class="cta"><a href="#l0">📚 পড়া শুরু করুন</a><a class="gh" href="#v2">🧊 ৩ডি দেখুন</a></div></div><canvas id="hc"></canvas>
 <div class="feat"><div><b id="f1">13</b>পাঠ</div><div><b>৩ডি</b>মডেল</div><div><b>৮</b>ধাপে সাজানো</div><div><b id="f2">A–Z</b>শব্দকোষ</div><div><b>🎤</b>ইন্টারভিউ</div><div><b>📝</b>কুইজ</div></div></div>
-<div id="hm"><h2>কীভাবে শিখবেন? ৩টি সহজ ধাপ</h2><div class="how"><div><b>১</b>পাঠ পড়ুন</div><div><b>২</b>৩ডি-তে ঘুরিয়ে দেখুন</div><div><b>৩</b>কুইজ দিন</div></div><div class="menu"><a href="#l0"><span>📚</span>পাঠসমূহ<small>ধাপে ধাপে শিখুন</small></a><a href="#v2"><span>🧊</span>৩ডি মডেল<small>ঘুরিয়ে দেখুন</small></a><a href="#d"><span>📖</span>শব্দকোষ<small>এ থেকে জেড</small></a><a href="#m"><span>📏</span>মাপ<small>পাইপ ও বোর্ড</small></a><a href="#i"><span>🎤</span>ইন্টারভিউ<small>প্রশ্ন ও উত্তর</small></a><a href="#qz"><span>📝</span>কুইজ<small>নিজেকে যাচাই করুন</small></a></div></div>
+<div id="hm"><h2>কীভাবে শিখবেন? ৩টি সহজ ধাপ</h2><div class="how"><div><b>১</b>পাঠ পড়ুন</div><div><b>২</b>৩ডি-তে ঘুরিয়ে দেখুন</div><div><b>৩</b>কুইজ দিন</div></div><div class="menu"><a href="#l0"><span>📚</span>পাঠসমূহ<small>ধাপে ধাপে শিখুন</small></a><a href="#cp"><span>🔗</span>৮টি কাপলার<small>ক্লিক করে ছবি দেখুন</small></a><a href="#v2"><span>🧊</span>৩ডি মডেল<small>ঘুরিয়ে দেখুন</small></a><a href="#d"><span>📖</span>শব্দকোষ<small>এ থেকে জেড</small></a><a href="#m"><span>📏</span>মাপ<small>পাইপ ও বোর্ড</small></a><a href="#i"><span>🎤</span>ইন্টারভিউ<small>প্রশ্ন ও উত্তর</small></a><a href="#qz"><span>📝</span>কুইজ<small>নিজেকে যাচাই করুন</small></a></div></div>
 <div class="dash" id="prog"><div><b id="t">0</b>মোট পাঠ</div><div><b id="c">0</b>সম্পন্ন</div><div><b id="p">0%</b>অগ্রগতি</div></div>
 <div class="bar"><i id="pb"></i></div>
 <div id="lessons"></div>
@@ -111,9 +123,10 @@ body[data-p=search] :is(.hero,#hm,#prog,.bar,#m,#fcs,#v,#v2,#qz,#i2,#lessons>#i,
 <canvas id="cv"></canvas><p class="note" id="fb"></p></section>
 
 <section id="fcs"><h2>🃏 ফ্ল্যাশকার্ড (আজকের পুনরাবৃত্তি)</h2><p class="mu">নাম দেখে আগে নিজে মনে করুন, তারপর উত্তর দেখুন।</p><div class="fc"><div class="big" id="fcf"></div><div id="fcb" hidden></div></div><button class="act" id="fcs1">উত্তর দেখুন</button><button class="act" id="fcn">পরের কার্ড →</button></section>
-<section id="v2"><h2>🔩 ৩ডি যন্ত্রাংশ ও সাজানোর ধাপ</h2><p class="mu">নিচ থেকে একটি বেছে নিন। ঘোরান, জুম করুন। কাপলারে <b>▶ Animation</b> চাপলে সংযোগ হওয়া দেখা যাবে। রঙ: নীল=Standard, কমলা=Ledger/Coupler, সাদা=Transom, লাল=Brace, বাদামী=Board, সবুজ=Tie, হলুদ=Guardrail।</p><div id="mb"></div><canvas id="cv2" style="width:100%;height:320px;background:#e8eef7;border-radius:12px;touch-action:none;display:block"></canvas><div class="ex" id="cap2"></div><button class="act" id="pl">▶ জোড়া লাগানো দেখুন</button><p class="note" id="fb2">এগুলো শিক্ষার জন্য সরল মডেল; আসল মাপ ও ডিজাইন প্রস্তুতকারক ও অনুমোদিত প্ল্যান অনুযায়ী হবে।</p></section>
+<section id="v2"><h2>🔩 ৩ডি যন্ত্রাংশ ও সাজানোর ধাপ</h2><p class="mu">উপরের ৮টি কাপলারের যেকোনো একটিতে চাপ দিন বা নিচ থেকে অন্য যন্ত্রাংশ বেছে নিন। ঘোরান, জুম করুন। কাপলারে <b>▶ Animation</b> চাপলে সংযোগ হওয়া দেখা যাবে। রঙ: নীল=Standard, কমলা=Ledger/Coupler, সাদা=Transom, লাল=Brace, বাদামী=Board, সবুজ=Tie, হলুদ=Guardrail।</p><h3 id="cp">🔗 ৮টি কাপলার — নামে চাপ দিন, ছবি নিচে দেখুন</h3><div id="mb"></div><canvas id="cv2" style="width:100%;height:320px;background:#e8eef7;border-radius:12px;touch-action:none;display:block"></canvas><div class="ex" id="cap2"></div><button class="act" id="pl">▶ জোড়া লাগানো দেখুন</button><h3>অন্যান্য যন্ত্রাংশ ও সাজানোর ধাপ</h3><div id="mb2"></div><p class="note" id="fb2">এগুলো শিক্ষার জন্য সরল মডেল; আসল মাপ ও ডিজাইন প্রস্তুতকারক ও অনুমোদিত প্ল্যান অনুযায়ী হবে।</p></section>
 <section id="qz"><h2>📝 কুইজ ও পরীক্ষা</h2><div id="qb"></div><p><b id="sc"></b></p></section>
 <p class="note">ছবি: এই ফাইলে বাইরের ছবি লোড হয় না, তাই আসল ফটোর বদলে মৌলিক 3D মডেল ব্যবহার করা হয়েছে। আসল ছবির জন্য সাইটে সরাসরি ছবি যোগ করতে হবে।</p>
+<div class="credit">🛠️ এই অ্যাপ বানিয়েছে <a href="https://mrtech.nptrunamentbd.top/" target="_blank" rel="noopener">MR TECH</a><br><a href="https://mrtech.nptrunamentbd.top/" target="_blank" rel="noopener">mrtech.nptrunamentbd.top</a></div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -224,7 +237,7 @@ const BR=new RegExp('(?<![A-Za-z])('+BM.map(x=>x[0].replace(/[-\/]/g,'\\$&')).jo
 const BD=Object.fromEntries(BM.map(x=>[x[0].toLowerCase(),x[1]]));
 function bn(s){return typeof s!='string'?s:s.replace(BR,(m,k)=>BD[k.toLowerCase()]).replace(/(\d) ?mm\b/g,'$1 মিমি').replace(/(\d) ?kg\b/g,'$1 কেজি').replace(/(\d) m\b/g,'$1 মি')}
 L.forEach(l=>{for(let k=2;k<7;k++)l[k]=bn(l[k])});D.forEach(d=>{for(let k=3;k<6;k++)d[k]=bn(d[k])});Q.forEach(q=>{q[0]=bn(q[0]);q[1]=q[1].map(bn)});
-function go(id){let p='home';if(/^l\d+$/.test(id))p='lessons';else if(['m','d','fcs'].includes(id))p='dict';else if(['v','v2'].includes(id))p='d3';else if(['i','i2','e'].includes(id))p='iv';else if(id=='qz')p='qz';
+function go(id){let p='home';if(/^l\d+$/.test(id))p='lessons';else if(['m','d','fcs'].includes(id))p='dict';else if(['v','v2','cp'].includes(id))p='d3';else if(['i','i2','e'].includes(id))p='iv';else if(id=='qz')p='qz';
 if($('s').value){$('s').value='';render();dic()}document.body.dataset.p=p;dispatchEvent(new Event('resize'));
 setTimeout(()=>{const el=(id=='home'||!id)?null:$(id);el?el.scrollIntoView():scrollTo(0,0)},60)}
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();go(a.getAttribute('href').slice(1))});
@@ -236,7 +249,7 @@ function render(f){f=(f||'').toLowerCase();let h='',n='<a href="#home">🏠 হ�
 L.forEach((l,i)=>{const id='l'+i;n+=`<a href="#${id}">${i+1}. ${l[1]}</a>`;
 if(f&&!(l.join(' ').toLowerCase().includes(f)))return;
 h+=`<section id="${id}"><h2>পাঠ ${i+1}</h2><div class="en">${l[0]}</div><div class="pr">উচ্চারণ: ${l[1]}</div><div class="mu">অর্থ: ${l[2]}</div><p>${l[3]}</p><p><b>মূল কাজ:</b> ${l[4]}</p><div class="ex">🏗️ সাইটের উদাহরণ: ${l[5]}</div><div class="q">🎤 Interview: ${l[6]}</div><button class="act" onclick="show3d(LM[${i}])">🧊 ৩ডি-তে দেখুন</button><label class="done"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}> সম্পন্ন করেছি</label></section>`});
-n+='<a href="#m">📏 মাপ</a><a href="#d">📖 শব্দকোষ</a><a href="#v">🧊 ৩ডি মডেল</a><a href="#v2">🔩 ৩ডি যন্ত্রাংশ</a><a href="#i">🎤 ইন্টারভিউ</a><a href="#e">🗣️ ইংরেজি অনুশীলন</a><a href="#qz">📝 কুইজ</a>';
+n+='<a href="#m">📏 মাপ</a><a href="#d">📖 শব্দকোষ</a><a href="#v">🧊 ৩ডি মডেল</a><a href="#cp">🔗 ৮টি কাপলার</a><a href="#v2">🔩 ৩ডি যন্ত্রাংশ</a><a href="#i">🎤 ইন্টারভিউ</a><a href="#e">🗣️ ইংরেজি অনুশীলন</a><a href="#qz">📝 কুইজ</a><a href="https://mrtech.nptrunamentbd.top/" target="_blank" rel="noopener">🛠️ MR TECH</a>';
 $('lessons').innerHTML=h+`<section id="i"><h2>🎤 ইন্টারভিউ প্রশ্ন-উত্তর (নমুনা)</h2>${IQ.map(q=>`<div class="ent"><b>${q[0]}</b><br>${q[1]}</div>`).join('')}</section><section id="e"><h2>🗣️ ইংরেজি বলার অনুশীলন</h2><p>প্রতিদিন জোরে বলুন:</p><div class="ex">“I am a scaffolder. I always wear my harness at height.”</div><div class="ex">“Please check the tag before you use the scaffold.”</div><div class="ex">“I need a sleeve coupler and a base plate.”</div></section>`;
 $('nav').innerHTML=n;prog();
 document.querySelectorAll('[data-i]').forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;save();prog()})}
@@ -284,14 +297,14 @@ function ring(x,y,z,ay,gr){const m=new THREE.Mesh(new THREE.TorusGeometry(.1,.03
 function lab(t,x,y,z,w){const c=document.createElement('canvas');c.width=720;c.height=120;const q=c.getContext('2d');q.fillStyle='rgba(16,21,28,.9)';q.fillRect(0,0,720,120);q.strokeStyle='#f57c00';q.lineWidth=6;q.strokeRect(3,3,714,114);q.font='bold 44px sans-serif';q.textAlign='center';q.textBaseline='middle';q.fillStyle='#fff';q.fillText(t,360,62,690);const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false}));sp.position.set(x,y,z);sp.scale.set(w,w*120/720,1);g.add(sp)}
 const ST=0x9aa5b1,BL=0x0b5ed7,OR=0xf57c00,WH=0xf2f2f2,RD=0xd32f2f,BR=0x8d6e63,GR=0x2e9d4f,YL=0xfbc02d;
 const M=[
-['Double Coupler','ডাবল কাপলার','দুটি পাইপকে ৯০° কোণে আটকায়। Standard ও Ledger জোড়ায় ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);tube([0,.13,-1.5],[0,.13,1.5],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);ring(0,.13,0,0,cp);box(.22,.12,.22,0,.065,0,OR,cp);tube([0,.12,0],[0,.45,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
+['Right Angle Coupler','রাইট অ্যাঙ্গেল (ডাবল) কাপলার','দুটি পাইপকে ৯০° কোণে আটকায়। Standard ও Ledger জোড়ায় ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);tube([0,.13,-1.5],[0,.13,1.5],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);ring(0,.13,0,0,cp);box(.22,.12,.22,0,.065,0,OR,cp);tube([0,.12,0],[0,.45,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
 ['Swivel Coupler','সুইভেল কাপলার','দুটি পাইপকে যেকোনো কোণে আটকায়, কাপলার ঘোরানো যায়। Brace লাগাতে ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);tube([-.96,.13,-1.15],[.96,.13,1.15],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);ring(0,.13,0,.7,cp);const d=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.05,20),mat(OR));d.position.y=.065;cp.add(d);tube([0,.1,0],[0,.45,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
 ['Sleeve Coupler','স্লিভ কাপলার','দুটি পাইপ লম্বালম্বি জোড়া লাগায়।',()=>{tube([-1.6,0,0],[-.05,0,0],ST);tube([.05,0,0],[1.6,0,0],ST);cp=new THREE.Group();tube([-.45,0,0],[.45,0,0],OR,.1,cp);g.add(cp);off=[1.8,0,0]}],
 ['Base Plate + Jack','বেস প্লেট ও বেস জ্যাক','Standard-এর ভার মাটিতে ছড়ায়; জ্যাক ঘুরিয়ে উচ্চতা ঠিক হয়। নিচে Sole Board থাকে।',()=>{box(2,.1,.8,0,-.05,0,BR);box(.5,.04,.5,0,.02,0,ST);tube([0,.04,0],[0,.9,0],ST,.05);box(.26,.1,.26,0,.4,0,OR);tube([0,.9,0],[0,3,0],BL)}],
 ['Putlog (Single) Coupler','পাটলগ/সিঙ্গেল কাপলার','শুধু একটি পাইপ ধরে, অন্য প্রান্তে চ্যাপ্টা ব্লেড থাকে। Putlog/Transom আটকাতে ব্যবহৃত হয়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);box(.1,.04,.7,0,.05,.4,OR,cp);tube([0,.05,0],[0,.4,0],OR,.03,cp);g.add(cp);off=[0,1.5,0]}],
 ['Girder Coupler','গার্ডার কাপলার','স্টিল বিমের ফ্ল্যাঞ্জ ধরে Tube ঝুলিয়ে আটকায়।',()=>{box(.6,.06,2,0,.4,0,ST);box(.6,.06,2,0,0,0,ST);box(.08,.4,2,0,.2,0,ST);tube([-1.2,.65,0],[1.2,.65,0],BL);cp=new THREE.Group();ring(0,.65,0,Math.PI/2,cp);box(.7,.04,.14,0,-.06,0,OR,cp);box(.04,.2,.14,.33,.04,0,OR,cp);box(.04,.2,.14,-.33,.04,0,OR,cp);g.add(cp);off=[0,1.5,0]}],
 ['Board Retaining Coupler','বোর্ড রিটেইনিং কাপলার','Tube ধরে বোর্ডের কিনারা চেপে রাখে, বোর্ড যাতে সরে না যায়।',()=>{tube([-1.5,0,0],[1.5,0,0],ST);box(2.4,.05,.5,0,.09,.4,BR);cp=new THREE.Group();ring(0,0,0,Math.PI/2,cp);box(.14,.03,.3,0,.14,.12,OR,cp);g.add(cp);off=[0,1.5,0]}],
-['Joint Pin','জয়েন্ট পিন','দুই Tube-এর ভেতরে ঢুকিয়ে লম্বালম্বি জোড়া লাগায়। পিন ভেতরে থাকে, বাইরে থেকে দেখা যায় না।',()=>{tube([-1.6,0,0],[-.25,0,0],ST);tube([.25,0,0],[1.6,0,0],ST);cp=new THREE.Group();tube([-.5,0,0],[.5,0,0],OR,.04,cp);g.add(cp);off=[0,1.5,0]}],
+['Joint Pin Coupler','জয়েন্ট পিন কাপলার','দুই Tube-এর ভেতরে ঢুকিয়ে লম্বালম্বি জোড়া লাগায়। পিন ভেতরে থাকে, বাইরে থেকে দেখা যায় না।',()=>{tube([-1.6,0,0],[-.25,0,0],ST);tube([.25,0,0],[1.6,0,0],ST);cp=new THREE.Group();tube([-.5,0,0],[.5,0,0],OR,.04,cp);g.add(cp);off=[0,1.5,0]}],
 ['Guardrail, Midrail, Toe Board','গার্ডরেইল, মিডরেইল, টো বোর্ড','উপরের রেল ও মাঝের রেল পড়ে যাওয়া রোধ করে, নিচের Toe Board জিনিস পড়া রোধ করে। উচ্চতা অনুমোদিত নিয়ম অনুযায়ী হবে।',()=>{[-1.2,1.2].forEach(x=>tube([x,0,0],[x,1.4,0],BL));tube([-1.2,1.1,0],[1.2,1.1,0],YL);tube([-1.2,.6,0],[1.2,.6,0],YL);box(2.4,.15,.03,0,.075,0,BR)}],
 ['Scaffold Tube (Pipe)','স্ক্যাফোল্ড টিউব / পাইপ','ফাঁপা স্টিল নল। বাইরের ব্যাস 48.3 মিমি = প্রায় 1.9 ইঞ্চি (১½ ইঞ্চি পাইপ বলা হয়)। দেয়াল 3.2 বা 4.0 মিমি। মাপ প্রস্তুতকারক ও ডিজাইন অনুযায়ী একটু আলাদা হতে পারে।',()=>{const ds=c=>new THREE.MeshStandardMaterial({color:c,metalness:.5,roughness:.4,side:THREE.DoubleSide});const o=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,3,28,1,true),ds(ST));o.rotation.z=Math.PI/2;g.add(o);const n=new THREE.Mesh(new THREE.CylinderGeometry(.16,.16,3,28,1,true),ds(0x55606b));n.rotation.z=Math.PI/2;g.add(n);const c=new THREE.Mesh(new THREE.RingGeometry(.16,.2,28),ds(OR));c.rotation.y=Math.PI/2;c.position.x=1.5;g.add(c);tube([0,-.2,.3],[0,.2,.3],YL,.018);tube([-1.5,-.55,0],[1.5,-.55,0],YL,.018);lab('বাইরের ব্যাস 48.3 মিমি = 1.9 ইঞ্চি',0,.85,0,3.4);lab('দেয়াল 3.2 বা 4.0 মিমি (প্রায় ⅛ ইঞ্চি)',0,-.9,0,3.4);lab('দৈর্ঘ্য: ১, ২, ৩, ৬ মি (প্রায় ৩–২০ ফুট)',0,-1.35,0,3.4)}],
 ['Wooden Scaffold Board','কাঠের স্ক্যাফোল্ড বোর্ড','পাটাতনের কাঠের বোর্ড। সাধারণ মাপ: প্রস্থ 225 মিমি (৯ ইঞ্চি) × পুরুত্ব 38 মিমি (১½ ইঞ্চি)। দৈর্ঘ্য 1.2 থেকে 3.9 মি (৪ থেকে ১৩ ফুট)। ফাটা বা পচা বোর্ড ব্যবহার নিষেধ।',()=>{box(3.6,.15,.9,0,0,0,BR);tube([-1.8,.12,.55],[1.8,.12,.55],YL,.018);tube([1.95,.08,-.45],[1.95,.08,.45],YL,.018);tube([-1.9,-.075,.5],[-1.9,.075,.5],YL,.025);lab('দৈর্ঘ্য 1.2–3.9 মি (প্রায় ৪–১৩ ফুট)',0,.95,0,3.4);lab('প্রস্থ 225 মিমি = প্রায় ৯ ইঞ্চি',1.2,-.65,0,3);lab('পুরুত্ব 38 মিমি = ১½ ইঞ্চি',-1.2,-1.1,0,3)}],
@@ -299,7 +312,8 @@ const M=[
 ['Standard, Ledger, Transom, Brace','স্ট্যান্ডার্ড, লেজার, ট্রান্সম, ব্রেস','নীল=Standard (খাড়া), কমলা=Ledger (লম্বা আড়াআড়ি), সাদা=Transom (প্রস্থের দিকে), লাল=Brace (কোণাকুণি)।',()=>{tube([0,0,0],[0,2,0],BL);tube([-1.8,.8,0],[1.8,.8,0],OR);tube([0,.93,-1],[0,.93,1],WH);tube([-1.8,.1,.01],[.9,1.9,.01],RD)}],
 ['Inspection Tag (Green / Red)','ইন্সপেকশন ট্যাগ','সবুজ ট্যাগ = ব্যবহারযোগ্য, লাল ট্যাগ = ব্যবহার নিষেধ। ট্যাগ ছাড়া স্ক্যাফোল্ডে উঠবেন না। রং সাইটের নিয়ম অনুযায়ী ভিন্ন হতে পারে।',()=>{[-.9,.9].forEach(x=>tube([x,0,0],[x,2.2,0],BL));box(.7,.9,.05,-.9,1.4,.12,GR);box(.7,.9,.05,.9,1.4,.12,RD);box(.7,.12,.06,-.9,1.7,.13,WH);box(.7,.12,.06,.9,1.7,.13,WH)}],
 ['Scaffold Spanner','স্ক্যাফোল্ড স্প্যানার','Coupler-এর নাট টাইট ও খোলার টুল। এক প্রান্তে ষড়ভুজ (hex) মাথা, অন্য প্রান্তে ছুঁচালো পডগার।',()=>{box(2.6,.14,.22,0,0,0,ST);const hx=new THREE.Mesh(new THREE.CylinderGeometry(.3,.3,.22,6),mat(ST));hx.rotation.x=Math.PI/2;hx.position.x=1.4;g.add(hx);box(.4,.14,.1,-1.45,0,0,OR)}],
-['Ladder (মই)','মই','প্ল্যাটফর্মে ওঠার নিরাপদ পথ। মই কাঠামোর সাথে বাঁধা থাকবে এবং প্ল্যাটফর্মের ১ মিটার উপরে উঠে থাকবে (সাইটের নিয়ম মানুন)।',()=>{[-.35,.35].forEach(x=>tube([x,0,0],[x+.0,3,.9],ST,.05));for(let k=0;k<8;k++){const t=k/8+.08;tube([-.35,3*t,.9*t],[.35,3*t,.9*t],OR,.035)}}]];
+['Ladder (মই)','মই','প্ল্যাটফর্মে ওঠার নিরাপদ পথ। মই কাঠামোর সাথে বাঁধা থাকবে এবং প্ল্যাটফর্মের ১ মিটার উপরে উঠে থাকবে (সাইটের নিয়ম মানুন)।',()=>{[-.35,.35].forEach(x=>tube([x,0,0],[x+.0,3,.9],ST,.05));for(let k=0;k<8;k++){const t=k/8+.08;tube([-.35,3*t,.9*t],[.35,3*t,.9*t],OR,.035)}}]
+,['Beam Clamp','বিম ক্ল্যাম্প','স্টিল বিমের ফ্ল্যাঞ্জে চেপে বসে, বোল্ট টাইট করলে আটকে যায়। এর সাথে Tube ঝুলিয়ে বা আটকে কাজ করা হয় (Girder Coupler-ও বলা হয়)।',()=>{box(.7,.06,2.2,0,.4,0,ST);box(.7,.06,2.2,0,-.1,0,ST);box(.08,.5,2.2,0,.15,0,ST);tube([-1.3,-.62,0],[1.3,-.62,0],BL);cp=new THREE.Group();box(.9,.05,.2,0,.33,0,OR,cp);box(.05,.2,.2,.42,.41,0,OR,cp);box(.05,.2,.2,-.42,.41,0,OR,cp);tube([0,.33,0],[0,-.52,0],OR,.035,cp);ring(0,-.62,0,Math.PI/2,cp);box(.22,.08,.22,0,.38,0,YL,cp);g.add(cp);off=[0,1.6,0]}]];
 const X=[-2.5,2.5],Z=[-.8,.8],Y=[1,2.8];
 const A=[
 ['ধাপ ১: Sole Board, Base Plate ও Base Jack','প্রতিটি Standard-এর নিচে Sole Board ও Base Plate বসান, জ্যাক দিয়ে লেভেল ঠিক করুন।',()=>{X.forEach(x=>Z.forEach(z=>{box(.9,.08,.9,x,-.04,z,BR);box(.4,.04,.4,x,.02,z,ST);tube([x,.04,z],[x,.5,z],ST,.04)}))}],
@@ -313,9 +327,12 @@ const A=[
 let cur=0;const all=M.map(m=>m[1]).concat(A.map((a,i)=>'ধাপ '+(i+1)));
 function draw(){g.rotation.y=ry;g.rotation.x=rx;cam.position.set(0,1,dist);cam.lookAt(0,g.position.y>0?0:0,0);r.render(s,cam)}
 function build(i){cur=i;g.clear();cp=null;off=[0,0,0];let cap;if(i<M.length){M[i][3]();g.position.y=0;dist=5;cap='<b>'+M[i][1]+'</b> <span class="mu">('+M[i][0]+')</span><br>'+bn(M[i][2])}else{const n=i-M.length;for(let k=0;k<=n;k++)A[k][2]();g.position.y=-2;dist=11;cap='<b>'+A[n][0]+'</b><br>'+bn(A[n][1])}
-$('cap2').innerHTML=cap;$('pl').style.display=cp?'':'none';document.querySelectorAll('#mb .pill').forEach((b,j)=>b.classList.toggle('on',j==i));draw()}
-$('mb').innerHTML=all.map((n,i)=>'<button class="pill" data-i="'+i+'">'+n+'</button>').join('');
-document.querySelectorAll('#mb .pill').forEach(b=>b.onclick=()=>build(+b.dataset.i));
+$('cap2').innerHTML=cap;$('pl').style.display=cp?'':'none';document.querySelectorAll('#v2 .pill').forEach(b=>b.classList.toggle('on',+b.dataset.i==i));draw()}
+const CP=[[0,'১. Right Angle','রাইট অ্যাঙ্গেল'],[1,'২. Swivel','সুইভেল'],[2,'৩. Sleeve','স্লিভ'],[4,'৪. Putlog','পাটলগ'],[6,'৫. Board Retaining','বোর্ড রিটেইনিং'],[M.length-1,'৬. Beam Clamp','বিম ক্ল্যাম্প'],[5,'৭. Girder Coupler','গার্ডার কাপলার'],[7,'৮. Joint Pin Coupler','জয়েন্ট পিন']];
+const cpi=CP.map(c=>c[0]);
+$('mb').className='cpg';$('mb').innerHTML=CP.map(c=>'<button class="pill" data-i="'+c[0]+'">'+c[1]+'<small>'+c[2]+'</small></button>').join('');
+$('mb2').innerHTML=all.map((n,i)=>cpi.includes(i)?'':'<button class="pill" data-i="'+i+'">'+n+'</button>').join('');
+document.querySelectorAll('#v2 .pill').forEach(b=>b.onclick=()=>{build(+b.dataset.i);if(cpi.includes(+b.dataset.i)){cv.scrollIntoView({block:'center',behavior:'smooth'})}});
 $('pl').onclick=()=>{if(!cp)return;let t=0;(function f(){t+=.02;const k=Math.min(1,t),e=1-Math.pow(1-k,3);cp.position.set(off[0]*(1-e),off[1]*(1-e),off[2]*(1-e));draw();if(k<1)requestAnimationFrame(f)})()};
 let d=false,lx,ly,pts={},pd=0;
 cv.onpointerdown=e=>{cv.setPointerCapture(e.pointerId);pts[e.pointerId]=e;d=true;lx=e.clientX;ly=e.clientY};
@@ -351,15 +368,36 @@ const s=document.createElement('section');s.id='i2';s.innerHTML='<h2>🎤 আর
 try{const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,100);
 s.add(new THREE.AmbientLight(0xffffff,.8));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(5,8,6);s.add(dl);const g=new THREE.Group();s.add(g);
 const mt=c=>new THREE.MeshStandardMaterial({color:c,metalness:.5,roughness:.35});
-function tb(a,b,c){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),m=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,A.distanceTo(B),12),mt(c));m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());g.add(m)}
+function tb(a,b,c,nm){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),m=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,A.distanceTo(B),12),mt(c));m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());m.userData.n=nm;g.add(m)}
 const X=[-2.5,2.5],Z=[-1,1];
-X.forEach(x=>Z.forEach(z=>{tb([x,0,z],[x,4,z],0x4b8dff);const p=new THREE.Mesh(new THREE.BoxGeometry(.6,.06,.6),mt(0x555b64));p.position.set(x,-.03,z);g.add(p)}));
-[1,2,3,4].forEach(y=>{Z.forEach(z=>tb([-2.5,y-.2,z],[2.5,y-.2,z],0xf57c00));X.forEach(x=>tb([x,y-.07,-1],[x,y-.07,1],0xffffff))});
-tb([-2.5,0,1],[2.5,4,1],0xe53935);tb([2.5,0,-1],[-2.5,4,-1],0xe53935);
-const bd=new THREE.Mesh(new THREE.BoxGeometry(5.4,.12,2.2),mt(0x8d6e63));bd.position.y=2.9;g.add(bd);
+X.forEach(x=>Z.forEach(z=>{tb([x,0,z],[x,4,z],0x4b8dff,'স্ট্যান্ডার্ড (Standard)');const p=new THREE.Mesh(new THREE.BoxGeometry(.6,.06,.6),mt(0x555b64));p.position.set(x,-.03,z);p.userData.n='বেস প্লেট (Base Plate)';g.add(p)}));
+[1,2,3,4].forEach(y=>{Z.forEach(z=>tb([-2.5,y-.2,z],[2.5,y-.2,z],0xf57c00,'লেজার (Ledger)'));X.forEach(x=>tb([x,y-.07,-1],[x,y-.07,1],0xffffff,'ট্রান্সম (Transom)'))});
+tb([-2.5,0,1],[2.5,4,1],0xe53935,'ব্রেস (Brace)');tb([2.5,0,-1],[-2.5,4,-1],0xe53935,'ব্রেস (Brace)');
+const bd=new THREE.Mesh(new THREE.BoxGeometry(5.4,.12,2.2),mt(0x8d6e63));bd.position.y=2.9;bd.userData.n='বোর্ড (Board)';g.add(bd);
 g.position.y=-2;g.rotation.x=.25;
 function size(){r.setPixelRatio(Math.min(devicePixelRatio||1,2));const w=cv.clientWidth,h=cv.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.position.set(0,1.5,w/h<1.2?13:10.5);cam.lookAt(0,0,0);cam.updateProjectionMatrix()}
 let drag=false,lx=0;cv.onpointerdown=e=>{drag=true;lx=e.clientX;cv.setPointerCapture(e.pointerId)};cv.onpointermove=e=>{if(drag){g.rotation.y+=(e.clientX-lx)*.01;lx=e.clientX}};cv.onpointerup=cv.onpointercancel=()=>drag=false;
+const tip=document.createElement('div');tip.style.cssText='position:absolute;pointer-events:none;display:none;background:rgba(16,21,28,.92);color:#fff;border:2px solid #f57c00;border-radius:10px;padding:6px 12px;font-weight:700;font-size:15px;white-space:nowrap;z-index:3;transform:translate(-50%,-130%)';cv.parentNode.style.position='relative';cv.parentNode.appendChild(tip);
+const rc=new THREE.Raycaster(),mv=new THREE.Vector2();let hov=null;
+function pick(e){const b=cv.getBoundingClientRect();mv.set(((e.clientX-b.left)/b.width)*2-1,-((e.clientY-b.top)/b.height)*2+1);rc.setFromCamera(mv,cam);const h=rc.intersectObjects(g.children,false)[0];
+if(hov&&(!h||h.object!==hov)){hov.material.emissive.setHex(0);hov=null}
+if(h&&h.object.userData.n){hov=h.object;hov.material.emissive.setHex(0x553300);tip.textContent=h.object.userData.n;tip.style.display='block';const p=cv.parentNode.getBoundingClientRect();tip.style.left=(e.clientX-p.left)+'px';tip.style.top=(e.clientY-p.top)+'px'}else tip.style.display='none'}
+cv.addEventListener('pointermove',pick);cv.addEventListener('pointerdown',pick);cv.addEventListener('pointerleave',e=>{if(e.pointerType=='mouse'){tip.style.display='none';if(hov){hov.material.emissive.setHex(0);hov=null}}});
 addEventListener('resize',size);size();
 (function f(){const b=cv.getBoundingClientRect();if(b.bottom>0&&b.top<innerHeight){if(!drag)g.rotation.y+=.008;r.render(s,cam)}requestAnimationFrame(f)})()}catch(e){}})();
+
+// PWA install + fullscreen
+(function(){const st=matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+const ib=$('ib'),t=$('ibt');let ev=null;
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+function show(msg,btn){if(st)return;try{if(sessionStorage.getItem('ibx'))return}catch(e){}t.innerHTML=msg;$('ibg').style.display=btn?'':'none';ib.style.display='block'}
+const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;
+if(ios&&!st)show('📲 <b>ফোনে অ্যাপ হিসেবে রাখুন</b><br>Safari-তে নিচের <b>Share (⬆️)</b> চেপে <b>Add to Home Screen</b> দিন। তারপর আইকনে চাপলে ফুলস্ক্রিনে খুলবে।',false);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;$('ins').style.display='inline-block';show('📲 <b>অ্যাপটি ইনস্টল করুন</b><br>হোম স্ক্রিনের আইকনে চাপলেই ফুলস্ক্রিনে খুলবে।',true)});
+async function inst(){if(!ev)return;ev.prompt();try{await ev.userChoice}catch(e){}ev=null;ib.style.display='none';$('ins').style.display='none'}
+$('ibg').onclick=inst;$('ins').onclick=inst;
+$('ibn').onclick=()=>{ib.style.display='none';try{sessionStorage.setItem('ibx','1')}catch(e){}};
+addEventListener('appinstalled',()=>{ib.style.display='none';$('ins').style.display='none'});
+$('fs').onclick=()=>{const d=document,el=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d)}else{const f=el.requestFullscreen||el.webkitRequestFullscreen;if(f)f.call(el).catch(()=>{});else alert('এই ব্রাউজারে ফুলস্ক্রিন নেই। "Add to Home Screen" দিয়ে অ্যাপ হিসেবে খুলুন।')}};
+if(st)$('fs').style.display='none'})();
 </script></body></html>

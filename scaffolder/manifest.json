@@ -1,0 +1,30 @@
+{
+ "name": "স্ক্যাফোল্ডার ট্রেনিং A–Z",
+ "short_name": "Scaffolder",
+ "description": "স্ক্যাফোল্ডিং শেখার সম্পূর্ণ গাইড",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "fullscreen",
+ "display_override": [
+  "fullscreen",
+  "standalone"
+ ],
+ "orientation": "portrait",
+ "background_color": "#10151c",
+ "theme_color": "#10151c",
+ "lang": "bn",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
