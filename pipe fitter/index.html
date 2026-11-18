@@ -8,383 +8,1256 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="পাইপ ফিটার">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231d3342'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E🔧%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <title>পাইপ ফিটার ও ফেব্রিকেটার – শেখার বই</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f1f4f6;--card:#fff;--ink:#14202b;--mut:#57656f;--st:#2f4858;--ac:#f2b400;--ln:#d5dde2;--hl:#fff3c4}
-@media(prefers-color-scheme:dark){:root{--bg:#10171c;--card:#18222a;--ink:#e8eef2;--mut:#9fb0ba;--st:#7fa6bd;--ln:#2b3a44;--hl:#4a3d00}}
+:root{--bg:#f1f4f6;--card:#fff;--ink:#14202b;--mut:#57656f;--st:#2f4858;--st2:#1d3342;--ac:#f2b400;--ln:#d5dde2;--hl:#fff3c4}
+@media(prefers-color-scheme:dark){:root{--bg:#10171c;--card:#18222a;--ink:#e8eef2;--mut:#9fb0ba;--st:#7fa6bd;--st2:#1d3342;--ln:#2b3a44;--hl:#4a3d00}}
 *{box-sizing:border-box}
 html{scroll-padding-top:110px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans Bengali","Kalpurush","Siyam Rupali",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-header{position:sticky;top:0;z-index:5;background:var(--st);color:#fff;padding:10px 14px;border-bottom:4px solid var(--ac)}
-header b{display:block;font-size:17px}
-#q{width:100%;margin-top:6px;padding:9px 12px;border:0;border-radius:8px;font:inherit;font-size:15px;background:#fff;color:#14202b}
-main{max-width:760px;margin:0 auto;padding:12px}
-.intro{padding:6px 2px 10px;color:var(--mut);font-size:14px}
-details{background:var(--card);border:1px solid var(--ln);border-left:5px solid var(--st);border-radius:8px;margin:10px 0}
-details[open]{border-left-color:var(--ac)}
-summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none}
+html,body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans Bengali","Kalpurush","Siyam Rupali",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 calc(92px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,#1d3342,#2f4858);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 12px;border-radius:0 0 22px 22px;box-shadow:0 6px 18px #0005}
+.hdr-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+header b{font-size:17px;line-height:1.3}
+.hdr-acts{display:flex;align-items:center;gap:6px}
+.hdr-btn{background:#ffffff24;border:0;color:#fff;border-radius:10px;height:34px;padding:0 10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.hdr-btn.install{background:var(--ac);color:#14202b}
+#q{width:100%;margin-top:8px;padding:10px 12px;border:0;border-radius:10px;font:inherit;font-size:15px;background:#fff;color:#14202b}
+main{max-width:780px;margin:0 auto;padding:12px}
+details{background:var(--card);border:0;border-left:5px solid var(--st);border-radius:16px;margin:10px 0;box-shadow:0 2px 10px #0002}
+details[open]{border-left-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}
+summary{cursor:pointer;padding:13px 14px;font-weight:700;list-style:none}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"＋";float:right;color:var(--mut)}
 details[open]>summary::after{content:"－"}
-.b{padding:0 14px 12px}
+.b{padding:0 14px 14px}
 h3{font-size:16px;margin:16px 0 4px;color:var(--st)}
 p{margin:6px 0}ul,ol{margin:6px 0;padding-left:22px}li{margin:3px 0}
-.f{background:var(--bg);border:1px dashed var(--st);border-radius:6px;padding:8px 10px;margin:8px 0;font-weight:600;overflow-x:auto}
-.n{background:var(--hl);border-radius:6px;padding:8px 10px;margin:8px 0;font-size:14px}
+.f{background:var(--bg);border:1px dashed var(--st);border-radius:8px;padding:8px 10px;margin:8px 0;font-weight:600;overflow-x:auto}
+.n{background:var(--hl);border-radius:8px;padding:8px 10px;margin:8px 0;font-size:14px}
 .t{overflow-x:auto;margin:8px 0}
 table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}
 th,td{border:1px solid var(--ln);padding:5px 8px;text-align:left}
-th{background:var(--st);color:#fff}
+th{background:var(--st2);color:#fff}
 .en{color:var(--mut);font-size:14px}
-mark{background:var(--ac);color:#000}
+mark{background:var(--ac);color:#000;border-radius:3px;padding:0 2px}
 footer{text-align:center;color:var(--mut);font-size:13px;padding:18px 12px 30px}
 
-body{padding-bottom:88px}
-header{background:linear-gradient(135deg,#1d3342,#2f4858);border-bottom:0;border-radius:0 0 22px 22px;box-shadow:0 6px 18px #0005}
-details{border:0;border-radius:16px;box-shadow:0 2px 10px #0002}
-details[open]{box-shadow:0 0 0 2px var(--ac)}
 .hero{background:linear-gradient(135deg,#2f4858,#101b24);color:#fff;border-radius:22px;padding:18px;margin:6px 0 12px;box-shadow:0 8px 22px #0004}
 .hero h1{margin:0 0 4px;font-size:22px;line-height:1.35}.hero p{margin:0;color:#cfe0ea;font-size:14px}
 .chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}.chips span{background:#ffffff1f;border-radius:20px;padding:3px 10px;font-size:12px}
+.hero-cta{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.hero-cta button{border:0;border-radius:14px;padding:10px 14px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.btn-amber{background:var(--ac);color:#14202b}
+.btn-glass{background:#ffffff24;color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
-.grid button{background:var(--card);color:var(--ink);border:0;border-radius:16px;padding:10px 4px;font:inherit;font-size:12px;line-height:1.35;box-shadow:0 2px 8px #0002}
+.grid button{background:var(--card);color:var(--ink);border:0;border-radius:16px;padding:10px 4px;font:inherit;font-size:12px;line-height:1.35;box-shadow:0 2px 8px #0002;cursor:pointer}
 .grid i{display:block;font-style:normal;font-size:24px}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.gc{background:linear-gradient(160deg,var(--card),var(--bg));border:1px solid var(--ln);border-radius:16px;padding:8px 6px;text-align:center;font-size:13px;font-weight:600}
-.gc svg{width:100%;height:auto;filter:drop-shadow(0 6px 5px #0004)}.gc small{display:block;color:var(--mut);font-weight:400}
-nav{position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:9;display:flex;background:var(--st);border-radius:22px;box-shadow:0 6px 20px #0006;max-width:520px;margin:auto}
-nav button{flex:1;background:none;border:0;color:#fff;padding:9px 0;font:inherit;font-size:12px}
-nav i{display:block;font-style:normal;font-size:20px}
 
-html,body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
-header{padding-top:calc(10px + env(safe-area-inset-top))}
-#fs{position:absolute;right:12px;top:calc(10px + env(safe-area-inset-top));background:#ffffff26;border:0;color:#fff;border-radius:10px;width:34px;height:30px;font-size:16px}
-#splash{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 30%,#2f4858,#0d161d);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .35s}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gc{background:linear-gradient(160deg,var(--card),var(--bg));border:1px solid var(--ln);border-radius:16px;padding:10px 8px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;transition:transform .15s,border-color .15s}
+.gc:active{transform:scale(.97);border-color:var(--ac)}
+.gc svg{width:100%;height:auto;filter:drop-shadow(0 6px 5px #0004)}.gc small{display:block;color:var(--mut);font-weight:400;margin-top:2px}
+
+/* Dedicated 3D Interactive Page */
+#view-3d{display:none}
+#view-3d.active{display:block}
+#view-home.hidden{display:none}
+.fit-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:none}
+.fit-tabs::-webkit-scrollbar{display:none}
+.fit-tab{flex:0 0 auto;background:var(--card);color:var(--ink);border:1px solid var(--ln);border-radius:20px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+.fit-tab.active{background:var(--ac);color:#14202b;border-color:var(--ac);font-weight:700}
+
+.stage-wrap{position:relative;border-radius:22px;overflow:hidden;background:radial-gradient(circle at 50% 42%,#223645,#0e171e);border:1px solid #334c5e;box-shadow:0 10px 28px #0005;margin:8px 0}
+#canvas3d{display:block;width:100%;height:360px;touch-action:none;cursor:grab}
+#canvas3d:active{cursor:grabbing}
+.hud-hint{position:absolute;left:10px;top:10px;background:#0c141acc;color:#e8f1f6;border-radius:12px;padding:5px 10px;font-size:12px;pointer-events:none;border:1px solid #ffffff1a}
+.hud-ctrls{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.hud-ctrls button{width:38px;height:38px;border-radius:12px;border:0;background:#1c2b36dd;color:#fff;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px #0004}
+.hud-ctrls button.on{background:var(--ac);color:#14202b}
+.hud-callout{position:absolute;left:10px;right:10px;bottom:10px;background:#111d26ee;border:1.5px solid var(--ac);border-radius:14px;padding:9px 12px;color:#fff;display:none;align-items:center;gap:10px;box-shadow:0 6px 16px #0006}
+.hud-callout.show{display:flex}
+.hud-dot{width:10px;height:10px;border-radius:50%;background:var(--ac);flex:none}
+.hud-callout b{display:block;color:var(--ac);font-size:14px;line-height:1.3}
+.hud-callout span{display:block;color:#cfe0ea;font-size:12px}
+
+.part-card{background:var(--hl);border:1.5px solid var(--ac);border-radius:16px;padding:12px 14px;margin:10px 0}
+.part-card h4{margin:0 0 4px;font-size:16px;color:#14202b}
+@media(prefers-color-scheme:dark){.part-card h4{color:#fff3c4}}
+.part-card .en-sub{font-size:12.5px;font-weight:700;opacity:.8;margin-bottom:4px}
+.part-card .tip{background:var(--card);border-radius:8px;padding:6px 10px;font-size:13px;margin-top:8px}
+.parts-chips{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 16px}
+.parts-chips button{background:var(--card);color:var(--ink);border:1px solid var(--ln);border-radius:18px;padding:7px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.parts-chips button.active{background:var(--ac);color:#14202b;border-color:var(--ac);font-weight:700}
+
+/* Bottom Navigation */
+nav{position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:15;display:flex;background:var(--st2);border-radius:22px;box-shadow:0 6px 20px #0006;max-width:520px;margin:auto;padding:4px}
+nav button{flex:1;background:none;border:0;color:#d6e4ec;padding:7px 4px;font:inherit;font-size:12px;font-weight:600;border-radius:18px;cursor:pointer;transition:background .18s,color .18s}
+nav button.active{background:var(--ac);color:#14202b;font-weight:700}
+nav i{display:block;font-style:normal;font-size:19px}
+
+/* Splash / Link-Click Install Modal */
+#splash{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 30%,#2f4858,#0d161d);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .3s}
 #splash.off{opacity:0;pointer-events:none}
-#splash .lg{font-size:76px;filter:drop-shadow(0 8px 12px #000a)}
-#splash h2{margin:10px 0 4px;font-size:24px}#splash p{margin:0 0 26px;color:#b8cdda;font-size:14px}
-#splash button{background:var(--ac);color:#14202b;border:0;border-radius:30px;padding:14px 38px;font:inherit;font-size:17px;font-weight:700;box-shadow:0 8px 22px #0007}
-#splash small{margin-top:18px;color:#8fa6b5;font-size:12px;max-width:300px}
+#splash img.lg-icon{width:92px;height:92px;border-radius:22px;box-shadow:0 10px 26px #000a;margin-bottom:10px}
+#splash h2{margin:6px 0 4px;font-size:24px}#splash p{margin:0 0 22px;color:#b8cdda;font-size:14px;max-width:320px}
+.splash-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:290px}
+#install-btn{background:var(--ac);color:#14202b;border:0;border-radius:30px;padding:14px 24px;font:inherit;font-size:16px;font-weight:700;box-shadow:0 8px 22px #0007;cursor:pointer}
+#go{background:#ffffff24;color:#fff;border:1px solid #ffffff44;border-radius:30px;padding:12px 24px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+#install-hint{margin-top:16px;color:#cfe0ea;font-size:12.5px;max-width:320px;line-height:1.55}
 </style>
 </head>
 <body>
-<div id="splash"><div class="lg">🔧</div><h2>পাইপ ফিটার ও ফেব্রিকেটার</h2><p>সম্পূর্ণ শেখার অ্যাপ</p><button id="go">অ্যাপ চালু করুন</button><small id="ios"></small></div>
 
-<header><button id="fs" title="ফুল স্ক্রিন">⛶</button><b>🔧 পাইপ ফিটার ও ফেব্রিকেটার</b><input id="q" type="search" placeholder="খুঁজুন: elbow, flange, বেভেল, CF…"></header>
+<div id="splash">
+  <img class="lg-icon" src="./icon-192.png" alt="পাইপ ফিটার আইকন">
+  <h2>পাইপ ফিটার ও ফেব্রিকেটার</h2>
+  <p>সম্পূর্ণ শেখার বই, সূত্র, টেবিল ও ইন্টারেক্টিভ ৩D ভিউয়ার — অফলাইন অ্যাপ হিসেবে ইনস্টল করুন।</p>
+  <div class="splash-btns">
+    <button id="install-btn">📲 অ্যাপ ইনস্টল করুন</button>
+    <button id="go">বই ও ৩D ভিউ চালু করুন</button>
+  </div>
+  <small id="install-hint"></small>
+</div>
+
+<header>
+  <div class="hdr-row">
+    <b>🔧 পাইপ ফিটার ও ফেব্রিকেটার</b>
+    <div class="hdr-acts">
+      <button class="hdr-btn install" id="hdr-install" title="অ্যাপ ইনস্টল করুন">📲 ইনস্টল</button>
+      <button class="hdr-btn" id="fs" title="ফুল স্ক্রিন">⛶</button>
+    </div>
+  </div>
+  <input id="q" type="search" placeholder="খুঁজুন: elbow, flange, বেভেল, CF…">
+</header>
+
 <main>
-<svg width="0" height="0" style="position:absolute"><defs>
-<linearGradient id="gh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c3e4b"/><stop offset=".3" stop-color="#9fc0d4"/><stop offset=".42" stop-color="#eaf5fa"/><stop offset=".75" stop-color="#5d7d90"/><stop offset="1" stop-color="#26384a"/></linearGradient>
-<radialGradient id="gr" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#f2f9fc"/><stop offset=".55" stop-color="#85a5b8"/><stop offset="1" stop-color="#3f5565"/></radialGradient></defs></svg>
-<section class="hero"><h1>পাইপ ফিটার ও ফেব্রিকেটার<br>সম্পূর্ণ গাইড</h1><p>সূত্র, টেবিল, ফিটিংস, ভালভ, ফ্লেঞ্জ ও ইন্টারভিউ প্রশ্ন, এক অ্যাপে।</p><div class="chips"><span>১৪ অধ্যায়</span><span>৩D ছবি</span><span>অফলাইন-বান্ধব</span></div></section>
-<div class="grid" id="grid"></div>
-<details open id="gal"><summary>🧊 ৩D রেফারেন্স ছবি</summary><div class="b"><div class="gal" id="galg"></div><div class="n">এগুলো ৩D-স্টাইলে আঁকা ইলাস্ট্রেশন, বাস্তব ফটো নয়।</div></div></details>
+  <!-- HOME VIEW -->
+  <div id="view-home">
+    <svg width="0" height="0" style="position:absolute"><defs>
+      <linearGradient id="gh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c3e4b"/><stop offset=".3" stop-color="#9fc0d4"/><stop offset=".42" stop-color="#eaf5fa"/><stop offset=".75" stop-color="#5d7d90"/><stop offset="1" stop-color="#26384a"/></linearGradient>
+      <radialGradient id="gr" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#f2f9fc"/><stop offset=".55" stop-color="#85a5b8"/><stop offset="1" stop-color="#3f5565"/></radialGradient>
+    </defs></svg>
 
-<details open><summary>১. পাইপ ড্রয়িং ও দিক</summary><div class="b">
-<h3>ড্রয়িং ৩ প্রকার</h3>
-<ul><li><b>Isometric Drawing</b> – 30°</li><li><b>P&amp;ID</b> (Piping and Instrumentation Diagram) – 90°</li><li><b>Master Drawing</b> – 360°</li></ul>
-<h3>৬টি দিক</h3>
-<p>North (উত্তর), South (দক্ষিণ), East (পূর্ব), West (পশ্চিম), Up (উপরে), Down (নিচে)।</p>
-<h3>Rolling কী?</h3>
-<p>90° ছাড়া অন্য যেকোনো ডিগ্রির এলবো যে দিকে ঘুরে, তাকে Rolling বলে।</p>
-<ul><li>Vertical Rolling (উপর-নিচ)</li><li>Horizontal Rolling (N, S, E, W)</li><li>Box Rolling</li></ul>
-<h3>ড্রয়িং দেখে যা জিজ্ঞেস করা হয়</h3>
-<p class="en">Revision No, Isometric No, Set No, Flow direction, কত ডিগ্রি এলবো (90°/45°), কোন Outlet (Weldolet/Thredolet/Sockolet), কত পিস Spool, কত পিস Support, Slope আছে কি না।</p>
-</div></details>
+    <section class="hero">
+      <h1>পাইপ ফিটার ও ফেব্রিকেটার<br>সম্পূর্ণ গাইড</h1>
+      <p>সূত্র, টেবিল, ফিটিংস, ভালভ, ফ্লেঞ্জ ও ইন্টারভিউ প্রশ্ন, এক অ্যাপে।</p>
+      <div class="chips"><span>১৪ অধ্যায়</span><span>৩D ঘূর্ণায়মান মডেল</span><span>অফলাইন-বান্ধব</span></div>
+      <div class="hero-cta">
+        <button class="btn-amber" onclick="open3DPage('ELBOW_90')">🧊 ৩D ভিউ দেখুন</button>
+        <button class="btn-glass" id="hero-install-btn">📲 ফোনে ইনস্টল করুন</button>
+      </div>
+    </section>
 
-<details><summary>২. পাইপের মাপ: OD, ID, CF, Thickness</summary><div class="b">
-<p>OD = Outside Diameter · ID = Inside Diameter · CF = Circumference (পরিধি)</p>
-<div class="f">CF = OD × 3.142<br>OD = CF ÷ 3.142<br>ID = OD − (2 × Thickness)<br>Thickness = (OD − ID) ÷ 2</div>
-<div class="n">উদাহরণ: ১০" পাইপ, OD 273 → CF = 273 × 3.142 = 857 mm</div>
-<div class="n">১২" এর উপরের পাইপে OD = ইঞ্চি × 25.4। যেমন ১৬" = 16 × 25.4 = 406.4 mm।</div>
-<div class="t"><table><tr><th>সাইজ</th><th>OD (mm)</th></tr>
-<tr><td>1/2"</td><td>21.3</td></tr><tr><td>3/4"</td><td>26.7</td></tr><tr><td>1"</td><td>33.4</td></tr><tr><td>1.5"</td><td>48.26</td></tr><tr><td>2"</td><td>60.3</td></tr><tr><td>2.5"</td><td>73</td></tr><tr><td>3"</td><td>88.9</td></tr><tr><td>4"</td><td>114.3</td></tr><tr><td>5"</td><td>141.3</td></tr><tr><td>6"</td><td>168.3</td></tr><tr><td>8"</td><td>219.1</td></tr><tr><td>10"</td><td>273.1</td></tr><tr><td>12"</td><td>323.9</td></tr></table></div>
-<h3>একক</h3><p>1 cm = 10 mm · 100 cm = 1 meter = 1000 mm · 1" = 25.4 mm</p>
-<h3>NPS ও DN</h3>
-<p><b>NPS</b> (Nominal Pipe Size) ইঞ্চিতে সাইজ। <b>DN</b> (Diameter Nominal) mm-এ সাইজ।</p>
-<div class="f">ইঞ্চি = DN ÷ 25 (বা NPS mm ÷ 25.4)<br>যেমন 250 ÷ 25.4 ≈ 10"</div>
-</div></details>
+    <div class="grid" id="grid"></div>
 
-<details><summary>৩. স্কেজিউল (Schedule) ও পাইপের ধরন</summary><div class="b">
-<p>Schedule দেখায় পাইপের দেয়াল কত পুরু। Schedule যত বেশি, পাইপ তত পুরু ও বেশি প্রেসার সহনশীল।</p>
-<p class="en">SCH 5S, 10S, 10, 20, 30, 40S, STD, 40, 60, 80S, XS, 80, 100, 120, 140, 160, XXS</p>
-<ul><li>STD = 40 · XS = 80 · XXS = 160</li><li>ইন্ডাস্ট্রিতে বেশি ব্যবহার হয় SCH 40।</li></ul>
-<div class="f">Thickness = √(Schedule × Pipe size) ÷ 2<br>Schedule = (Thickness × 2)² ÷ Pipe size</div>
-<h3>পাইপ ২ প্রকার</h3>
-<ul><li><b>Seamless</b> – জোড়াবিহীন</li><li><b>Seamed</b> – জোড়াযুক্ত (Twisted/Straight)</li></ul>
-<h3>ম্যাটেরিয়াল ও কোড</h3>
-<ul><li>CS (Carbon Steel): A105, A106, API 5L-B</li><li>SS (Stainless Steel): 305, 306, 309, 312, 319</li><li>GI (Galvanized Iron): A53</li><li>LTCS (Low Temp. Carbon Steel): 333</li><li>Alloy: 335 · Copper: 145</li></ul>
-<h3>ওজন বের করা</h3>
-<div class="f">Density = 0.00000785<br>পাইপ: Length × CF × Thickness × Density<br>স্টিল প্লেট: Length × Width × Thickness × Density</div>
-</div></details>
+    <details open id="gal"><summary>🧊 ৩D রেফারেন্স মডেল (ট্যাপ করে ৩D ভিউ খুলুন)</summary><div class="b"><div class="gal" id="galg"></div><div class="n">যেকোনো মডেলে ট্যাপ করলে ৩D পেজ খুলবে — হাত দিয়ে ঘুরাতে ও যেকোনো অংশে টাচ করে নাম দেখতে পারবেন।</div></div></details>
 
-<details><summary>৪. ফিটিংস (Elbow, Tee, Reducer…)</summary><div class="b">
-<h3>Elbow</h3>
-<p>পাইপের দিক বদলাতে লাগে। মূলত 90° ও 45°, ২২.৫°ও হয়। দুই মাথার সাইজ আলাদা হলে Reducing Elbow।</p>
-<ul><li>Short Radius = 1D (25.4 mm/ইঞ্চি)</li><li>Long/Standard Radius = 1.5D (38.1 mm/ইঞ্চি)</li><li>Extra Long = 2D, 3D, 4D, 5D (নোটে Long = 50.8 লেখা)</li></ul>
-<h3>এলবো সেন্টার বের করা</h3>
-<div class="f">Tan(ডিগ্রি ÷ 2) × 1.5 × এলবো সাইজ × 25.4</div>
-<ul><li>90° (প্রতি ইঞ্চি): 25.4 × 1.5 = 38.1 mm</li><li>45° (প্রতি ইঞ্চি): 25.4 × 0.625 = 15.9 mm</li></ul>
-<div class="n">৪" 90° এলবো: tan 45 × 38.1 × 4 = 152.4 mm</div>
-<h3>Tee</h3>
-<p>মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করে। ২ প্রকার: Equal Tee ও Reducing/Unequal Tee।</p>
-<h3>Reducer</h3>
-<p>বড় সাইজ থেকে ছোট সাইজে পাইপ বদলায়।</p>
-<ul><li><b>Eccentric</b> – সাধারণত Horizontal লাইনে বেশি</li><li><b>Concentric</b> – সাধারণত Vertical লাইনে বেশি</li></ul>
-<h3>অন্যান্য ফিটিংস</h3>
-<p>Elbow, Reducer, Tee, Cross, Coupling (Full/Half/Reducing), Adapter, Union, Valve, Bush, Return Bend (180°), Cap, Plug, Swage Nipple, Expansion Joint, Steam Trap, Nipple (Barrel, Close, Hex, Hose, Welding)।</p>
-<h3>ব্রাঞ্চ আউটলেট</h3>
-<p>Weldolet, Sockolet, Threadolet, Latrolet, Elbolet, Nipolet, Sweepolet, Flangeolet, Brazolet, Coupolet।</p>
-<h3>মূল মাপের টেবিল (mm)</h3>
-<div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>CF</th><th>90° LR</th><th>45° LR</th><th>Tee</th><th>Red.</th></tr>
-<tr><td>1/2"</td><td>21.3</td><td>67</td><td>20</td><td>12</td><td>25</td><td>–</td></tr>
-<tr><td>1"</td><td>33.4</td><td>104.9</td><td>38.1</td><td>22</td><td>38</td><td>50.8</td></tr>
-<tr><td>2"</td><td>60.3</td><td>189.5</td><td>76</td><td>35.1</td><td>64</td><td>76.2</td></tr>
-<tr><td>3"</td><td>88.9</td><td>279.2</td><td>114</td><td>51</td><td>86</td><td>88.9</td></tr>
-<tr><td>4"</td><td>114.3</td><td>359</td><td>152</td><td>63.5</td><td>105</td><td>101.6</td></tr>
-<tr><td>6"</td><td>168.2</td><td>528.6</td><td>229</td><td>95</td><td>143</td><td>139.7</td></tr>
-<tr><td>8"</td><td>219</td><td>688.2</td><td>306</td><td>126</td><td>176</td><td>152.4</td></tr>
-<tr><td>10"</td><td>273</td><td>857.8</td><td>381</td><td>159</td><td>216</td><td>177.8</td></tr>
-<tr><td>12"</td><td>323.8</td><td>1017.4</td><td>457</td><td>190</td><td>254</td><td>203.2</td></tr>
-<tr><td>14"</td><td>355.6</td><td>1117.1</td><td>533</td><td>222</td><td>279</td><td>330.2</td></tr>
-<tr><td>16"</td><td>406.4</td><td>1276.7</td><td>610</td><td>254</td><td>304</td><td>355.6</td></tr>
-<tr><td>18"</td><td>457.2</td><td>1436.3</td><td>686</td><td>286</td><td>343</td><td>381</td></tr>
-<tr><td>20"</td><td>508.2</td><td>1596.5</td><td>762</td><td>317</td><td>381</td><td>508</td></tr>
-<tr><td>24"</td><td>609.6</td><td>1915.1</td><td>914</td><td>381</td><td>432</td><td>508</td></tr></table></div>
-<p class="en">Carbon steel fitting: Butt weld, ASTM A234 WPB, ANSI B16.9, Sch 40/80/STD/XS/XXS, 1/2"–24"।</p>
-</div></details>
+    <details open><summary>১. পাইপ ড্রয়িং ও দিক</summary><div class="b">
+    <h3>ড্রয়িং ৩ প্রকার</h3>
+    <ul><li><b>Isometric Drawing</b> – 30°</li><li><b>P&amp;ID</b> (Piping and Instrumentation Diagram) – 90°</li><li><b>Master Drawing</b> – 360°</li></ul>
+    <h3>৬টি দিক</h3>
+    <p>North (উত্তর), South (দক্ষিণ), East (পূর্ব), West (পশ্চিম), Up (উপরে), Down (নিচে)।</p>
+    <h3>Rolling কী?</h3>
+    <p>90° ছাড়া অন্য যেকোনো ডিগ্রির এলবো যে দিকে ঘুরে, তাকে Rolling বলে।</p>
+    <ul><li>Vertical Rolling (উপর-নিচ)</li><li>Horizontal Rolling (N, S, E, W)</li><li>Box Rolling</li></ul>
+    <h3>ড্রয়িং দেখে যা জিজ্ঞেস করা হয়</h3>
+    <p class="en">Revision No, Isometric No, Set No, Flow direction, কত ডিগ্রি এলবো (90°/45°), কোন Outlet (Weldolet/Thredolet/Sockolet), কত পিস Spool, কত পিস Support, Slope আছে কি না।</p>
+    </div></details>
 
-<details><summary>৫. ফ্লেঞ্জ (Flange)</summary><div class="b">
-<p>পাইপ, ভালভ, পাম্প ও অন্য যন্ত্র জুড়তে ব্যবহার হয়। খোলা, পরিষ্কার ও পরিদর্শন সহজ হয়।</p>
-<h3>জয়েন্ট পদ্ধতি অনুযায়ী</h3>
-<ol><li>Weld Neck</li><li>Socket Weld</li><li>Threaded (Screwed)</li><li>Slip-on</li><li>Lap Joint</li><li>Blind (পাইপের মুখ বন্ধ করে)</li><li>Spectacle Blind</li></ol>
-<h3>ফেস অনুযায়ী</h3>
-<p>Plate/Flat, Raised Face (RF), Ring Type Joint (RTJ), Tongue &amp; Groove, Male &amp; Female।</p>
-<h3>স্পেশাল ফ্লেঞ্জ</h3>
-<p>Orifice, Ring Joint, Reducing, Long Weld Neck, Weldo, Nipo, Expander, Swivel Ring, Elbow Flange, Puddle, Split।</p>
-<h3>হোল দূরত্ব বের করা (PCD দিয়ে)</h3>
-<div class="f">ডিগ্রি = 360 ÷ হোল সংখ্যা<br>দূরত্ব = Sin(ডিগ্রি ÷ 2) × PCD</div>
-<div class="n">৬" ফ্লেঞ্জ, ৮ হোল, PCD 241: 360÷8 = 45° → Sin 22.5 × 241 = 0.3826 × 241 = <b>92.22 mm</b></div>
-<h3>Class 150# ফ্লেঞ্জ (mm)</h3>
-<div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>PCD</th><th>হোল ⌀</th><th>হোল</th></tr>
-<tr><td>1/2"</td><td>90</td><td>60.5</td><td>15.9</td><td>4</td></tr>
-<tr><td>1"</td><td>108</td><td>79.2</td><td>15.9</td><td>4</td></tr>
-<tr><td>2"</td><td>152.4</td><td>120.6</td><td>19</td><td>4</td></tr>
-<tr><td>3"</td><td>190.5</td><td>152.4</td><td>19</td><td>4</td></tr>
-<tr><td>4"</td><td>228.6</td><td>190.5</td><td>19</td><td>8</td></tr>
-<tr><td>6"</td><td>279.4</td><td>241.3</td><td>22.2</td><td>8</td></tr>
-<tr><td>8"</td><td>343</td><td>298.4</td><td>22.2</td><td>8</td></tr>
-<tr><td>10"</td><td>406.4</td><td>362</td><td>25.4</td><td>12</td></tr>
-<tr><td>12"</td><td>483</td><td>432</td><td>25.4</td><td>12</td></tr>
-<tr><td>14"</td><td>533.4</td><td>476</td><td>28.6</td><td>12</td></tr>
-<tr><td>16"</td><td>597</td><td>540</td><td>28.6</td><td>16</td></tr></table></div>
-<div class="n">300#, 600#, 900# ইত্যাদি ক্লাসের টেবিল মূল PDF-এর পৃষ্ঠা ২৪ ও ৫৮ দেখুন।</div>
-<h3>ফ্লেঞ্জ পরিষ্কার করতে</h3>
-<p>Wire Brush (ওয়্যার ব্রাশ), ঝুট/কাপড়, WD-40।</p>
-<h3>ফ্লেঞ্জ ফিট-আপে চেক</h3>
-<ul><li>নাইনটি (90°) চেক</li><li>Spirit Level চেক</li><li>Horizontal-এ: প্যারালাল চেক ও হোল চেক</li></ul>
-</div></details>
+    <details><summary>২. পাইপের মাপ: OD, ID, CF, Thickness</summary><div class="b">
+    <p>OD = Outside Diameter · ID = Inside Diameter · CF = Circumference (পরিধি)</p>
+    <div class="f">CF = OD × 3.142<br>OD = CF ÷ 3.142<br>ID = OD − (2 × Thickness)<br>Thickness = (OD − ID) ÷ 2</div>
+    <div class="n">উদাহরণ: ১০" পাইপ, OD 273 → CF = 273 × 3.142 = 857 mm</div>
+    <div class="n">১২" এর উপরের পাইপে OD = ইঞ্চি × 25.4। যেমন ১৬" = 16 × 25.4 = 406.4 mm।</div>
+    <div class="t"><table><tr><th>সাইজ</th><th>OD (mm)</th></tr>
+    <tr><td>1/2"</td><td>21.3</td></tr><tr><td>3/4"</td><td>26.7</td></tr><tr><td>1"</td><td>33.4</td></tr><tr><td>1.5"</td><td>48.26</td></tr><tr><td>2"</td><td>60.3</td></tr><tr><td>2.5"</td><td>73</td></tr><tr><td>3"</td><td>88.9</td></tr><tr><td>4"</td><td>114.3</td></tr><tr><td>5"</td><td>141.3</td></tr><tr><td>6"</td><td>168.3</td></tr><tr><td>8"</td><td>219.1</td></tr><tr><td>10"</td><td>273.1</td></tr><tr><td>12"</td><td>323.9</td></tr></table></div>
+    <h3>একক</h3><p>1 cm = 10 mm · 100 cm = 1 meter = 1000 mm · 1" = 25.4 mm</p>
+    <h3>NPS ও DN</h3>
+    <p><b>NPS</b> (Nominal Pipe Size) ইঞ্চিতে সাইজ। <b>DN</b> (Diameter Nominal) mm-এ সাইজ।</p>
+    <div class="f">ইঞ্চি = DN ÷ 25 (বা NPS mm ÷ 25.4)<br>যেমন 250 ÷ 25.4 ≈ 10"</div>
+    </div></details>
 
-<details><summary>৬. ভালভ (Valve)</summary><div class="b">
-<p>ভালভ পাইপলাইন চালু/বন্ধ করে এবং প্রবাহ ও প্রেসার নিয়ন্ত্রণ করে।</p>
-<ol>
-<li><b>Gate</b> – সবচেয়ে বেশি ব্যবহৃত। Full open / full close। পানি, তেল, স্টিম ইত্যাদি।</li>
-<li><b>Globe</b> – প্রবাহ ও হাই প্রেসার কন্ট্রোল।</li>
-<li><b>Ball</b> – ছোট ও হালকা, দ্রুত খোলা-বন্ধ।</li>
-<li><b>Plug</b> – প্লাগের মতো দেখতে, খুব দ্রুত খোলা-বন্ধ।</li>
-<li><b>Butterfly</b> – লো প্রেসার; ফ্লো অন/অফ ও কমানো-বাড়ানো।</li>
-<li><b>Check (NRV)</b> – এক দিকে ফ্লো, ফিরে আসে না।</li>
-<li><b>Needle</b> – সূক্ষ্ম ফ্লো কন্ট্রোল।</li>
-<li><b>Pinch</b> – ভিতরে রাবার টিউব, তা চেপে ফ্লো কন্ট্রোল।</li>
-<li><b>Pressure Relief</b> – বেশি প্রেসার থেকে যন্ত্র বাঁচায়, বিস্ফোরণ ঠেকায়।</li>
-<li><b>Control</b> – অটোমেটিক ভালভ।</li>
-<li><b>Strainer (Y-type)</b> – লাইনের ময়লা আটকে পরিষ্কার রাখে।</li>
-<li><b>PICV</b> – Pressure Independent Control Valve।</li></ol>
-<h3>গ্যাসকেট ৩ প্রকার</h3>
-<ul><li><b>Non-metallic</b>: CNAF, PTFE, Rubber</li><li><b>Metallic</b>: Flat/Grooved, Corrugated, Round, Oval &amp; Octagonal Ring, Lens, Delta, Welded, Bridgeman</li><li><b>Composite</b>: Kammprofile, Spiral Wound, Envelope, Metal Jacketed</li></ul>
-<p class="en">স্ট্যান্ডার্ড: ASME B16.5 ও B16.47 (Series A, B)।</p>
-</div></details>
+    <details><summary>৩. স্কেজিউল (Schedule) ও পাইপের ধরন</summary><div class="b">
+    <p>Schedule দেখায় পাইপের দেয়াল কত পুরু। Schedule যত বেশি, পাইপ তত পুরু ও বেশি প্রেসার সহনশীল।</p>
+    <p class="en">SCH 5S, 10S, 10, 20, 30, 40S, STD, 40, 60, 80S, XS, 80, 100, 120, 140, 160, XXS</p>
+    <ul><li>STD = 40 · XS = 80 · XXS = 160</li><li>ইন্ডাস্ট্রিতে বেশি ব্যবহার হয় SCH 40।</li></ul>
+    <div class="f">Thickness = √(Schedule × Pipe size) ÷ 2<br>Schedule = (Thickness × 2)² ÷ Pipe size</div>
+    <h3>পাইপ ২ প্রকার</h3>
+    <ul><li><b>Seamless</b> – জোড়াবিহীন</li><li><b>Seamed</b> – জোড়াযুক্ত (Twisted/Straight)</li></ul>
+    <h3>ম্যাটেরিয়াল ও কোড</h3>
+    <ul><li>CS (Carbon Steel): A105, A106, API 5L-B</li><li>SS (Stainless Steel): 305, 306, 309, 312, 319</li><li>GI (Galvanized Iron): A53</li><li>LTCS (Low Temp. Carbon Steel): 333</li><li>Alloy: 335 · Copper: 145</li></ul>
+    <h3>ওজন বের করা</h3>
+    <div class="f">Density = 0.00000785<br>পাইপ: Length × CF × Thickness × Density<br>স্টিল প্লেট: Length × Width × Thickness × Density</div>
+    </div></details>
 
-<details><summary>৭. জয়েন্ট, বেভেল ও ওয়েল্ডিং</summary><div class="b">
-<h3>জয়েন্ট ৪ প্রকার</h3>
-<ul><li><b>Butt joint</b> – গ্যাপ 4 mm</li><li><b>Socket joint</b> – 2 / 1.6 mm গ্যাপ রাখতে হয়, না রাখলে ওয়েল্ডিংয়ের পর ট্র্যাক ফাটতে পারে</li><li><b>Threaded joint</b></li><li><b>Flange joint</b></li></ul>
-<p>ফিল্ডে করা জয়েন্ট = Field Joint (FW)। ওয়ার্কশপে করা = Shop Joint।</p>
-<h3>Bevel</h3>
-<ul><li><b>V Bevel</b> – 37.5° এ কাটা হয়</li><li><b>J Bevel</b> – 22–25° ; পাইপের Thickness 22–25 mm-এর বেশি হলে</li></ul>
-<div class="f">Bevel length = Tan(37.5) × Thickness<br>Bevel ডিগ্রি = Shift Tan⁻¹(Length ÷ Thickness)</div>
-<div class="n">Length 7, Thickness 9: tan⁻¹(7÷9) = 37.87°</div>
-<ul><li>Root Face: 1 mm বা 1.6 mm (সাধারণত 1 mm; কোথাও 1.5–2 mm)</li><li>Root Gap: WPS অনুযায়ী 3.2 বা 1.6, সাধারণত 4 mm</li><li>বেভেলের ভিতর ও বাইরে ন্যূনতম 1" পরিষ্কার করতে হয়</li><li>WPS = Welding Procedure Specification</li></ul>
-<h3>ফিট-আপে চেক</h3>
-<ul><li>নাইনটি চেক, Spirit Level চেক, Taking Rod দিয়ে ট্যাকিং</li><li>পাইপ কাটতে: টেপ, মার্কার, র‍্যাপ-অ্যারাউন্ড/রেপিণ পেপার, সেন্টার পাঞ্চ, গ্রাইন্ডার, কাটিং ডিস্ক</li></ul>
-<h3>Fabrication ও Erection</h3>
-<p><b>Fabrication</b>: পাইপ, টি, এলবো, প্লাগ, ফ্ল্যাঞ্জ ইত্যাদি। <b>Erection</b>: ফ্যাব্রিকেশনের কাজে ব্যবহৃত Nut, Bolt, Valve, Gasket ইত্যাদি।</p>
-</div></details>
+    <details><summary>৪. ফিটিংস (Elbow, Tee, Reducer…)</summary><div class="b">
+    <h3>Elbow</h3>
+    <p>পাইপের দিক বদলাতে লাগে। মূলত 90° ও 45°, ২২.৫°ও হয়। দুই মাথার সাইজ আলাদা হলে Reducing Elbow।</p>
+    <ul><li>Short Radius = 1D (25.4 mm/ইঞ্চি)</li><li>Long/Standard Radius = 1.5D (38.1 mm/ইঞ্চি)</li><li>Extra Long = 2D, 3D, 4D, 5D (নোটে Long = 50.8 লেখা)</li></ul>
+    <h3>এলবো সেন্টার বের করা</h3>
+    <div class="f">Tan(ডিগ্রি ÷ 2) × 1.5 × এলবো সাইজ × 25.4</div>
+    <ul><li>90° (প্রতি ইঞ্চি): 25.4 × 1.5 = 38.1 mm</li><li>45° (প্রতি ইঞ্চি): 25.4 × 0.625 = 15.9 mm</li></ul>
+    <div class="n">৪" 90° এলবো: tan 45 × 38.1 × 4 = 152.4 mm</div>
+    <h3>Tee</h3>
+    <p>মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করে। ২ প্রকার: Equal Tee ও Reducing/Unequal Tee।</p>
+    <h3>Reducer</h3>
+    <p>বড় সাইজ থেকে ছোট সাইজে পাইপ বদলায়।</p>
+    <ul><li><b>Eccentric</b> – সাধারণত Horizontal লাইনে বেশি</li><li><b>Concentric</b> – সাধারণত Vertical লাইনে বেশি</li></ul>
+    <h3>অন্যান্য ফিটিংস</h3>
+    <p>Elbow, Reducer, Tee, Cross, Coupling (Full/Half/Reducing), Adapter, Union, Valve, Bush, Return Bend (180°), Cap, Plug, Swage Nipple, Expansion Joint, Steam Trap, Nipple (Barrel, Close, Hex, Hose, Welding)।</p>
+    <h3>ব্রাঞ্চ আউটলেট</h3>
+    <p>Weldolet, Sockolet, Threadolet, Latrolet, Elbolet, Nipolet, Sweepolet, Flangeolet, Brazolet, Coupolet।</p>
+    <h3>মূল মাপের টেবিল (mm)</h3>
+    <div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>CF</th><th>90° LR</th><th>45° LR</th><th>Tee</th><th>Red.</th></tr>
+    <tr><td>1/2"</td><td>21.3</td><td>67</td><td>20</td><td>12</td><td>25</td><td>–</td></tr>
+    <tr><td>1"</td><td>33.4</td><td>104.9</td><td>38.1</td><td>22</td><td>38</td><td>50.8</td></tr>
+    <tr><td>2"</td><td>60.3</td><td>189.5</td><td>76</td><td>35.1</td><td>64</td><td>76.2</td></tr>
+    <tr><td>3"</td><td>88.9</td><td>279.2</td><td>114</td><td>51</td><td>86</td><td>88.9</td></tr>
+    <tr><td>4"</td><td>114.3</td><td>359</td><td>152</td><td>63.5</td><td>105</td><td>101.6</td></tr>
+    <tr><td>6"</td><td>168.2</td><td>528.6</td><td>229</td><td>95</td><td>143</td><td>139.7</td></tr>
+    <tr><td>8"</td><td>219</td><td>688.2</td><td>306</td><td>126</td><td>176</td><td>152.4</td></tr>
+    <tr><td>10"</td><td>273</td><td>857.8</td><td>381</td><td>159</td><td>216</td><td>177.8</td></tr>
+    <tr><td>12"</td><td>323.8</td><td>1017.4</td><td>457</td><td>190</td><td>254</td><td>203.2</td></tr>
+    <tr><td>14"</td><td>355.6</td><td>1117.1</td><td>533</td><td>222</td><td>279</td><td>330.2</td></tr>
+    <tr><td>16"</td><td>406.4</td><td>1276.7</td><td>610</td><td>254</td><td>304</td><td>355.6</td></tr>
+    <tr><td>18"</td><td>457.2</td><td>1436.3</td><td>686</td><td>286</td><td>343</td><td>381</td></tr>
+    <tr><td>20"</td><td>508.2</td><td>1596.5</td><td>762</td><td>317</td><td>381</td><td>508</td></tr>
+    <tr><td>24"</td><td>609.6</td><td>1915.1</td><td>914</td><td>381</td><td>432</td><td>508</td></tr></table></div>
+    <p class="en">Carbon steel fitting: Butt weld, ASTM A234 WPB, ANSI B16.9, Sch 40/80/STD/XS/XXS, 1/2"–24"।</p>
+    </div></details>
 
-<details><summary>৮. রোলিং ও ট্রাভেল হিসাব</summary><div class="b">
-<div class="f">Travel = √(Ran² + Sat²)<br>ডিগ্রি = Tan⁻¹(Ran ÷ Sat)<br>Ran = Sin(ডিগ্রি) × Travel<br>Sat = Cos(ডিগ্রি) × Travel</div>
-<h3>Double Rolling উদাহরণ</h3>
-<p>Set 500, Run 1200, উচ্চতা 600:</p>
-<ul><li>A এলবো: √(500² + 600²) = 781 → Tan⁻¹(781 ÷ 1200) = <b>33°</b></li><li>B এলবো: √(500² + 1200²) = 1300 → Tan⁻¹(1300 ÷ 600) = <b>65.2°</b></li><li>C (travel): √(1300² + 600²) = <b>1431.7 mm</b></li></ul>
-<div class="n">সাধারণ ভুল: শুধু Tan⁻¹(600÷1200) করা, বা 90° − 33° = 57° ধরা। ঠিক পদ্ধতি উপরের।</div>
-<h3>আয়তক্ষেত্রের কর্ণ</h3>
-<div class="f">কর্ণ = √(L² + B²)<br>L=10, B=5 → √125 = 11.18 m</div>
-</div></details>
+    <details><summary>৫. ফ্লেঞ্জ (Flange)</summary><div class="b">
+    <p>পাইপ, ভালভ, পাম্প ও অন্য যন্ত্র জুড়তে ব্যবহার হয়। খোলা, পরিষ্কার ও পরিদর্শন সহজ হয়।</p>
+    <h3>জয়েন্ট পদ্ধতি অনুযায়ী</h3>
+    <ol><li>Weld Neck</li><li>Socket Weld</li><li>Threaded (Screwed)</li><li>Slip-on</li><li>Lap Joint</li><li>Blind (পাইপের মুখ বন্ধ করে)</li><li>Spectacle Blind</li></ol>
+    <h3>ফেস অনুযায়ী</h3>
+    <p>Plate/Flat, Raised Face (RF), Ring Type Joint (RTJ), Tongue &amp; Groove, Male &amp; Female।</p>
+    <h3>স্পেশাল ফ্লেঞ্জ</h3>
+    <p>Orifice, Ring Joint, Reducing, Long Weld Neck, Weldo, Nipo, Expander, Swivel Ring, Elbow Flange, Puddle, Split।</p>
+    <h3>হোল দূরত্ব বের করা (PCD দিয়ে)</h3>
+    <div class="f">ডিগ্রি = 360 ÷ হোল সংখ্যা<br>দূরত্ব = Sin(ডিগ্রি ÷ 2) × PCD</div>
+    <div class="n">৬" ফ্লেঞ্জ, ৮ হোল, PCD 241: 360÷8 = 45° → Sin 22.5 × 241 = 0.3826 × 241 = <b>92.22 mm</b></div>
+    <h3>Class 150# ফ্লেঞ্জ (mm)</h3>
+    <div class="t"><table><tr><th>সাইজ</th><th>OD</th><th>PCD</th><th>হোল ⌀</th><th>হোল</th></tr>
+    <tr><td>1/2"</td><td>90</td><td>60.5</td><td>15.9</td><td>4</td></tr>
+    <tr><td>1"</td><td>108</td><td>79.2</td><td>15.9</td><td>4</td></tr>
+    <tr><td>2"</td><td>152.4</td><td>120.6</td><td>19</td><td>4</td></tr>
+    <tr><td>3"</td><td>190.5</td><td>152.4</td><td>19</td><td>4</td></tr>
+    <tr><td>4"</td><td>228.6</td><td>190.5</td><td>19</td><td>8</td></tr>
+    <tr><td>6"</td><td>279.4</td><td>241.3</td><td>22.2</td><td>8</td></tr>
+    <tr><td>8"</td><td>343</td><td>298.4</td><td>22.2</td><td>8</td></tr>
+    <tr><td>10"</td><td>406.4</td><td>362</td><td>25.4</td><td>12</td></tr>
+    <tr><td>12"</td><td>483</td><td>432</td><td>25.4</td><td>12</td></tr>
+    <tr><td>14"</td><td>533.4</td><td>476</td><td>28.6</td><td>12</td></tr>
+    <tr><td>16"</td><td>597</td><td>540</td><td>28.6</td><td>16</td></tr></table></div>
+    <div class="n">300#, 600#, 900# ইত্যাদি ক্লাসের টেবিল মূল PDF-এর পৃষ্ঠা ২৪ ও ৫৮ দেখুন।</div>
+    <h3>ফ্লেঞ্জ পরিষ্কার করতে</h3>
+    <p>Wire Brush (ওয়্যার ব্রাশ), ঝুট/কাপড়, WD-40।</p>
+    <h3>ফ্লেঞ্জ ফিট-আপে চেক</h3>
+    <ul><li>নাইনটি (90°) চেক</li><li>Spirit Level চেক</li><li>Horizontal-এ: প্যারালাল চেক ও হোল চেক</li></ul>
+    </div></details>
 
-<details><summary>৯. মাইটার কাট এলবো</summary><div class="b">
-<div class="f">Cut Back = (CF × ডিগ্রি) ÷ (360 × 2 × কাট সংখ্যা)<br>Middle Piece = Cut Back × স্ট্যান্ডার্ড<br>Side Piece = Middle ÷ 2</div>
-<p>স্ট্যান্ডার্ড সংখ্যা: Long Radius = 8, Standard Radius = 6, Short Radius = 4।</p>
-<div class="n"><b>৮" মাইটার (৩ কাট):</b> CF 687.66 → 687.66 × 90 ÷ (360×2×3) = 28.65 → Middle = 28.65 × 6 = 171.9 → Side = 85.95</div>
-<div class="n"><b>৪" মাইটার (২ কাট):</b> CF 358 → Cut Back 22.4 → Middle 134 → Side 67</div>
-<div class="f">কাটের কোণ = মোট ডিগ্রি ÷ (2 × ওয়েল্ড সংখ্যা)<br>১৪" 90°, ৪ ওয়েল্ড (৫ পিস): 90 ÷ 8 = 11.25°</div>
-</div></details>
+    <details><summary>৬. ভালভ (Valve)</summary><div class="b">
+    <p>ভালভ পাইপলাইন চালু/বন্ধ করে এবং প্রবাহ ও প্রেসার নিয়ন্ত্রণ করে।</p>
+    <ol>
+    <li><b>Gate</b> – সবচেয়ে বেশি ব্যবহৃত। Full open / full close। পানি, তেল, স্টিম ইত্যাদি।</li>
+    <li><b>Globe</b> – প্রবাহ ও হাই প্রেসার কন্ট্রোল।</li>
+    <li><b>Ball</b> – ছোট ও হালকা, দ্রুত খোলা-বন্ধ।</li>
+    <li><b>Plug</b> – প্লাগের মতো দেখতে, খুব দ্রুত খোলা-বন্ধ।</li>
+    <li><b>Butterfly</b> – লো প্রেসার; ফ্লো অন/অফ ও কমানো-বাড়ানো।</li>
+    <li><b>Check (NRV)</b> – এক দিকে ফ্লো, ফিরে আসে না।</li>
+    <li><b>Needle</b> – সূক্ষ্ম ফ্লো কন্ট্রোল।</li>
+    <li><b>Pinch</b> – ভিতরে রাবার টিউব, তা চেপে ফ্লো কন্ট্রোল।</li>
+    <li><b>Pressure Relief</b> – বেশি প্রেসার থেকে যন্ত্র বাঁচায়, বিস্ফোরণ ঠেকায়।</li>
+    <li><b>Control</b> – অটোমেটিক ভালভ।</li>
+    <li><b>Strainer (Y-type)</b> – লাইনের ময়লা আটকে পরিষ্কার রাখে।</li>
+    <li><b>PICV</b> – Pressure Independent Control Valve।</li></ol>
+    <h3>গ্যাসকেট ৩ প্রকার</h3>
+    <ul><li><b>Non-metallic</b>: CNAF, PTFE, Rubber</li><li><b>Metallic</b>: Flat/Grooved, Corrugated, Round, Oval &amp; Octagonal Ring, Lens, Delta, Welded, Bridgeman</li><li><b>Composite</b>: Kammprofile, Spiral Wound, Envelope, Metal Jacketed</li></ul>
+    <p class="en">স্ট্যান্ডার্ড: ASME B16.5 ও B16.47 (Series A, B)।</p>
+    </div></details>
 
-<details><summary>১০. হাইড্রোটেস্ট পানির আয়তন</summary><div class="b">
-<div class="f">আয়তন = π × r² × h</div>
-<div class="n">২০" পাইপ, দৈর্ঘ্য 10 m, ID 490 mm → r = 0.245 m → 3.1416 × 0.060025 × 10 = 1.8857 m³ = <b>1885.7 লিটার</b> (1 m³ = 1000 L)</div>
-</div></details>
+    <details><summary>৭. জয়েন্ট, বেভেল ও ওয়েল্ডিং</summary><div class="b">
+    <h3>জয়েন্ট ৪ প্রকার</h3>
+    <ul><li><b>Butt joint</b> – গ্যাপ 4 mm</li><li><b>Socket joint</b> – 2 / 1.6 mm গ্যাপ রাখতে হয়, না রাখলে ওয়েল্ডিংয়ের পর ট্র্যাক ফাটতে পারে</li><li><b>Threaded joint</b></li><li><b>Flange joint</b></li></ul>
+    <p>ফিল্ডে করা জয়েন্ট = Field Joint (FW)। ওয়ার্কশপে করা = Shop Joint।</p>
+    <h3>Bevel</h3>
+    <ul><li><b>V Bevel</b> – 37.5° এ কাটা হয়</li><li><b>J Bevel</b> – 22–25° ; পাইপের Thickness 22–25 mm-এর বেশি হলে</li></ul>
+    <div class="f">Bevel length = Tan(37.5) × Thickness<br>Bevel ডিগ্রি = Shift Tan⁻¹(Length ÷ Thickness)</div>
+    <div class="n">Length 7, Thickness 9: tan⁻¹(7÷9) = 37.87°</div>
+    <ul><li>Root Face: 1 mm বা 1.6 mm (সাধারণত 1 mm; কোথাও 1.5–2 mm)</li><li>Root Gap: WPS অনুযায়ী 3.2 বা 1.6, সাধারণত 4 mm</li><li>বেভেলের ভিতর ও বাইরে ন্যূনতম 1" পরিষ্কার করতে হয়</li><li>WPS = Welding Procedure Specification</li></ul>
+    <h3>ফিট-আপে চেক</h3>
+    <ul><li>নাইনটি চেক, Spirit Level চেক, Taking Rod দিয়ে ট্যাকিং</li><li>পাইপ কাটতে: টেপ, মার্কার, র‍্যাপ-অ্যারাউন্ড/রেপিণ পেপার, সেন্টার পাঞ্চ, গ্রাইন্ডার, কাটিং ডিস্ক</li></ul>
+    <h3>Fabrication ও Erection</h3>
+    <p><b>Fabrication</b>: পাইপ, টি, এলবো, প্লাগ, ফ্ল্যাঞ্জ ইত্যাদি। <b>Erection</b>: ফ্যাব্রিকেশনের কাজে ব্যবহৃত Nut, Bolt, Valve, Gasket ইত্যাদি।</p>
+    </div></details>
 
-<details><summary>১১. সাপোর্ট ও বোল্ট-নাট</summary><div class="b">
-<h3>পাইপ সাপোর্ট</h3>
-<p>Shoe, Saddle, Clamp, U-bolt, Wear Pad (Cradle), Trunnion/Dummy, Spring, Hanger, Guide, Anchor, Angle, Stopper (Limit stop), Resting।</p>
-<h3>বোল্ট</h3>
-<p>Hex, Serrated Flange, T-head, Anchor, U-bolt, J-bolt, Allen (Socket head), Stud, Hanger, Carriage, Plow, Eye, Flange, Shoulder, Lag, Elevator, Square।</p>
-<h3>নাট</h3>
-<p>Hex, Heavy Hex, Hexagonal, Coupling, Jam, Square, Cap, Acorn, Wing, Castle (Slotted), Tee, Nylon Insert Lock, Prevailing Torque, K-lock, Knurled।</p>
-<h3>বোল্ট ও রেঞ্চ সাইজ (মেট্রিক)</h3>
-<div class="t"><table><tr><th>বোল্ট</th><th>M6</th><th>M8</th><th>M10</th><th>M12</th><th>M16</th><th>M20</th></tr>
-<tr><td>রেঞ্চ (mm)</td><td>10</td><td>13</td><td>17</td><td>19</td><td>24</td><td>30</td></tr>
-<tr><td>Hex key (mm)</td><td>5</td><td>6</td><td>8</td><td>10</td><td>14</td><td>17</td></tr></table></div>
-<h3>স্প্যানার থিওরি (ইঞ্চি → mm)</h3>
-<div class="f">ইঞ্চি ÷ ... × 25.4 × 1.5 + 3<br>1/2" → 12.7 × 1.5 + 3 = 22.05 mm</div>
-<h3>ফ্ল্যাঞ্জ বোল্ট (150#)</h3>
-<div class="t"><table><tr><th>সাইজ</th><th>বোল্ট ⌀</th><th>লম্বা mm</th><th>স্প্যানার</th><th>সংখ্যা</th></tr>
-<tr><td>1/2"–1.5"</td><td>1/2"</td><td>60–70</td><td>22</td><td>4</td></tr>
-<tr><td>2"–4"</td><td>5/8"</td><td>85–90</td><td>27</td><td>4–8</td></tr>
-<tr><td>5"–8"</td><td>3/4"</td><td>95–110</td><td>32</td><td>8</td></tr>
-<tr><td>10"–12"</td><td>7/8"</td><td>115–120</td><td>36</td><td>8–12</td></tr>
-<tr><td>14"–16"</td><td>1"</td><td>130–135</td><td>41</td><td>12–16</td></tr></table></div>
-</div></details>
+    <details><summary>৮. রোলিং ও ট্রাভেল হিসাব</summary><div class="b">
+    <div class="f">Travel = √(Ran² + Sat²)<br>ডিগ্রি = Tan⁻¹(Ran ÷ Sat)<br>Ran = Sin(ডিগ্রি) × Travel<br>Sat = Cos(ডিগ্রি) × Travel</div>
+    <h3>Double Rolling উদাহরণ</h3>
+    <p>Set 500, Run 1200, উচ্চতা 600:</p>
+    <ul><li>A এলবো: √(500² + 600²) = 781 → Tan⁻¹(781 ÷ 1200) = <b>33°</b></li><li>B এলবো: √(500² + 1200²) = 1300 → Tan⁻¹(1300 ÷ 600) = <b>65.2°</b></li><li>C (travel): √(1300² + 600²) = <b>1431.7 mm</b></li></ul>
+    <div class="n">সাধারণ ভুল: শুধু Tan⁻¹(600÷1200) করা, বা 90° − 33° = 57° ধরা। ঠিক পদ্ধতি উপরের।</div>
+    <h3>আয়তক্ষেত্রের কর্ণ</h3>
+    <div class="f">কর্ণ = √(L² + B²)<br>L=10, B=5 → √125 = 11.18 m</div>
+    </div></details>
 
-<details><summary>১২. টুলস ও যন্ত্রপাতি</summary><div class="b">
-<h3>ফিট-আপ টুলস</h3>
-<p>Measuring Tape, CF Tape, মার্কার চক/পেন, Wrap Around, Teflon Tape, Power Cable ও Extension, Grinder, Pencil Grinder, Grinding Key, Bowing/Grinding/Cutting Disc, হোলবারি (Hole bari), Line Dori, Jack/Pipe Stand, File, Spanner, Right Angle, Spirit Level, Wear Brush, Slip Hammer, Pipe Wrench, Chock/Wedge, Center Punch, Water Level (Tube), Plumb Bob, Taking Rod, Gap Rod, Welding Rod, Hammer, Screwdriver, Plier, Adjustable, Hose Pipe, WD-40, Cutting Torch, Gas Cutter Set, Divider/Compass, Degree Protractor, Hi-Low Gauge, Ratchet, Ring Spanner, Tool Box, Pipe Vise, Chain Block, Crane, Fork Lift, Highlander, Hilti ও Drill Machine।</p>
-<h3>সেফটি</h3><p>Face Shield, Apron, Helmet, Fire Blanket।</p>
-<h3>মাপের যন্ত্র</h3><p>Caliper, Vernier Caliper, Micrometer, Steel Rule, Set Square, Bevel Protractor।</p>
-<h3>Water Level</h3><p>পাইপ লেভেল করতে ও সোলাপ (slope) বের করতে। Spirit Level দিয়ে প্যারালাল ও লেভেল চেক।</p>
-<h3>গ্রাইন্ডার</h3>
-<div class="t"><table><tr><th>সাইজ</th><th>RPM</th><th>ওজন</th></tr>
-<tr><td>4"</td><td>12000</td><td>1.8 kg</td></tr><tr><td>4.5"</td><td>~12000</td><td>2.8 kg</td></tr><tr><td>5"</td><td>~11000</td><td>3.3 kg</td></tr><tr><td>7"</td><td>7000</td><td>9.2 kg</td></tr><tr><td>9"</td><td>5600</td><td>9.5 kg</td></tr></table></div>
-<ul><li>গ্রাইন্ডার ৩ ধরন: Pencil, Angle, Straight (Die)।</li><li>ডিস্ক: 5/6 mm গ্রাইন্ডিং, বাফিং/ফ্ল্যাপ, 1/1.2 mm কাটিং, 3 mm কাটিং।</li><li>Pencil Grinder বিট: Stone Bit → SS পাইপ; Metal Bit → CS পাইপ।</li></ul>
-<div class="n">নোটের RPM 4.5" ও 5"-এর মান মূল নোটে ছাপার ভুল থাকতে পারে (1200/1100), তাই ~ চিহ্ন দিয়েছি।</div>
-</div></details>
+    <details><summary>৯. মাইটার কাট এলবো</summary><div class="b">
+    <div class="f">Cut Back = (CF × ডিগ্রি) ÷ (360 × 2 × কাট সংখ্যা)<br>Middle Piece = Cut Back × স্ট্যান্ডার্ড<br>Side Piece = Middle ÷ 2</div>
+    <p>স্ট্যান্ডার্ড সংখ্যা: Long Radius = 8, Standard Radius = 6, Short Radius = 4।</p>
+    <div class="n"><b>৮" মাইটার (৩ কাট):</b> CF 687.66 → 687.66 × 90 ÷ (360×2×3) = 28.65 → Middle = 28.65 × 6 = 171.9 → Side = 85.95</div>
+    <div class="n"><b>৪" মাইটার (২ কাট):</b> CF 358 → Cut Back 22.4 → Middle 134 → Side 67</div>
+    <div class="f">কাটের কোণ = মোট ডিগ্রি ÷ (2 × ওয়েল্ড সংখ্যা)<br>১৪" 90°, ৪ ওয়েল্ড (৫ পিস): 90 ÷ 8 = 11.25°</div>
+    </div></details>
 
-<details><summary>১৩. সিম্বল ও শব্দসংক্ষেপ</summary><div class="b">
-<h3>ভালভ জয়েন্ট ও লাইন (Iso সিম্বল)</h3>
-<p>ড্রয়িংয়ে Butt weld = ফোঁটা (●), Socket = [ আকার, Threaded = ঘাট আকার। Gate, Globe (ভরাট বৃত্ত), Ball (X বৃত্ত), Plug, Butterfly, Needle (ভরাট ত্রিভুজ), Check (তীর), Diaphragm, Y-type, 3-way, Relief, Control (উপরে গোল) এর আলাদা সিম্বল আছে — মূল PDF-এর পৃষ্ঠা ২০, ২৬, ৩৬ দেখুন।</p>
-<h3>শব্দসংক্ষেপ</h3>
-<div class="t"><table>
-<tr><th>সংক্ষেপ</th><th>পূর্ণরূপ</th></tr>
-<tr><td>BW / SW / THD</td><td>Butt weld / Socket weld / Threaded</td></tr>
-<tr><td>BE, PE, BBE, POE</td><td>Bevel end, Plain end, Bevel both ends, Plain one end</td></tr>
-<tr><td>CS / SS / GI</td><td>Carbon / Stainless steel / Galvanized iron</td></tr>
-<tr><td>Conc / Ecc</td><td>Concentric / Eccentric</td></tr>
-<tr><td>LR / SR</td><td>Long radius / Short radius</td></tr>
-<tr><td>WN / SO / LJ / Bld</td><td>Weld neck / Slip-on / Lap joint / Blind</td></tr>
-<tr><td>RF / FF / RTJ</td><td>Raised face / Flat face / Ring type joint</td></tr>
-<tr><td>WOL / SOL / TOL / LOL / EOL</td><td>Weldolet / Sockolet / Threadolet / Latrolet / Elbolet</td></tr>
-<tr><td>PCD</td><td>Pitch Circle Diameter</td></tr>
-<tr><td>NPS / DN / NB / NS</td><td>Nominal pipe size / Diameter nominal / Nominal bore / Nominal size</td></tr>
-<tr><td>SCH / STD / XS / XXS</td><td>Schedule / Standard / Extra strong / Double extra strong</td></tr>
-<tr><td>THK / WT</td><td>Thickness / Wall thickness</td></tr>
-<tr><td>ISO / P&amp;ID / MTO / BOM</td><td>Isometric / Piping &amp; instrument diagram / Material take-off / Bill of materials</td></tr>
-<tr><td>FW / TYP / REV / EL</td><td>Field weld / Typical / Revision / Elevation</td></tr>
-<tr><td>PSV / CV / VS</td><td>Pressure safety valve / Control valve / Vessel</td></tr>
-<tr><td>XR / WPS</td><td>X-ray / Welding procedure specification</td></tr>
-<tr><td>ASME / ASTM / API / ANSI</td><td>American societies/institutes: Mechanical Engineers / Testing &amp; Materials / Petroleum / National Standards</td></tr>
-<tr><td>Pc / PS / Sol Sht</td><td>Piece (spool mark) / Pipe support / Spool sheet</td></tr>
-<tr><td>N / E / M / M½ / F / B / G</td><td>Nozzle / Elevation / Motor / Manhole / Flange / Bolt / Gasket</td></tr>
-<tr><td>SMLS / GR / CL / PSL</td><td>Seamless / Grade / Class / Product specification level</td></tr>
-</table></div>
-</div></details>
+    <details><summary>১০. হাইড্রোটেস্ট পানির আয়তন</summary><div class="b">
+    <div class="f">আয়তন = π × r² × h</div>
+    <div class="n">২০" পাইপ, দৈর্ঘ্য 10 m, ID 490 mm → r = 0.245 m → 3.1416 × 0.060025 × 10 = 1.8857 m³ = <b>1885.7 লিটার</b> (1 m³ = 1000 L)</div>
+    </div></details>
 
-<details><summary>১৪. ইন্টারভিউ প্রশ্ন-উত্তর</summary><div class="b">
-<h3>ফিটিংয়ের ধাপ (Pipe ও Flange ফিট-আপ)</h3>
-<ol><li>পেছনে (Taking) মেজারমেন্ট</li><li>র‍্যাপিং পেপার দিয়ে মার্ক, পাইপ কাটা</li><li>Right Angle দিয়ে ফেস চেক</li><li>37.5° বেভেল, 1–2 mm রুট ফেস</li><li>ভিতরের ময়লা বাদে চেক, 4 mm রড গ্যাপ</li><li>Pipe ও Flange মিলিয়ে নেওয়া</li><li>Spirit Level ও Right Angle দিয়ে সব দিক চেক</li><li>ট্যাক করে আবার চেক, তারপর ফিটিং শেষ</li></ol>
-<h3>সাধারণ প্রশ্ন</h3>
-<p><b>Tee এর কাজ?</b> মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করা।</p>
-<p><b>Reducer এর কাজ?</b> বড় লাইন থেকে ছোট লাইনে রূপান্তর।</p>
-<p><b>Elbow কেন?</b> পাইপের দিক বদলাতে।</p>
-<p><b>Elbow এর প্রকার?</b> 90°, 45°, Long/Short/Standard Radius, Reducing।</p>
-<p><b>Flange কী?</b> পাইপ, ভালভ, পাম্প ইত্যাদি জুড়ে পাইপিং সিস্টেম বানানোর যান্ত্রিক উপাদান।</p>
-<p><b>Valve কী?</b> খুলে, বন্ধ করে বা আংশিক আটকে তরল/গ্যাসের প্রবাহ নিয়ন্ত্রণকারী যন্ত্র।</p>
-<p><b>Bevelling কী?</b> ওয়েল্ডিংয়ের জন্য ধাতুর কিনারা ঢালু করে কাটা, হাতে গ্রাইন্ড করে বা মেশিনে।</p>
-<p><b>তোমার অভিজ্ঞতা কত?</b> I have worked as a pipe fitter for [X] years, installing, maintaining and repairing piping systems.</p>
-<p><b>Rolling কী?</b> 90° ছাড়া অন্য কোণে পাইপের দিক বদল।</p>
-<p><b>NPS ও DN?</b> NPS ইঞ্চিতে, DN mm-এ নামমাত্র সাইজ।</p>
-<p><b>Tee কত প্রকার?</b> Equal/Straight ও Reducing/Unequal।</p>
-<p><b>Reducer কত প্রকার?</b> Concentric ও Eccentric।</p>
-</div></details>
+    <details><summary>১১. সাপোর্ট ও বোল্ট-নাট</summary><div class="b">
+    <h3>পাইপ সাপোর্ট</h3>
+    <p>Shoe, Saddle, Clamp, U-bolt, Wear Pad (Cradle), Trunnion/Dummy, Spring, Hanger, Guide, Anchor, Angle, Stopper (Limit stop), Resting।</p>
+    <h3>বোল্ট</h3>
+    <p>Hex, Serrated Flange, T-head, Anchor, U-bolt, J-bolt, Allen (Socket head), Stud, Hanger, Carriage, Plow, Eye, Flange, Shoulder, Lag, Elevator, Square।</p>
+    <h3>নাট</h3>
+    <p>Hex, Heavy Hex, Hexagonal, Coupling, Jam, Square, Cap, Acorn, Wing, Castle (Slotted), Tee, Nylon Insert Lock, Prevailing Torque, K-lock, Knurled।</p>
+    <h3>বোল্ট ও রেঞ্চ সাইজ (মেট্রিক)</h3>
+    <div class="t"><table><tr><th>বোল্ট</th><th>M6</th><th>M8</th><th>M10</th><th>M12</th><th>M16</th><th>M20</th></tr>
+    <tr><td>রেঞ্চ (mm)</td><td>10</td><td>13</td><td>17</td><td>19</td><td>24</td><td>30</td></tr>
+    <tr><td>Hex key (mm)</td><td>5</td><td>6</td><td>8</td><td>10</td><td>14</td><td>17</td></tr></table></div>
+    <h3>স্প্যানার থিওরি (ইঞ্চি → mm)</h3>
+    <div class="f">ইঞ্চি ÷ ... × 25.4 × 1.5 + 3<br>1/2" → 12.7 × 1.5 + 3 = 22.05 mm</div>
+    <h3>ফ্ল্যাঞ্জ বোল্ট (150#)</h3>
+    <div class="t"><table><tr><th>সাইজ</th><th>বোল্ট ⌀</th><th>লম্বা mm</th><th>স্প্যানার</th><th>সংখ্যা</th></tr>
+    <tr><td>1/2"–1.5"</td><td>1/2"</td><td>60–70</td><td>22</td><td>4</td></tr>
+    <tr><td>2"–4"</td><td>5/8"</td><td>85–90</td><td>27</td><td>4–8</td></tr>
+    <tr><td>5"–8"</td><td>3/4"</td><td>95–110</td><td>32</td><td>8</td></tr>
+    <tr><td>10"–12"</td><td>7/8"</td><td>115–120</td><td>36</td><td>8–12</td></tr>
+    <tr><td>14"–16"</td><td>1"</td><td>130–135</td><td>41</td><td>12–16</td></tr></table></div>
+    </div></details>
 
-<footer>মূল নোট: MD. Mizanur Rahman<br>এই বই সহজ মোবাইল পাঠের জন্য নতুন করে সাজানো।</footer>
+    <details><summary>১২. টুলস ও যন্ত্রপাতি</summary><div class="b">
+    <h3>ফিট-আপ টুলস</h3>
+    <p>Measuring Tape, CF Tape, মার্কার চক/পেন, Wrap Around, Teflon Tape, Power Cable ও Extension, Grinder, Pencil Grinder, Grinding Key, Bowing/Grinding/Cutting Disc, হোলবারি (Hole bari), Line Dori, Jack/Pipe Stand, File, Spanner, Right Angle, Spirit Level, Wear Brush, Slip Hammer, Pipe Wrench, Chock/Wedge, Center Punch, Water Level (Tube), Plumb Bob, Taking Rod, Gap Rod, Welding Rod, Hammer, Screwdriver, Plier, Adjustable, Hose Pipe, WD-40, Cutting Torch, Gas Cutter Set, Divider/Compass, Degree Protractor, Hi-Low Gauge, Ratchet, Ring Spanner, Tool Box, Pipe Vise, Chain Block, Crane, Fork Lift, Highlander, Hilti ও Drill Machine।</p>
+    <h3>সেফটি</h3><p>Face Shield, Apron, Helmet, Fire Blanket।</p>
+    <h3>মাপের যন্ত্র</h3><p>Caliper, Vernier Caliper, Micrometer, Steel Rule, Set Square, Bevel Protractor।</p>
+    <h3>Water Level</h3><p>পাইপ লেভেল করতে ও সোলাপ (slope) বের করতে। Spirit Level দিয়ে প্যারালাল ও লেভেল চেক।</p>
+    <h3>গ্রাইন্ডার</h3>
+    <div class="t"><table><tr><th>সাইজ</th><th>RPM</th><th>ওজন</th></tr>
+    <tr><td>4"</td><td>12000</td><td>1.8 kg</td></tr><tr><td>4.5"</td><td>~12000</td><td>2.8 kg</td></tr><tr><td>5"</td><td>~11000</td><td>3.3 kg</td></tr><tr><td>7"</td><td>7000</td><td>9.2 kg</td></tr><tr><td>9"</td><td>5600</td><td>9.5 kg</td></tr></table></div>
+    <ul><li>গ্রাইন্ডার ৩ ধরন: Pencil, Angle, Straight (Die)।</li><li>ডিস্ক: 5/6 mm গ্রাইন্ডিং, বাফিং/ফ্ল্যাপ, 1/1.2 mm কাটিং, 3 mm কাটিং।</li><li>Pencil Grinder বিট: Stone Bit → SS পাইপ; Metal Bit → CS পাইপ।</li></ul>
+    <div class="n">নোটের RPM 4.5" ও 5"-এর মান মূল নোটে ছাপার ভুল থাকতে পারে (1200/1100), তাই ~ চিহ্ন দিয়েছি।</div>
+    </div></details>
+
+    <details><summary>১৩. সিম্বল ও শব্দসংক্ষেপ</summary><div class="b">
+    <h3>ভালভ জয়েন্ট ও লাইন (Iso সিম্বল)</h3>
+    <p>ড্রয়িংয়ে Butt weld = ফোঁটা (●), Socket = [ আকার, Threaded = ঘাট আকার। Gate, Globe (ভরাট বৃত্ত), Ball (X বৃত্ত), Plug, Butterfly, Needle (ভরাট ত্রিভুজ), Check (তীর), Diaphragm, Y-type, 3-way, Relief, Control (উপরে গোল) এর আলাদা সিম্বল আছে — মূল PDF-এর পৃষ্ঠা ২০, ২৬, ৩৬ দেখুন।</p>
+    <h3>শব্দসংক্ষেপ</h3>
+    <div class="t"><table>
+    <tr><th>সংক্ষেপ</th><th>পূর্ণরূপ</th></tr>
+    <tr><td>BW / SW / THD</td><td>Butt weld / Socket weld / Threaded</td></tr>
+    <tr><td>BE, PE, BBE, POE</td><td>Bevel end, Plain end, Bevel both ends, Plain one end</td></tr>
+    <tr><td>CS / SS / GI</td><td>Carbon / Stainless steel / Galvanized iron</td></tr>
+    <tr><td>Conc / Ecc</td><td>Concentric / Eccentric</td></tr>
+    <tr><td>LR / SR</td><td>Long radius / Short radius</td></tr>
+    <tr><td>WN / SO / LJ / Bld</td><td>Weld neck / Slip-on / Lap joint / Blind</td></tr>
+    <tr><td>RF / FF / RTJ</td><td>Raised face / Flat face / Ring type joint</td></tr>
+    <tr><td>WOL / SOL / TOL / LOL / EOL</td><td>Weldolet / Sockolet / Threadolet / Latrolet / Elbolet</td></tr>
+    <tr><td>PCD</td><td>Pitch Circle Diameter</td></tr>
+    <tr><td>NPS / DN / NB / NS</td><td>Nominal pipe size / Diameter nominal / Nominal bore / Nominal size</td></tr>
+    <tr><td>SCH / STD / XS / XXS</td><td>Schedule / Standard / Extra strong / Double extra strong</td></tr>
+    <tr><td>THK / WT</td><td>Thickness / Wall thickness</td></tr>
+    <tr><td>ISO / P&amp;ID / MTO / BOM</td><td>Isometric / Piping &amp; instrument diagram / Material take-off / Bill of materials</td></tr>
+    <tr><td>FW / TYP / REV / EL</td><td>Field weld / Typical / Revision / Elevation</td></tr>
+    <tr><td>PSV / CV / VS</td><td>Pressure safety valve / Control valve / Vessel</td></tr>
+    <tr><td>XR / WPS</td><td>X-ray / Welding procedure specification</td></tr>
+    <tr><td>ASME / ASTM / API / ANSI</td><td>American societies/institutes: Mechanical Engineers / Testing &amp; Materials / Petroleum / National Standards</td></tr>
+    <tr><td>Pc / PS / Sol Sht</td><td>Piece (spool mark) / Pipe support / Spool sheet</td></tr>
+    <tr><td>N / E / M / M½ / F / B / G</td><td>Nozzle / Elevation / Motor / Manhole / Flange / Bolt / Gasket</td></tr>
+    <tr><td>SMLS / GR / CL / PSL</td><td>Seamless / Grade / Class / Product specification level</td></tr>
+    </table></div>
+    </div></details>
+
+    <details><summary>১৪. ইন্টারভিউ প্রশ্ন-উত্তর</summary><div class="b">
+    <h3>ফিটিংয়ের ধাপ (Pipe ও Flange ফিট-আপ)</h3>
+    <ol><li>পেছনে (Taking) মেজারমেন্ট</li><li>র‍্যাপিং পেপার দিয়ে মার্ক, পাইপ কাটা</li><li>Right Angle দিয়ে ফেস চেক</li><li>37.5° বেভেল, 1–2 mm রুট ফেস</li><li>ভিতরের ময়লা বাদে চেক, 4 mm রড গ্যাপ</li><li>Pipe ও Flange মিলিয়ে নেওয়া</li><li>Spirit Level ও Right Angle দিয়ে সব দিক চেক</li><li>ট্যাক করে আবার চেক, তারপর ফিটিং শেষ</li></ol>
+    <h3>সাধারণ প্রশ্ন</h3>
+    <p><b>Tee এর কাজ?</b> মেইন (Header) লাইন থেকে ব্রাঞ্চ লাইন বের করা।</p>
+    <p><b>Reducer এর কাজ?</b> বড় লাইন থেকে ছোট লাইনে রূপান্তর।</p>
+    <p><b>Elbow কেন?</b> পাইপের দিক বদলাতে।</p>
+    <p><b>Elbow এর প্রকার?</b> 90°, 45°, Long/Short/Standard Radius, Reducing।</p>
+    <p><b>Flange কী?</b> পাইপ, ভালভ, পাম্প ইত্যাদি জুড়ে পাইপিং সিস্টেম বানানোর যান্ত্রিক উপাদান।</p>
+    <p><b>Valve কী?</b> খুলে, বন্ধ করে বা আংশিক আটকে তরল/গ্যাসের প্রবাহ নিয়ন্ত্রণকারী যন্ত্র।</p>
+    <p><b>Bevelling কী?</b> ওয়েল্ডিংয়ের জন্য ধাতুর কিনারা ঢালু করে কাটা, হাতে গ্রাইন্ড করে বা মেশিনে।</p>
+    <p><b>তোমার অভিজ্ঞতা কত?</b> I have worked as a pipe fitter for [X] years, installing, maintaining and repairing piping systems.</p>
+    <p><b>Rolling কী?</b> 90° ছাড়া অন্য কোণে পাইপের দিক বদল।</p>
+    <p><b>NPS ও DN?</b> NPS ইঞ্চিতে, DN mm-এ নামমাত্র সাইজ।</p>
+    <p><b>Tee কত প্রকার?</b> Equal/Straight ও Reducing/Unequal।</p>
+    <p><b>Reducer কত প্রকার?</b> Concentric ও Eccentric।</p>
+    </div></details>
+
+    <footer>মূল নোট: MD. Mizanur Rahman<br>এই বই সহজ মোবাইল পাঠের জন্য নতুন করে সাজানো।</footer>
+  </div>
+
+  <!-- INTERACTIVE 3D VIEW PAGE -->
+  <div id="view-3d">
+    <div class="fit-tabs" id="fit-tabs"></div>
+    <div id="fit-title" style="font-size:19px;font-weight:700;margin:4px 0 2px"></div>
+    <div id="fit-sub" style="font-size:13px;color:var(--mut);margin-bottom:6px"></div>
+
+    <div class="stage-wrap">
+      <canvas id="canvas3d"></canvas>
+      <div class="hud-hint">👆 হাত দিয়ে ঘুরান • অংশে টাচ করুন</div>
+      <div class="hud-ctrls">
+        <button id="btn-rot" class="on" title="অ্যানিমেশন প্লে/পজ">⏸</button>
+        <button id="btn-zin" title="জুম ইন">＋</button>
+        <button id="btn-zout" title="জুম আউট">－</button>
+        <button id="btn-rst" title="রিসেট">↺</button>
+      </div>
+      <div class="hud-callout" id="hud-callout">
+        <div class="hud-dot"></div>
+        <div><b id="hud-name-bn"></b><span id="hud-name-en"></span></div>
+      </div>
+    </div>
+
+    <div class="part-card" id="part-card">
+      <h4 id="pc-title">৩D মডেলের যেকোনো অংশে টাচ করুন</h4>
+      <div class="en-sub" id="pc-en">Tap any part on the 3D model above</div>
+      <div id="pc-desc">আঙুল দিয়ে ঘুরিয়ে চারদিক ভালো করে দেখুন এবং যে অংশে হাত দেবেন সেই অংশের বাংলা ও ইংরেজি নাম ও কাজ এখানে দেখতে পাবেন।</div>
+      <div class="tip" id="pc-tip" style="display:none"></div>
+    </div>
+
+    <div style="font-weight:700;font-size:14px;color:var(--st);margin-top:10px">এই ফিটিংসের অংশসমূহ:</div>
+    <div class="parts-chips" id="parts-chips"></div>
+  </div>
 </main>
-<nav><button onclick="scrollTo({top:0,behavior:'smooth'})"><i>🏠</i>হোম</button><button onclick="document.getElementById('gal').scrollIntoView({behavior:'smooth'})"><i>🧊</i>৩D ছবি</button><button onclick="scrollTo(0,0);document.getElementById('q').focus()"><i>🔎</i>সার্চ</button></nav>
+
+<nav>
+  <button id="nav-home" class="active"><i>🏠</i>হোম</button>
+  <button id="nav-3d"><i>🧊</i>৩D ভিউ</button>
+  <button id="nav-search"><i>🔎</i>সার্চ</button>
+</nav>
+
 <script>
+// ==================== 1. SERVICE WORKER & PWA INSTALL PROMPT ====================
 (function(){
-function T(d){return '<path d="'+d+'" fill="none" stroke="#25384a" stroke-width="26"/><path d="'+d+'" fill="none" stroke="#6f93a8" stroke-width="18"/><path d="'+d+'" fill="none" stroke="#e3f3fa" stroke-width="5" opacity=".85" transform="translate(-3,-3)"/>'}
-function R(x,y,w,h){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="url(#gh)"/>'}
-function P(p){return '<polygon points="'+p+'" fill="url(#gh)"/>'}
-function E(x,y,a,b,f){return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+a+'" ry="'+b+'" fill="'+f+'"/>'}
-function F(){var s=E(60,54,44,26,'#1f2f3b')+E(60,46,44,26,'url(#gr)');for(var i=0;i<8;i++){var a=i*Math.PI/4;s+=E((60+32*Math.cos(a)).toFixed(1),(46+18*Math.sin(a)).toFixed(1),4,2.6,'#1f2f3b')}return s+E(60,46,17,10,'#0e1820')}
-var red='#d63a2f';
-var items=[
-['পাইপ','Pipe',R(8,34,104,24)+E(112,46,5,12,'#1b2a35')],
-['৯০° এলবো','90° Elbow',T('M12,72 H46 A26 26 0 0 0 72 46 V12')],
-['৪৫° এলবো','45° Elbow',T('M10,72 H46 Q64,72 76,58 L104,26')],
-['টি (Tee)','Equal Tee',T('M8,64 H112')+T('M60,64 V14')],
-['কনসেন্ট্রিক রিডিউসার','Concentric Reducer',R(2,18,10,54)+P('12,18 84,34 84,56 12,72')+R(84,34,34,22)],
-['এক্সেন্ট্রিক রিডিউসার','Eccentric Reducer',R(2,18,10,54)+P('12,18 84,44 84,72 12,72')+R(84,44,34,28)],
-['ফ্লেঞ্জ','Flange',F()],
-['বল ভালভ','Ball Valve',R(4,34,112,24)+E(60,46,22,22,'url(#gr)')+'<rect x="57" y="18" width="6" height="12" fill="#444"/><rect x="26" y="10" width="62" height="8" rx="4" fill="'+red+'"/>'],
-['গেট ভালভ','Gate Valve',R(4,40,112,22)+'<rect x="38" y="26" width="44" height="42" rx="7" fill="url(#gr)"/>'+R(52,10,16,18)+E(60,8,22,6,red)],
-['ক্যাপ','Cap',R(14,18,34,56)+'<path d="M48,18 A28 28 0 0 1 48,74 Z" fill="url(#gh)"/>'+E(14,46,5,28,'#1b2a35')]
-];
-var g=document.getElementById('galg');
-items.forEach(function(x){g.innerHTML+='<div class="gc"><svg viewBox="0 0 120 90">'+x[2]+'</svg>'+x[0]+'<small>'+x[1]+'</small></div>'});
-var ic=['📐','📏','🧮','🔩','⭕','🚰','🔥','📈','✂️','💧','🔧','🛠️','🔤','❓'];
-var gr=document.getElementById('grid');
-[].slice.call(document.querySelectorAll('main>details:not(#gal)')).forEach(function(d,i){
-var b=document.createElement('button');
-b.innerHTML='<i>'+ic[i]+'</i>'+d.firstChild.textContent.replace(/^\s*[০-৯]+\.\s*/,'');
-b.onclick=function(){d.open=true;d.scrollIntoView({behavior:'smooth'})};gr.appendChild(b)});
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  }
+  var deferredPrompt = null;
+  var sp = document.getElementById('splash');
+  var installBtn = document.getElementById('install-btn');
+  var hdrInstall = document.getElementById('hdr-install');
+  var heroInstall = document.getElementById('hero-install-btn');
+  var hint = document.getElementById('install-hint');
+
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true;
+  var isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  function closeSplash(){
+    sp.classList.add('off');
+    setTimeout(function(){ sp.style.display = 'none'; }, 320);
+  }
+
+  function updateInstallHints(){
+    if (isStandalone) {
+      sp.style.display = 'none';
+      hdrInstall.style.display = 'none';
+      if (heroInstall) heroInstall.style.display = 'none';
+      return;
+    }
+    if (isIos) {
+      hint.textContent = 'আইফোন (Safari)-এ ইনস্টল করতে নিচের Share বাটন চেপে "Add to Home Screen" দিন।';
+    } else if (!deferredPrompt) {
+      hint.textContent = 'লিংক খুললেই "Install" অপশন না এলে ব্রাউজারের মেনু (⋮) থেকে "Install app" / "Add to Home screen" চাপুন।';
+    } else {
+      hint.textContent = 'এক ক্লিকেই আপনার ফোনে অ্যাপ হিসেবে ইনস্টল হবে এবং অফলাইনে চলবে।';
+    }
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    updateInstallHints();
+    // Link open korle jeno install chai — show splash install dialog automatically if user closed it before prompt arrived
+    if (!isStandalone && sp.style.display === 'none') {
+      sp.style.display = 'flex';
+      sp.classList.remove('off');
+    }
+  });
+
+  window.addEventListener('appinstalled', function(){
+    deferredPrompt = null;
+    closeSplash();
+    hdrInstall.style.display = 'none';
+    if (heroInstall) heroInstall.style.display = 'none';
+  });
+
+  function triggerInstall(){
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(choice){
+        if (choice && choice.outcome === 'accepted') {
+          closeSplash();
+        }
+        deferredPrompt = null;
+        updateInstallHints();
+      });
+    } else {
+      sp.style.display = 'flex';
+      sp.classList.remove('off');
+      if (isIos) {
+        alert('Safari-এর নিচের Share আইকনে (⎋) ট্যাপ করে "Add to Home Screen" সিলেক্ট করুন।');
+      } else {
+        alert('আপনার ব্রাউজারের ডান দিকের থ্রি-ডট (⋮) মেনু থেকে "Install app" অথবা "Add to Home screen" চাপুন।');
+      }
+    }
+  }
+
+  installBtn.onclick = triggerInstall;
+  hdrInstall.onclick = triggerInstall;
+  if (heroInstall) heroInstall.onclick = triggerInstall;
+  document.getElementById('go').onclick = closeSplash;
+  updateInstallHints();
+
+  // Fullscreen toggle
+  var d = document, el = d.documentElement, fs = d.getElementById('fs');
+  function inFs(){ return d.fullscreenElement || d.webkitFullscreenElement; }
+  function enterFs(){ var f = el.requestFullscreen || el.webkitRequestFullscreen; if(f) try{ f.call(el); }catch(x){} }
+  function exitFs(){ var f = d.exitFullscreen || d.webkitExitFullscreen; if(f) try{ f.call(d); }catch(x){} }
+  if (!(el.requestFullscreen || el.webkitRequestFullscreen)) fs.style.display = 'none';
+  fs.onclick = function(){ inFs() ? exitFs() : enterFs(); };
 })();
-</script>
-<script>
+
+// ==================== 2. HOME GALLERY + CHAPTER GRID + SEARCH ====================
 (function(){
-var q=document.getElementById('q'),ds=[].slice.call(document.querySelectorAll('details'));
-q.addEventListener('input',function(){
-var v=q.value.trim().toLowerCase();
-ds.forEach(function(d){
-if(!v){d.style.display='';return;}
-var m=d.textContent.toLowerCase().indexOf(v)>-1;
-d.style.display=m?'':'none';d.open=m;
-});
-});
+  function T(d){return '<path d="'+d+'" fill="none" stroke="#25384a" stroke-width="26"/><path d="'+d+'" fill="none" stroke="#6f93a8" stroke-width="18"/><path d="'+d+'" fill="none" stroke="#e3f3fa" stroke-width="5" opacity=".85" transform="translate(-3,-3)"/>'}
+  function R(x,y,w,h){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="url(#gh)"/>'}
+  function P(p){return '<polygon points="'+p+'" fill="url(#gh)"/>'}
+  function E(x,y,a,b,f){return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+a+'" ry="'+b+'" fill="'+f+'"/>'}
+  function F(){var s=E(60,54,44,26,'#1f2f3b')+E(60,46,44,26,'url(#gr)');for(var i=0;i<8;i++){var a=i*Math.PI/4;s+=E((60+32*Math.cos(a)).toFixed(1),(46+18*Math.sin(a)).toFixed(1),4,2.6,'#1f2f3b')}return s+E(60,46,17,10,'#0e1820')}
+  var red='#d63a2f';
+  var items=[
+    ['PIPE','পাইপ','Pipe',R(8,34,104,24)+E(112,46,5,12,'#1b2a35')],
+    ['ELBOW_90','৯০° এলবো','90° Elbow',T('M12,72 H46 A26 26 0 0 0 72 46 V12')],
+    ['ELBOW_45','৪৫° এলবো','45° Elbow',T('M10,72 H46 Q64,72 76,58 L104,26')],
+    ['EQUAL_TEE','টি (Tee)','Equal Tee',T('M8,64 H112')+T('M60,64 V14')],
+    ['CONCENTRIC_REDUCER','কনসেন্ট্রিক রিডিউসার','Concentric Reducer',R(2,18,10,54)+P('12,18 84,34 84,56 12,72')+R(84,34,34,22)],
+    ['ECCENTRIC_REDUCER','এক্সেন্ট্রিক রিডিউসার','Eccentric Reducer',R(2,18,10,54)+P('12,18 84,44 84,72 12,72')+R(84,44,34,28)],
+    ['FLANGE','ফ্লেঞ্জ','Flange',F()],
+    ['BALL_VALVE','বল ভালভ','Ball Valve',R(4,34,112,24)+E(60,46,22,22,'url(#gr)')+'<rect x="57" y="18" width="6" height="12" fill="#444"/><rect x="26" y="10" width="62" height="8" rx="4" fill="'+red+'"/>'],
+    ['GATE_VALVE','গেট ভালভ','Gate Valve',R(4,40,112,22)+'<rect x="38" y="26" width="44" height="42" rx="7" fill="url(#gr)"/>'+R(52,10,16,18)+E(60,8,22,6,red)],
+    ['PIPE_CAP','ক্যাপ','Cap',R(14,18,34,56)+'<path d="M48,18 A28 28 0 0 1 48,74 Z" fill="url(#gh)"/>'+E(14,46,5,28,'#1b2a35')]
+  ];
+  var g=document.getElementById('galg');
+  items.forEach(function(x){
+    var div = document.createElement('div');
+    div.className = 'gc';
+    div.innerHTML = '<svg viewBox="0 0 120 90">'+x[3]+'</svg>'+x[1]+'<small>'+x[2]+' • ৩D দেখুন</small>';
+    div.onclick = function(){ open3DPage(x[0]); };
+    g.appendChild(div);
+  });
+
+  var ic=['📐','📏','🧮','🔩','⭕','🚰','🔥','📈','✂️','💧','🔧','🛠️','🔤','❓'];
+  var gr=document.getElementById('grid');
+  var chapterDetails = [].slice.call(document.querySelectorAll('#view-home > details:not(#gal)'));
+  chapterDetails.forEach(function(d,i){
+    var b=document.createElement('button');
+    b.innerHTML='<i>'+ic[i]+'</i>'+d.firstChild.textContent.replace(/^\s*[০-৯]+\.\s*/,'');
+    b.onclick=function(){d.open=true;d.scrollIntoView({behavior:'smooth'});};
+    gr.appendChild(b);
+  });
+
+  var q=document.getElementById('q'), ds=[].slice.call(document.querySelectorAll('#view-home details'));
+  q.addEventListener('input',function(){
+    if (document.getElementById('view-3d').classList.contains('active')) {
+      showHomePage(false);
+    }
+    var v=q.value.trim().toLowerCase();
+    ds.forEach(function(d){
+      if(!v){d.style.display='';return;}
+      var m=d.textContent.toLowerCase().indexOf(v)>-1;
+      d.style.display=m?'':'none';
+      d.open=m;
+    });
+  });
 })();
-</script>
-<script>
+
+// ==================== 3. NAVIGATION & HOME RESET-TO-BEGINNING ====================
+function setActiveNav(id){
+  ['nav-home','nav-3d','nav-search'].forEach(function(k){
+    document.getElementById(k).classList.toggle('active', k === id);
+  });
+}
+
+function showHomePage(resetToStart){
+  document.getElementById('view-3d').classList.remove('active');
+  document.getElementById('view-home').classList.remove('hidden');
+  setActiveNav('nav-home');
+  if (resetToStart) {
+    var q = document.getElementById('q');
+    if (q.value) {
+      q.value = '';
+      q.dispatchEvent(new Event('input'));
+    }
+    // Reset to very beginning cleanly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0;
+  }
+}
+
+document.getElementById('nav-home').onclick = function(){ showHomePage(true); };
+document.getElementById('nav-3d').onclick = function(){ open3DPage(window.current3DFitting || 'FLANGE'); };
+document.getElementById('nav-search').onclick = function(){
+  showHomePage(true);
+  setActiveNav('nav-search');
+  setTimeout(function(){ document.getElementById('q').focus(); }, 180);
+};
+
+// ==================== 4. INTERACTIVE 3D ENGINE (ANIMATE + HAND ROTATE + TOUCH PART NAME) ====================
 (function(){
-var d=document,e=d.documentElement,sp=d.getElementById('splash');
-var app=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone;
-function on(){return d.fullscreenElement||d.webkitFullscreenElement}
-function enter(){var f=e.requestFullscreen||e.webkitRequestFullscreen;if(f){try{var r=f.call(e,{navigationUI:'hide'});if(r&&r.catch)r.catch(function(){})}catch(x){}}}
-function exit(){var f=d.exitFullscreen||d.webkitExitFullscreen;if(f)try{f.call(d)}catch(x){}}
-d.getElementById('go').onclick=function(){enter();sp.classList.add('off');setTimeout(function(){sp.style.display='none'},400)};
-d.getElementById('fs').onclick=function(){on()?exit():enter()};
-if(app){sp.style.display='none'}
-var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
-if(ios&&!app)d.getElementById('ios').textContent='আইফোনে পুরো স্ক্রিনের জন্য Safari-র Share বাটন চেপে "Add to Home Screen" দিন।';
-if(!(e.requestFullscreen||e.webkitRequestFullscreen))d.getElementById('fs').style.display='none';
+  var SteelOuter = '#7d9db1', SteelLight = '#a7c4d6', SteelDark = '#21313d', BevelBrass = '#d8a84e', BoltDark = '#131d24', ValveBody = '#5a778a', ChromeBall = '#d4e6f1', ValveRed = '#d63a2f', StemSteel = '#bfcfd9';
+
+  function hexToRgb(h){ var n=parseInt(h.slice(1),16); return [(n>>16)&255, (n>>8)&255, n&255]; }
+  function sub(a,b){ return [a[0]-b[0],a[1]-b[1],a[2]-b[2]]; }
+  function cross(a,b){ return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+  function norm(v){ var l=Math.hypot(v[0],v[1],v[2])||1e-5; return [v[0]/l,v[1]/l,v[2]/l]; }
+  function ortho(dir){
+    var n=norm(dir), up=Math.abs(n[2])<0.9?[0,0,1]:[0,1,0], u=norm(cross(up,n)), v=norm(cross(n,u));
+    return [u,v];
+  }
+  function addQuad(tris,a,b,c,d,partId,color,metal){
+    var rgb=hexToRgb(color);
+    tris.push({v:[a,b,c], p:partId, c:rgb, m:metal||0.78});
+    tris.push({v:[a,c,d], p:partId, c:rgb, m:metal||0.78});
+  }
+  function addCyl(tris,p0,p1,r0,r1,segs,partId,color){
+    var uv=ortho(sub(p1,p0)), u=uv[0], v=uv[1];
+    for(var i=0;i<segs;i++){
+      var a0=i/segs*Math.PI*2, a1=(i+1)/segs*Math.PI*2;
+      var c0=Math.cos(a0), s0=Math.sin(a0), c1=Math.cos(a1), s1=Math.sin(a1);
+      var v00=[p0[0]+r0*(c0*u[0]+s0*v[0]), p0[1]+r0*(c0*u[1]+s0*v[1]), p0[2]+r0*(c0*u[2]+s0*v[2])];
+      var v01=[p0[0]+r0*(c1*u[0]+s1*v[0]), p0[1]+r0*(c1*u[1]+s1*v[1]), p0[2]+r0*(c1*u[2]+s1*v[2])];
+      var v10=[p1[0]+r1*(c0*u[0]+s0*v[0]), p1[1]+r1*(c0*u[1]+s0*v[1]), p1[2]+r1*(c0*u[2]+s0*v[2])];
+      var v11=[p1[0]+r1*(c1*u[0]+s1*v[0]), p1[1]+r1*(c1*u[1]+s1*v[1]), p1[2]+r1*(c1*u[2]+s1*v[2])];
+      addQuad(tris,v00,v10,v11,v01,partId,color);
+    }
+  }
+  function addAnnular(tris,cen,nrm,rIn,rOut,segs,partId,color){
+    var uv=ortho(nrm), u=uv[0], v=uv[1];
+    for(var i=0;i<segs;i++){
+      var a0=i/segs*Math.PI*2, a1=(i+1)/segs*Math.PI*2;
+      var c0=Math.cos(a0), s0=Math.sin(a0), c1=Math.cos(a1), s1=Math.sin(a1);
+      var i0=[cen[0]+rIn*(c0*u[0]+s0*v[0]), cen[1]+rIn*(c0*u[1]+s0*v[1]), cen[2]+rIn*(c0*u[2]+s0*v[2])];
+      var i1=[cen[0]+rIn*(c1*u[0]+s1*v[0]), cen[1]+rIn*(c1*u[1]+s1*v[1]), cen[2]+rIn*(c1*u[2]+s1*v[2])];
+      var o0=[cen[0]+rOut*(c0*u[0]+s0*v[0]), cen[1]+rOut*(c0*u[1]+s0*v[1]), cen[2]+rOut*(c0*u[2]+s0*v[2])];
+      var o1=[cen[0]+rOut*(c1*u[0]+s1*v[0]), cen[1]+rOut*(c1*u[1]+s1*v[1]), cen[2]+rOut*(c1*u[2]+s1*v[2])];
+      addQuad(tris,i0,o0,o1,i1,partId,color);
+    }
+  }
+  function addDisc(tris,cen,nrm,r,segs,partId,color){
+    var uv=ortho(nrm), u=uv[0], v=uv[1], rgb=hexToRgb(color);
+    for(var i=0;i<segs;i++){
+      var a0=i/segs*Math.PI*2, a1=(i+1)/segs*Math.PI*2;
+      var p0=[cen[0]+r*(Math.cos(a0)*u[0]+Math.sin(a0)*v[0]), cen[1]+r*(Math.cos(a0)*u[1]+Math.sin(a0)*v[1]), cen[2]+r*(Math.cos(a0)*u[2]+Math.sin(a0)*v[2])];
+      var p1=[cen[0]+r*(Math.cos(a1)*u[0]+Math.sin(a1)*v[0]), cen[1]+r*(Math.cos(a1)*u[1]+Math.sin(a1)*v[1]), cen[2]+r*(Math.cos(a1)*u[2]+Math.sin(a1)*v[2])];
+      tris.push({v:[cen,p0,p1], p:partId, c:rgb, m:0.7});
+    }
+  }
+  function addBox(tris,mn,mx,partId,color){
+    var p000=[mn[0],mn[1],mn[2]], p100=[mx[0],mn[1],mn[2]], p110=[mx[0],mx[1],mn[2]], p010=[mn[0],mx[1],mn[2]];
+    var p001=[mn[0],mn[1],mx[2]], p101=[mx[0],mn[1],mx[2]], p111=[mx[0],mx[1],mx[2]], p011=[mn[0],mx[1],mx[2]];
+    addQuad(tris,p001,p101,p111,p011,partId,color); addQuad(tris,p100,p000,p010,p110,partId,color);
+    addQuad(tris,p011,p111,p110,p010,partId,color); addQuad(tris,p000,p100,p101,p001,partId,color);
+    addQuad(tris,p101,p100,p110,p111,partId,color); addQuad(tris,p000,p001,p011,p010,partId,color);
+  }
+  function addSphere(tris,c,r,lons,lats,partId,color){
+    function sp(ph,th){return [c[0]+r*Math.cos(ph)*Math.cos(th), c[1]+r*Math.sin(ph), c[2]+r*Math.cos(ph)*Math.sin(th)];}
+    for(var i=0;i<lats;i++){
+      var p0=-Math.PI/2+i/lats*Math.PI, p1=-Math.PI/2+(i+1)/lats*Math.PI;
+      for(var j=0;j<lons;j++){
+        var t0=j/lons*Math.PI*2, t1=(j+1)/lons*Math.PI*2;
+        addQuad(tris,sp(p0,t0),sp(p1,t0),sp(p1,t1),sp(p0,t1),partId,color);
+      }
+    }
+  }
+  function addTorus(tris,c,R,r,mSeg,nSeg,partId,color){
+    function tp(u,v){var rr=R+r*Math.cos(v); return [c[0]+rr*Math.cos(u), c[1]+r*Math.sin(v), c[2]+rr*Math.sin(u)];}
+    for(var i=0;i<mSeg;i++){
+      var u0=i/mSeg*Math.PI*2, u1=(i+1)/mSeg*Math.PI*2;
+      for(var j=0;j<nSeg;j++){
+        var v0=j/nSeg*Math.PI*2, v1=(j+1)/nSeg*Math.PI*2;
+        addQuad(tris,tp(u0,v0),tp(u1,v0),tp(u1,v1),tp(u0,v1),partId,color);
+      }
+    }
+  }
+  function ringPt(c,tan,r,a){ var uv=ortho(tan),u=uv[0],v=uv[1],ca=Math.cos(a),sa=Math.sin(a); return [c[0]+r*(ca*u[0]+sa*v[0]),c[1]+r*(ca*u[1]+sa*v[1]),c[2]+r*(ca*u[2]+sa*v[2])]; }
+
+  var FITTINGS = {
+    PIPE: {
+      bn:'পাইপ (Bevel End)', en:'Beveled Steel Pipe', sub:'৩৭.৫° বেভেল, OD ও ID বোর',
+      build:function(){
+        var t=[], rO=0.42, rI=0.32, h=0.82, bv=0.09;
+        addCyl(t,[-h+bv,0,0],[h-bv,0,0],rO,rO,24,'outer_od',SteelOuter);
+        addCyl(t,[-h,0,0],[h,0,0],rI,rI,24,'inner_id',SteelDark);
+        addCyl(t,[-h,0,0],[-h+bv,0,0],rI+0.02,rO,24,'bevel_end',BevelBrass);
+        addAnnular(t,[-h,0,0],[-1,0,0],rI,rI+0.02,24,'root_face',SteelLight);
+        addCyl(t,[h-bv,0,0],[h,0,0],rO,rI+0.02,24,'bevel_end',BevelBrass);
+        addAnnular(t,[h,0,0],[1,0,0],rI,rI+0.02,24,'root_face',SteelLight);
+        return t;
+      },
+      parts:[
+        {id:'outer_od', bn:'বাইরের দেয়াল (OD)', en:'Outside Diameter (OD)', desc:'পাইপের বাইরের মোট ব্যাস। CF = OD × 3.142 সূত্র দিয়ে পরিধি বের হয়।', tip:'উদাহরণ: 4" পাইপের OD = 114.3 mm'},
+        {id:'inner_id', bn:'ভিতরের বোর (ID)', en:'Inside Diameter (ID)', desc:'ভিতরের ফাঁকা অংশ যেখান দিয়ে তরল/গ্যাস প্রবাহিত হয়।', tip:'ID = OD − (2 × Thickness)'},
+        {id:'bevel_end', bn:'৩৭.৫° ভি-বেভেল (V-Bevel)', en:'37.5° V-Bevel End', desc:'বাট ওয়েল্ডিংয়ের আগে পাইপের মুখ ৩৭.৫° কোণে ঢালু করে কাটা হয়।', tip:'Bevel length = Tan(37.5°) × Thickness'},
+        {id:'root_face', bn:'রুট ফেস (Root Face)', en:'Root Face & Thickness', desc:'বেভেলের সামনের সমতল কিনারা; ১–১.৬ mm রাখা হয়।', tip:'Root Gap সাধারণত 3.2–4 mm'}
+      ]
+    },
+    ELBOW_90: {
+      bn:'৯০° এলবো', en:'90° LR Elbow', sub:'দিক পরিবর্তনের ১.৫D লং রেডিয়াস এলবো',
+      build:function(){
+        var t=[], bR=0.72, rO=0.34, rI=0.25, steps=20, segs=22, c=[-0.32,-0.32,0];
+        for(var i=0;i<steps;i++){
+          var t0=i/steps*(Math.PI/2), t1=(i+1)/steps*(Math.PI/2);
+          var p0=[c[0]+bR*Math.cos(t0),c[1]+bR*Math.sin(t0),0], p1=[c[0]+bR*Math.cos(t1),c[1]+bR*Math.sin(t1),0];
+          var tan0=[-Math.sin(t0),Math.cos(t0),0], tan1=[-Math.sin(t1),Math.cos(t1),0];
+          for(var j=0;j<segs;j++){
+            var a0=j/segs*Math.PI*2, a1=(j+1)/segs*Math.PI*2, rd=Math.cos((a0+a1)/2);
+            addQuad(t,ringPt(p0,tan0,rO,a0),ringPt(p1,tan1,rO,a0),ringPt(p1,tan1,rO,a1),ringPt(p0,tan0,rO,a1), rd>=0?'extrados':'intrados', rd>=0?SteelLight:SteelOuter);
+            addQuad(t,ringPt(p0,tan0,rI,a0),ringPt(p0,tan0,rI,a1),ringPt(p1,tan1,rI,a1),ringPt(p1,tan1,rI,a0), 'elbow_bore', SteelDark);
+          }
+        }
+        addAnnular(t,[c[0]+bR,c[1],0],[0,-1,0],rI,rO,segs,'bevel_ends',BevelBrass);
+        addAnnular(t,[c[0],c[1]+bR,0],[-1,0,0],rI,rO,segs,'bevel_ends',BevelBrass);
+        return t;
+      },
+      parts:[
+        {id:'extrados', bn:'এক্সট্রাডোস (বাইরের বাঁক)', en:'Extrados (Outer Arc)', desc:'এলবোর বাইরের দিকের বড় বাঁকানো অংশ। লং রেডিয়াস এলবো ১.৫D হয়।', tip:'90° LR Center = 38.1 × ইঞ্চি'},
+        {id:'intrados', bn:'ইন্ট্রাডোস (ভিতরের বাঁক)', en:'Intrados (Inner Arc)', desc:'এলবোর ভিতরের দিকের ছোট বাঁক (থ্রোট)।', tip:'Short Radius (1D) = 25.4 × ইঞ্চি'},
+        {id:'bevel_ends', bn:'বেভেল এন্ড (Bevel End)', en:'Butt-Weld Bevel Ends', desc:'দুই প্রান্তে ৩৭.৫° বেভেল করা থাকে বাট ওয়েল্ডিংয়ের জন্য।', tip:'ASTM A234 WPB / ANSI B16.9'},
+        {id:'elbow_bore', bn:'এলবো বোর (ID)', en:'Inner Flow Bore', desc:'ভিতরের মসৃণ পথ যা দিক পরিবর্তন করে।', tip:'Schedule 40 / 80'}
+      ]
+    },
+    ELBOW_45: {
+      bn:'৪৫° এলবো', en:'45° Elbow', sub:'৪৫ ডিগ্রি বাঁক ও রোলিং ফিটিং',
+      build:function(){
+        var t=[], bR=0.85, rO=0.34, rI=0.25, steps=14, segs=22, c=[-0.55,-0.25,0], tot=Math.PI/4;
+        for(var i=0;i<steps;i++){
+          var t0=i/steps*tot, t1=(i+1)/steps*tot;
+          var p0=[c[0]+bR*Math.cos(t0),c[1]+bR*Math.sin(t0),0], p1=[c[0]+bR*Math.cos(t1),c[1]+bR*Math.sin(t1),0];
+          var tan0=[-Math.sin(t0),Math.cos(t0),0], tan1=[-Math.sin(t1),Math.cos(t1),0];
+          for(var j=0;j<segs;j++){
+            var a0=j/segs*Math.PI*2, a1=(j+1)/segs*Math.PI*2, rd=Math.cos((a0+a1)/2);
+            addQuad(t,ringPt(p0,tan0,rO,a0),ringPt(p1,tan1,rO,a0),ringPt(p1,tan1,rO,a1),ringPt(p0,tan0,rO,a1), rd>=0?'extrados_45':'intrados_45', rd>=0?SteelLight:SteelOuter);
+            addQuad(t,ringPt(p0,tan0,rI,a0),ringPt(p0,tan0,rI,a1),ringPt(p1,tan1,rI,a1),ringPt(p1,tan1,rI,a0), 'bore_45', SteelDark);
+          }
+        }
+        addAnnular(t,[c[0]+bR,c[1],0],[0,-1,0],rI,rO,segs,'bevel_45',BevelBrass);
+        addAnnular(t,[c[0]+bR*Math.cos(tot),c[1]+bR*Math.sin(tot),0],[-Math.sin(tot),Math.cos(tot),0],rI,rO,segs,'bevel_45',BevelBrass);
+        return t;
+      },
+      parts:[
+        {id:'extrados_45', bn:'৪৫° বাইরের বাঁক (Extrados)', en:'45° Outer Arc', desc:'৪৫° কোণে রোলিং বা অফসেট লাইনের বাইরের বাঁকানো অংশ।', tip:'45° Center = 15.9 × ইঞ্চি (LR)'},
+        {id:'intrados_45', bn:'৪৫° ভিতরের বাঁক (Intrados)', en:'45° Inner Arc', desc:'এলবোর ভিতরের দিকের বাঁক। ডাবল রোলিংয়ে ব্যবহৃত।', tip:'Tan(22.5°) × 1.5 × Size × 25.4'},
+        {id:'bevel_45', bn:'বেভেল এন্ড (Bevel End)', en:'Weld Bevel Ends', desc:'দুই প্রান্তে ৩৭.৫° বেভেল।', tip:'Root Gap = 4 mm'},
+        {id:'bore_45', bn:'ভিতরের বোর (ID Bore)', en:'Internal Bore', desc:'ফ্লো প্রবাহের ভেতরের পথ।', tip:'Schedule অনুযায়ী থিকনেস'}
+      ]
+    },
+    EQUAL_TEE: {
+      bn:'টি (Equal Tee)', en:'Equal Branch Tee', sub:'হেডার লাইন থেকে ব্রাঞ্চ লাইন আউটলেট',
+      build:function(){
+        var t=[], rO=0.32, rI=0.23;
+        addCyl(t,[-0.85,-0.15,0],[0.85,-0.15,0],rO,rO,22,'header_run',SteelOuter);
+        addCyl(t,[-0.85,-0.15,0],[0.85,-0.15,0],rI,rI,22,'tee_bore',SteelDark);
+        addAnnular(t,[-0.85,-0.15,0],[-1,0,0],rI,rO,22,'tee_bevel',BevelBrass);
+        addAnnular(t,[0.85,-0.15,0],[1,0,0],rI,rO,22,'tee_bevel',BevelBrass);
+        addCyl(t,[0,-0.15,0],[0,0.22,0],rO*1.07,rO*1.02,22,'crotch_zone',SteelLight);
+        addCyl(t,[0,0.16,0],[0,0.72,0],rO,rO,22,'branch_outlet',SteelOuter);
+        addCyl(t,[0,-0.12,0],[0,0.72,0],rI,rI,22,'tee_bore',SteelDark);
+        addAnnular(t,[0,0.72,0],[0,1,0],rI,rO,22,'tee_bevel',BevelBrass);
+        return t;
+      },
+      parts:[
+        {id:'header_run', bn:'মেইন হেডার রান (Header Run)', en:'Main Header Run', desc:'সোজা প্রধান লাইন যা টি-এর মধ্য দিয়ে সরাসরি চলে যায়।', tip:'Equal Tee: হেডার ও ব্রাঞ্চ সমান সাইজ'},
+        {id:'branch_outlet', bn:'ব্রাঞ্চ আউটলেট (Branch)', en:'90° Branch Outlet', desc:'মেইন লাইন থেকে ৯০° কোণে বের হওয়া শাখা লাইন।', tip:'ছোট শাখা হলে Reducing Tee লাগে'},
+        {id:'crotch_zone', bn:'টি জাংশন / ক্রচ (Crotch)', en:'Tee Junction Shoulder', desc:'হেডার ও ব্রাঞ্চ সংযোগের শক্তিশালী অংশ।', tip:'ASTM A234 WPB'},
+        {id:'tee_bevel', bn:'বেভেল এন্ড (Bevel Ends)', en:'Three Bevel Ends', desc:'তিনটি মুখেই বাট ওয়েল্ডিংয়ের জন্য বেভেল থাকে।', tip:'৪" Equal Tee সেন্টার = 105 mm'},
+        {id:'tee_bore', bn:'ভিতরের বোর (ID Bore)', en:'Internal Flow Passage', desc:'হেডার থেকে ব্রাঞ্চে ফ্লুইড বিভাজনের পথ।', tip:'Schedule 40 / 80'}
+      ]
+    },
+    CONCENTRIC_REDUCER: {
+      bn:'কনসেন্ট্রিক রিডিউসার', en:'Concentric Reducer', sub:'ভার্টিক্যাল লাইনের জন্য সমকেন্দ্রিক রিডিউসার',
+      build:function(){
+        var t=[], rL=0.52, rS=0.28, th=0.08;
+        addCyl(t,[-0.85,0,0],[-0.5,0,0],rL,rL,26,'conc_large',SteelLight);
+        addCyl(t,[-0.85,0,0],[-0.5,0,0],rL-th,rL-th,26,'conc_bore',SteelDark);
+        addAnnular(t,[-0.85,0,0],[-1,0,0],rL-th,rL,26,'conc_large',BevelBrass);
+        addCyl(t,[-0.5,0,0],[0.45,0,0],rL,rS,26,'conc_cone',SteelOuter);
+        addCyl(t,[-0.5,0,0],[0.45,0,0],rL-th,rS-th,26,'conc_bore',SteelDark);
+        addCyl(t,[0.45,0,0],[0.85,0,0],rS,rS,26,'conc_small',SteelLight);
+        addCyl(t,[0.45,0,0],[0.85,0,0],rS-th,rS-th,26,'conc_bore',SteelDark);
+        addAnnular(t,[0.85,0,0],[1,0,0],rS-th,rS,26,'conc_small',BevelBrass);
+        return t;
+      },
+      parts:[
+        {id:'conc_large', bn:'বড় মুখ (Large End OD)', en:'Large Diameter End', desc:'বড় সাইজের পাইপের সাথে যুক্ত হওয়ার প্রান্ত।', tip:'উভয় প্রান্তের কেন্দ্র একই অক্ষে থাকে'},
+        {id:'conc_cone', bn:'কনসেন্ট্রিক টেপার কোণ', en:'Concentric Taper Body', desc:'চারদিক থেকে সমানভাবে সরু হওয়া অংশ; সাধারণত Vertical লাইনে ব্যবহৃত।', tip:'Vertical লাইনে বেশি ব্যবহার'},
+        {id:'conc_small', bn:'ছোট মুখ (Small End OD)', en:'Small Diameter End', desc:'ছোট পাইপের সাথে যুক্ত হওয়ার প্রান্ত।', tip:'যেমন: 6"→4" = 139.7 mm'},
+        {id:'conc_bore', bn:'ভিতরের বোর (ID Bore)', en:'Internal Taper Bore', desc:'ভিতরের প্রবাহ পথ।', tip:'চাপ ও গতি পরিবর্তনে সহায়ক'}
+      ]
+    },
+    ECCENTRIC_REDUCER: {
+      bn:'এক্সেন্ট্রিক রিডিউসার', en:'Eccentric Reducer', sub:'হরিজন্টাল লাইনের ফ্ল্যাট-সাইড রিডিউসার',
+      build:function(){
+        var t=[], rL=0.50, rS=0.27, th=0.08, yO=-(rL-rS);
+        addCyl(t,[-0.85,0,0],[-0.48,0,0],rL,rL,26,'ecc_large',SteelLight);
+        addCyl(t,[-0.85,0,0],[-0.48,0,0],rL-th,rL-th,26,'ecc_bore',SteelDark);
+        addAnnular(t,[-0.85,0,0],[-1,0,0],rL-th,rL,26,'ecc_large',BevelBrass);
+        addCyl(t,[-0.48,0,0],[0.45,yO,0],rL,rS,26,'ecc_taper',SteelOuter);
+        addCyl(t,[-0.48,0,0],[0.45,yO,0],rL-th,rS-th,26,'ecc_bore',SteelDark);
+        addCyl(t,[0.45,yO,0],[0.85,yO,0],rS,rS,26,'ecc_small',SteelLight);
+        addCyl(t,[0.45,yO,0],[0.85,yO,0],rS-th,rS-th,26,'ecc_bore',SteelDark);
+        addAnnular(t,[0.85,yO,0],[1,0,0],rS-th,rS,26,'ecc_small',BevelBrass);
+        return t;
+      },
+      parts:[
+        {id:'ecc_large', bn:'বড় মুখ (Large End)', en:'Large End', desc:'হরিজন্টাল পাইপ লাইনে বড় পাইপের সাথে যুক্ত প্রান্ত।', tip:'বটম-ফ্ল্যাট বা টপ-ফ্ল্যাট বসে'},
+        {id:'ecc_taper', bn:'অফসেট টেপার ও ফ্ল্যাট সাইড', en:'Eccentric Offset Taper', desc:'এক পাশ সমতল (Flat) ও অন্য পাশ ঢালু। পাম্প সাকশনে এয়ার পকেট রোধ করে।', tip:'Horizontal লাইনে বেশি ব্যবহার হয়'},
+        {id:'ecc_small', bn:'ছোট মুখ (Offset Small End)', en:'Offset Small End', desc:'অফসেট সেন্টারসহ ছোট প্রান্ত।', tip:'Pipe rack-এ Bottom Flat (BOP)'},
+        {id:'ecc_bore', bn:'ভিতরের বোর (ID Bore)', en:'Offset Internal Bore', desc:'পানি/গ্যাস জমে থাকা ঠেকিয়ে মসৃণ প্রবাহ রাখে।', tip:'Pump suction-এ Top Flat'}
+      ]
+    },
+    FLANGE: {
+      bn:'ওয়েল্ড নেক ফ্লেঞ্জ', en:'Weld Neck Flange (RF)', sub:'বোল্ট হোল (PCD), রেইজড ফেস ও হাব',
+      build:function(){
+        var t=[], rO=0.88, rRF=0.56, rB=0.30, rHub=0.44, rN=0.36, pcd=0.71, hR=0.068;
+        addCyl(t,[0,0,-0.12],[0,0,0.12],rO,rO,32,'flange_od',SteelOuter);
+        addAnnular(t,[0,0,-0.12],[0,0,-1],rHub,rO,32,'flange_od',SteelOuter);
+        addAnnular(t,[0,0,0.12],[0,0,1],rRF,rO,32,'flange_face',SteelLight);
+        addCyl(t,[0,0,0.12],[0,0,0.18],rRF,rRF,28,'raised_face',BevelBrass);
+        addAnnular(t,[0,0,0.18],[0,0,1],rB,rRF,28,'raised_face',BevelBrass);
+        for(var i=0;i<8;i++){
+          var a=i*Math.PI/4, hx=pcd*Math.cos(a), hy=pcd*Math.sin(a);
+          addCyl(t,[hx,hy,-0.13],[hx,hy,0.13],hR,hR,12,'pcd_holes',BoltDark);
+          addDisc(t,[hx,hy,0.13],[0,0,1],hR,12,'pcd_holes',BoltDark);
+          addDisc(t,[hx,hy,-0.13],[0,0,-1],hR,12,'pcd_holes',BoltDark);
+        }
+        addCyl(t,[0,0,-0.62],[0,0,-0.12],rN,rHub,26,'weld_neck',SteelOuter);
+        addAnnular(t,[0,0,-0.62],[0,0,-1],rB,rN,26,'weld_neck',BevelBrass);
+        addCyl(t,[0,0,-0.62],[0,0,0.18],rB,rB,26,'flange_bore',SteelDark);
+        return t;
+      },
+      parts:[
+        {id:'raised_face', bn:'রেইজড ফেস (Raised Face - RF)', en:'Raised Face Gasket Seat', desc:'ফ্লেঞ্জের সামনের উঁচু অংশ যেখানে গ্যাসকেট বসে ও লিক-প্রুফ সিল তৈরি হয়।', tip:'অন্য ধরন: Flat Face (FF), RTJ'},
+        {id:'pcd_holes', bn:'বোল্ট হোল ও PCD', en:'Bolt Holes (PCD)', desc:'বোল্ট লাগানোর ছিদ্র। হোল দূরত্ব = Sin(180 ÷ হোল সংখ্যা) × PCD।', tip:'৬" ১৫০# ফ্লেঞ্জে ৮ হোল, PCD = 241.3 mm'},
+        {id:'flange_od', bn:'ফ্লেঞ্জ আউটার রিম (OD)', en:'Flange Outer Rim', desc:'ফ্লেঞ্জের বাইরের গোলাকার ডিস্ক; ক্লাস অনুযায়ী ব্যাস বাড়ে।', tip:'ASME B16.5 স্ট্যান্ডার্ড'},
+        {id:'flange_face', bn:'ফ্লেঞ্জ ফেস (Flange Face)', en:'Flange Bolting Face', desc:'বোল্ট-নাট বসানোর সমতল অংশ। স্পিরিট লেভেল ও হোল চেক করতে হয়।', tip:'WD-40 ও ওয়্যার ব্রাশ দিয়ে পরিষ্কার রাখুন'},
+        {id:'weld_neck', bn:'ওয়েল্ড নেক হাব (Weld Neck Hub)', en:'Tapered Weld Neck Hub', desc:'পাইপের সাথে বাট ওয়েল্ডিং করার ঢালু নেক অংশ; হাই প্রেসারে নিরাপদ।', tip:'বেভেল এন্ডে ৪ mm গ্যাপ'},
+        {id:'flange_bore', bn:'পাইপ বোর (Pipe Bore / ID)', en:'Central Pipe Bore', desc:'পাইপের সমান অভ্যন্তরীণ ছিদ্র।', tip:'Schedule অনুযায়ী বোর মিলে'}
+      ]
+    },
+    BALL_VALVE: {
+      bn:'বল ভালভ', en:'Ball Valve', sub:'দ্রুত খোলা-বন্ধের লিভার হ্যান্ডেল বল ভালভ',
+      build:function(){
+        var t=[];
+        addCyl(t,[-0.92,-0.08,0],[0.92,-0.08,0],0.25,0.25,20,'bv_ports',SteelOuter);
+        addCyl(t,[-0.92,-0.08,0],[0.92,-0.08,0],0.17,0.17,18,'bv_bore',SteelDark);
+        addCyl(t,[-0.92,-0.08,0],[-0.80,-0.08,0],0.40,0.40,22,'bv_ports',SteelLight);
+        addAnnular(t,[-0.92,-0.08,0],[-1,0,0],0.17,0.40,22,'bv_ports',SteelLight);
+        addAnnular(t,[-0.80,-0.08,0],[1,0,0],0.25,0.40,22,'bv_ports',SteelOuter);
+        addCyl(t,[0.80,-0.08,0],[0.92,-0.08,0],0.40,0.40,22,'bv_ports',SteelLight);
+        addAnnular(t,[0.92,-0.08,0],[1,0,0],0.17,0.40,22,'bv_ports',SteelLight);
+        addAnnular(t,[0.80,-0.08,0],[-1,0,0],0.25,0.40,22,'bv_ports',SteelOuter);
+        addSphere(t,[0,-0.08,0],0.39,18,12,'bv_body',ValveBody);
+        addCyl(t,[-0.22,-0.08,0],[0.22,-0.08,0],0.405,0.405,20,'bv_ball',ChromeBall);
+        addCyl(t,[0,0.28,0],[0,0.56,0],0.11,0.11,14,'bv_stem',StemSteel);
+        addCyl(t,[0,0.26,0],[0,0.36,0],0.17,0.17,8,'bv_stem',BevelBrass);
+        addBox(t,[-0.12,0.56,-0.07],[0.82,0.68,0.07],'bv_handle',ValveRed);
+        return t;
+      },
+      parts:[
+        {id:'bv_handle', bn:'লাল লিভার হ্যান্ডেল (Lever Handle)', en:'Quarter-Turn Lever Handle', desc:'৯০° ঘুরিয়ে দ্রুত ভালভ সম্পূর্ণ খোলা বা বন্ধ করা যায়।', tip:'পাইপের সমান্তরালে থাকলে খোলা'},
+        {id:'bv_stem', bn:'ভালভ স্টেম ও গ্ল্যান্ড নাট', en:'Valve Stem & Packing Nut', desc:'হ্যান্ডেলের ঘূর্ণন শক্তি ভিতরের বলের কাছে পৌঁছে দেয়।', tip:'PTFE সিল ব্যবহৃত হয়'},
+        {id:'bv_body', bn:'ভালভ বডি (Valve Body)', en:'Main Valve Housing', desc:'উচ্চ চাপ সহনশীল বাইরের খোলস যা বল ধরে রাখে।', tip:'CS / SS'},
+        {id:'bv_ball', bn:'ভিতরের বল / সেন্টার কোর', en:'Internal Rotating Ball', desc:'ভিতরে ছিদ্রযুক্ত গোলাকার বল থাকে।', tip:'Full Bore বা Reduced Bore'},
+        {id:'bv_ports', bn:'এন্ড ফ্লেঞ্জ ও পোর্ট (Ports)', en:'Flange Ports', desc:'পাইপলাইনের সাথে বোল্ট ও গ্যাসকেট দিয়ে যুক্ত হয়।', tip:'ASME B16.5'},
+        {id:'bv_bore', bn:'ফ্লো বোর (Flow Bore / ID)', en:'Internal Flow Passage', desc:'ভালভের ভেতরের সোজা প্রবাহ পথ।', tip:'Full Bore-এ প্রেসার ড্রপ কম'}
+      ]
+    },
+    GATE_VALVE: {
+      bn:'গেট ভালভ', en:'Gate Valve', sub:'হ্যান্ডহুইল, বনেট ও রাইজিং স্টেম ভালভ',
+      build:function(){
+        var t=[], yA=-0.25;
+        addCyl(t,[-0.92,yA,0],[0.92,yA,0],0.24,0.24,20,'gv_ports',SteelOuter);
+        addCyl(t,[-0.92,yA,0],[0.92,yA,0],0.16,0.16,18,'gv_ports',SteelDark);
+        addCyl(t,[-0.92,yA,0],[-0.80,yA,0],0.42,0.42,22,'gv_ports',SteelLight);
+        addAnnular(t,[-0.92,yA,0],[-1,0,0],0.16,0.42,22,'gv_ports',SteelLight);
+        addAnnular(t,[-0.80,yA,0],[1,0,0],0.24,0.42,22,'gv_ports',SteelOuter);
+        addCyl(t,[0.80,yA,0],[0.92,yA,0],0.42,0.42,22,'gv_ports',SteelLight);
+        addAnnular(t,[0.92,yA,0],[1,0,0],0.16,0.42,22,'gv_ports',SteelLight);
+        addAnnular(t,[0.80,yA,0],[-1,0,0],0.24,0.42,22,'gv_ports',SteelOuter);
+        addBox(t,[-0.34,yA-0.30,-0.28],[0.34,yA+0.34,0.28],'gv_body',ValveBody);
+        addCyl(t,[0,yA+0.34,0],[0,yA+0.44,0],0.34,0.34,18,'gv_bonnet',SteelLight);
+        addAnnular(t,[0,yA+0.44,0],[0,1,0],0.14,0.34,18,'gv_bonnet',SteelLight);
+        addCyl(t,[0,yA+0.44,0],[0,yA+0.78,0],0.16,0.12,16,'gv_bonnet',SteelOuter);
+        addCyl(t,[0,yA+0.78,0],[0,yA+1.15,0],0.065,0.065,12,'gv_stem',BevelBrass);
+        var wY=yA+1.05;
+        addTorus(t,[0,wY,0],0.42,0.055,22,10,'gv_wheel',ValveRed);
+        addCyl(t,[-0.42,wY,0],[0.42,wY,0],0.035,0.035,8,'gv_wheel',ValveRed);
+        addCyl(t,[0,wY,-0.42],[0,wY,0.42],0.035,0.035,8,'gv_wheel',ValveRed);
+        addCyl(t,[0,wY-0.04,0],[0,wY+0.08,0],0.10,0.10,10,'gv_wheel',StemSteel);
+        return t;
+      },
+      parts:[
+        {id:'gv_wheel', bn:'হ্যান্ডহুইল (Handwheel)', en:'Valve Handwheel', desc:'ঘুরিয়ে গেট ভালভ সম্পূর্ণ খোলা বা সম্পূর্ণ বন্ধ করা হয়।', tip:'Full Open / Full Close ভালভ'},
+        {id:'gv_stem', bn:'রাইজিং স্টেম (Rising Stem)', en:'Threaded Valve Stem', desc:'ভালভ খুললে স্টেম উপরে উঠে আসে; বাইরে থেকেই অবস্থা বোঝা যায়।', tip:'থ্রটলিং করা উচিত নয়'},
+        {id:'gv_bonnet', bn:'বনেট ও বোল্টেড কভার', en:'Valve Bonnet', desc:'ভালভ বডির উপরের ঢাকনা যা স্টেম সুরক্ষিত রাখে।', tip:'রক্ষণাবেক্ষণে খোলা যায়'},
+        {id:'gv_body', bn:'গেট বডি চেম্বার', en:'Gate Valve Body', desc:'ভিতরে ওয়েজ গেট ওঠানামা করে প্রবাহ আটকায়।', tip:'পানি, তেল ও স্টিমে ব্যবহৃত'},
+        {id:'gv_ports', bn:'ইনলেট/আউটলেট ফ্লেঞ্জ', en:'Flanged Flow Ports', desc:'পাইপলাইনের সাথে যুক্ত প্রান্ত।', tip:'উভয় দিকে ফ্লো সম্ভব'}
+      ]
+    },
+    PIPE_CAP: {
+      bn:'পাইপ ক্যাপ', en:'Pipe End Cap', sub:'পাইপের মুখ স্থায়ীভাবে বন্ধ করার ক্যাপ',
+      build:function(){
+        var t=[], rO=0.54, rI=0.43;
+        addCyl(t,[-0.55,0,0],[-0.10,0,0],rO,rO,28,'cap_skirt',SteelOuter);
+        addCyl(t,[-0.55,0,0],[-0.10,0,0],rI,rI,28,'cap_bore',SteelDark);
+        addAnnular(t,[-0.55,0,0],[-1,0,0],rI,rO,28,'cap_bevel',BevelBrass);
+        var lS=10, lon=28, dep=0.56;
+        for(var i=0;i<lS;i++){
+          var p0=i/lS*(Math.PI/2), p1=(i+1)/lS*(Math.PI/2);
+          var x0=-0.10+dep*Math.sin(p0), x1=-0.10+dep*Math.sin(p1);
+          var rr0=rO*Math.cos(p0), rr1=rO*Math.cos(p1), ir0=rI*Math.cos(p0), ir1=rI*Math.cos(p1);
+          for(var j=0;j<lon;j++){
+            var t0=j/lon*Math.PI*2, t1=(j+1)/lon*Math.PI*2;
+            addQuad(t,[x0,rr0*Math.cos(t0),rr0*Math.sin(t0)],[x1,rr1*Math.cos(t0),rr1*Math.sin(t0)],[x1,rr1*Math.cos(t1),rr1*Math.sin(t1)],[x0,rr0*Math.cos(t1),rr0*Math.sin(t1)],'cap_dome',SteelLight);
+            addQuad(t,[x0,ir0*Math.cos(t0),ir0*Math.sin(t0)],[x0,ir0*Math.cos(t1),ir0*Math.sin(t1)],[x1,ir1*Math.cos(t1),ir1*Math.sin(t1)],[x1,ir1*Math.cos(t0),ir1*Math.sin(t0)],'cap_bore',SteelDark);
+          }
+        }
+        return t;
+      },
+      parts:[
+        {id:'cap_dome', bn:'গম্বুজ হেড (Ellipsoidal Dome)', en:'Domed Cap Head', desc:'উচ্চ চাপ সহ্যের জন্য সামনের অংশ গম্বুজ আকৃতির।', tip:'হাইড্রোটেস্ট ও ডেড-এন্ড লাইনে ব্যবহৃত'},
+        {id:'cap_skirt', bn:'স্ট্রেট স্কার্ট (Straight Skirt)', en:'Straight Skirt', desc:'পাইপের সাথে সোজা অ্যালাইনমেন্ট ঠিক রাখে।', tip:'ASME B16.9 Butt-Weld Cap'},
+        {id:'cap_bevel', bn:'বেভেল এন্ড (Bevel Edge)', en:'Weld Bevel Edge', desc:'পাইপের মুখে ওয়েল্ডিংয়ের জন্য বেভেল কিনারা।', tip:'Root Gap 3–4 mm'},
+        {id:'cap_bore', bn:'ভিতরের ফাঁকা অংশ (ID Bore)', en:'Internal Cavity', desc:'পাইপের সমান অভ্যন্তরীণ ব্যাস।', tip:'Schedule 40 / 80 / XS'}
+      ]
+    }
+  };
+
+  var meshCache = {};
+  function getTris(key){ if(!meshCache[key]) meshCache[key] = FITTINGS[key].build(); return meshCache[key]; }
+
+  var canvas = document.getElementById('canvas3d');
+  var ctx = canvas.getContext('2d');
+  var currentKey = 'FLANGE';
+  var selectedPartId = null;
+  var autoRotate = true;
+  var rotY = -0.45, rotX = 0.32, zoom = 1.0;
+  var userInteracting = false;
+  var renderedTris = [];
+  var lastTs = performance.now();
+
+  var tabsEl = document.getElementById('fit-tabs');
+  Object.keys(FITTINGS).forEach(function(k){
+    var b = document.createElement('button');
+    b.className = 'fit-tab';
+    b.dataset.key = k;
+    b.textContent = FITTINGS[k].bn;
+    b.onclick = function(){ selectFitting(k); };
+    tabsEl.appendChild(b);
+  });
+
+  function selectPart(partId){
+    selectedPartId = partId;
+    var f = FITTINGS[currentKey];
+    var part = null;
+    for(var i=0;i<f.parts.length;i++){ if(f.parts[i].id===partId){ part=f.parts[i]; break; } }
+
+    var callout = document.getElementById('hud-callout');
+    var pcTitle = document.getElementById('pc-title');
+    var pcEn = document.getElementById('pc-en');
+    var pcDesc = document.getElementById('pc-desc');
+    var pcTip = document.getElementById('pc-tip');
+
+    if (part) {
+      callout.classList.add('show');
+      document.getElementById('hud-name-bn').textContent = part.bn;
+      document.getElementById('hud-name-en').textContent = part.en;
+      pcTitle.textContent = 'চিহ্নিত অংশ: ' + part.bn;
+      pcEn.textContent = part.en;
+      pcDesc.textContent = part.desc;
+      if (part.tip) {
+        pcTip.style.display = 'block';
+        pcTip.textContent = '📐 টিপস: ' + part.tip;
+      } else {
+        pcTip.style.display = 'none';
+      }
+    } else {
+      callout.classList.remove('show');
+      pcTitle.textContent = '৩D মডেলের যেকোনো অংশে টাচ করুন';
+      pcEn.textContent = 'Tap any part on the 3D model above';
+      pcDesc.textContent = 'আঙুল দিয়ে ঘুরিয়ে চারদিক ভালো করে দেখুন এবং যে অংশে হাত দেবেন সেই অংশের বাংলা ও ইংরেজি নাম ও কাজ এখানে দেখতে পাবেন।';
+      pcTip.style.display = 'none';
+    }
+
+    var chips = document.querySelectorAll('#parts-chips button');
+    chips.forEach(function(btn){ btn.classList.toggle('active', btn.dataset.pid === partId); });
+  }
+
+  function selectFitting(key){
+    currentKey = key;
+    window.current3DFitting = key;
+    rotY = -0.45; rotX = 0.32; zoom = 1.0;
+    var f = FITTINGS[key];
+    document.getElementById('fit-title').textContent = f.bn + ' (' + f.en + ')';
+    document.getElementById('fit-sub').textContent = f.sub;
+    document.querySelectorAll('#fit-tabs .fit-tab').forEach(function(t){ t.classList.toggle('active', t.dataset.key === key); });
+
+    var chipsEl = document.getElementById('parts-chips');
+    chipsEl.innerHTML = '';
+    f.parts.forEach(function(p){
+      var b = document.createElement('button');
+      b.dataset.pid = p.id;
+      b.textContent = p.bn;
+      b.onclick = function(){ selectPart(selectedPartId === p.id ? null : p.id); };
+      chipsEl.appendChild(b);
+    });
+    selectPart(null);
+  }
+
+  window.open3DPage = function(key){
+    document.getElementById('view-home').classList.add('hidden');
+    document.getElementById('view-3d').classList.add('active');
+    setActiveNav('nav-3d');
+    selectFitting(FITTINGS[key] ? key : 'FLANGE');
+    resizeCanvas();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Controls
+  var btnRot = document.getElementById('btn-rot');
+  btnRot.onclick = function(){
+    autoRotate = !autoRotate;
+    btnRot.classList.toggle('on', autoRotate);
+    btnRot.textContent = autoRotate ? '⏸' : '▶';
+  };
+  document.getElementById('btn-zin').onclick = function(){ zoom = Math.min(2.4, zoom * 1.18); };
+  document.getElementById('btn-zout').onclick = function(){ zoom = Math.max(0.6, zoom / 1.18); };
+  document.getElementById('btn-rst').onclick = function(){ rotY = -0.45; rotX = 0.32; zoom = 1.0; selectPart(null); };
+
+  // Pointer / Touch gestures (hand rotation + pinch zoom + tap hit-testing)
+  var pointers = new Map();
+  var downPos = null, prevDist = null, dragged = false;
+
+  canvas.addEventListener('pointerdown', function(e){
+    canvas.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    userInteracting = true;
+    if (pointers.size === 1) {
+      downPos = { x: e.clientX, y: e.clientY };
+      dragged = false;
+      prevDist = null;
+    } else if (pointers.size === 2) {
+      dragged = true;
+      var pts = Array.from(pointers.values());
+      prevDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    }
+  });
+
+  canvas.addEventListener('pointermove', function(e){
+    if (!pointers.has(e.pointerId)) return;
+    var old = pointers.get(e.pointerId);
+    var cur = { x: e.clientX, y: e.clientY };
+    pointers.set(e.pointerId, cur);
+
+    if (pointers.size === 2) {
+      var pts = Array.from(pointers.values());
+      var d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+      if (prevDist && d > 0) {
+        zoom = Math.max(0.6, Math.min(2.4, zoom * (d / prevDist)));
+      }
+      prevDist = d;
+      dragged = true;
+    } else if (pointers.size === 1 && downPos) {
+      var totalMove = Math.hypot(cur.x - downPos.x, cur.y - downPos.y);
+      if (totalMove > 6) dragged = true;
+      if (dragged) {
+        rotY += (cur.x - old.x) * 0.011;
+        rotX = Math.max(-1.45, Math.min(1.45, rotX + (cur.y - old.y) * 0.010));
+      }
+    }
+  });
+
+  function endPointer(e){
+    var wasSingleTap = pointers.size === 1 && !dragged && downPos;
+    pointers.delete(e.pointerId);
+    if (pointers.size === 0) {
+      userInteracting = false;
+      prevDist = null;
+      if (wasSingleTap) {
+        var rect = canvas.getBoundingClientRect();
+        var dpr = window.devicePixelRatio || 1;
+        var tx = (e.clientX - rect.left) * dpr;
+        var ty = (e.clientY - rect.top) * dpr;
+        var hit = hitTest3D(tx, ty);
+        selectPart(hit);
+      }
+    }
+  }
+  canvas.addEventListener('pointerup', endPointer);
+  canvas.addEventListener('pointercancel', endPointer);
+  canvas.addEventListener('wheel', function(e){
+    e.preventDefault();
+    zoom = Math.max(0.6, Math.min(2.4, zoom * (e.deltaY < 0 ? 1.08 : 0.92)));
+  }, { passive: false });
+
+  function pointInTri(px,py,ax,ay,bx,by,cx,cy){
+    var v0x=cx-ax,v0y=cy-ay, v1x=bx-ax,v1y=by-ay, v2x=px-ax,v2y=py-ay;
+    var d00=v0x*v0x+v0y*v0y, d01=v0x*v1x+v0y*v1y, d02=v0x*v2x+v0y*v2y, d11=v1x*v1x+v1y*v1y, d12=v1x*v2x+v1y*v2y;
+    var den=d00*d11-d01*d01;
+    if (Math.abs(den)<1e-5) return false;
+    var inv=1/den, u=(d11*d02-d01*d12)*inv, v=(d00*d12-d01*d02)*inv;
+    return u>=-0.02 && v>=-0.02 && (u+v)<=1.02;
+  }
+
+  function hitTest3D(tx, ty){
+    for(var i=renderedTris.length-1; i>=0; i--){
+      var t = renderedTris[i];
+      if (pointInTri(tx,ty,t.x0,t.y0,t.x1,t.y1,t.x2,t.y2)) return t.p;
+    }
+    var best=null, bestD=400;
+    for(var j=renderedTris.length-1; j>=0; j--){
+      var tr=renderedTris[j], cx=(tr.x0+tr.x1+tr.x2)/3, cy=(tr.y0+tr.y1+tr.y2)/3;
+      var d=(tx-cx)*(tx-cx)+(ty-cy)*(ty-cy);
+      if(d<bestD){ bestD=d; best=tr.p; }
+    }
+    return best;
+  }
+
+  function resizeCanvas(){
+    var rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+  }
+  window.addEventListener('resize', resizeCanvas);
+
+  function render(now){
+    requestAnimationFrame(render);
+    var dt = Math.min(0.05, Math.max(0, (now - lastTs)/1000));
+    lastTs = now;
+    if (!document.getElementById('view-3d').classList.contains('active')) return;
+    if (canvas.width === 0) resizeCanvas();
+    var w = canvas.width, h = canvas.height;
+    if (!w || !h) return;
+
+    if (autoRotate && !userInteracting) {
+      rotY += dt * 0.72;
+      rotX = 0.28 + 0.14 * Math.sin(rotY * 0.5);
+    }
+
+    ctx.clearRect(0, 0, w, h);
+    var dpr = window.devicePixelRatio || 1;
+
+    // Blueprint grid
+    ctx.strokeStyle = 'rgba(139,180,204,0.09)';
+    ctx.lineWidth = 1;
+    var step = 36 * dpr;
+    ctx.beginPath();
+    for(var gx=step; gx<w; gx+=step){ ctx.moveTo(gx,0); ctx.lineTo(gx,h); }
+    for(var gy=step; gy<h; gy+=step){ ctx.moveTo(0,gy); ctx.lineTo(w,gy); }
+    ctx.stroke();
+
+    var tris = getTris(currentKey);
+    var cy = Math.cos(rotY), sy = Math.sin(rotY), cx = Math.cos(rotX), sx = Math.sin(rotX);
+    var camDist = 3.7, scale = Math.min(w, h) * 0.39 * zoom;
+    var lx = -0.45, ly = 0.72, lz = 0.53;
+
+    function rotPt(v){
+      var x1 = v[0]*cy + v[2]*sy, z1 = -v[0]*sy + v[2]*cy;
+      var y2 = v[1]*cx - z1*sx, z2 = v[1]*sx + z1*cx;
+      return [x1, y2, z2];
+    }
+    function proj(r){
+      var d = Math.max(0.4, camDist - r[2]), f = (camDist/d)*scale;
+      return [w*0.5 + r[0]*f, h*0.5 - r[1]*f];
+    }
+
+    renderedTris.length = 0;
+    for(var i=0;i<tris.length;i++){
+      var tr = tris[i];
+      var r0 = rotPt(tr.v[0]), r1 = rotPt(tr.v[1]), r2 = rotPt(tr.v[2]);
+      var avgZ = (r0[2]+r1[2]+r2[2])/3;
+      if (avgZ > camDist - 0.5) continue;
+
+      var ux=r1[0]-r0[0], uy=r1[1]-r0[1], uz=r1[2]-r0[2];
+      var vx=r2[0]-r0[0], vy=r2[1]-r0[1], vz=r2[2]-r0[2];
+      var nx=uy*vz-uz*vy, ny=uz*vx-ux*vz, nz=ux*vy-uy*vx;
+      var nl=Math.hypot(nx,ny,nz)||1e-5;
+      nx/=nl; ny/=nl; nz/=nl;
+      if(nz<0){ nx=-nx; ny=-ny; nz=-nz; }
+
+      var diff = Math.max(0, nx*lx + ny*ly + nz*lz);
+      var rim = Math.max(0, Math.min(1, 1-nz)) * 0.20;
+      var sb = Math.max(0, nx*-0.2 + ny*0.55 + nz*0.81);
+      var spec = sb*sb*sb*sb*0.38*tr.m*255;
+      var inten = Math.max(0.24, Math.min(1.15, 0.34 + 0.66*diff + rim));
+
+      var isSel = selectedPartId && tr.p === selectedPartId;
+      var cr = tr.c[0], cg = tr.c[1], cb = tr.c[2];
+      if (isSel) {
+        cr = cr*0.28 + 242*0.72;
+        cg = cg*0.28 + 180*0.72;
+        cb = cb*0.28 + 0*0.72;
+      }
+      var rC = Math.min(255, Math.round(cr*inten + spec));
+      var gC = Math.min(255, Math.round(cg*inten + spec));
+      var bC = Math.min(255, Math.round(cb*inten + spec));
+      var col = 'rgb('+rC+','+gC+','+bC+')';
+
+      var p0=proj(r0), p1=proj(r1), p2=proj(r2);
+      renderedTris.push({
+        x0:p0[0], y0:p0[1], x1:p1[0], y1:p1[1], x2:p2[0], y2:p2[1],
+        z:avgZ, p:tr.p, col:col, sel:isSel
+      });
+    }
+
+    renderedTris.sort(function(a,b){ return a.z - b.z; });
+    var sxSum=0, sySum=0, sCnt=0;
+    for(var k=0;k<renderedTris.length;k++){
+      var t = renderedTris[k];
+      ctx.beginPath();
+      ctx.moveTo(t.x0, t.y0);
+      ctx.lineTo(t.x1, t.y1);
+      ctx.lineTo(t.x2, t.y2);
+      ctx.closePath();
+      ctx.fillStyle = t.col;
+      ctx.fill();
+      ctx.strokeStyle = t.sel ? '#ffe082' : t.col;
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+      if (t.sel) {
+        sxSum += (t.x0+t.x1+t.x2)/3;
+        sySum += (t.y0+t.y1+t.y2)/3;
+        sCnt++;
+      }
+    }
+    if (sCnt > 0) {
+      var cxS = sxSum/sCnt, cyS = sySum/sCnt;
+      ctx.beginPath(); ctx.arc(cxS, cyS, 15*dpr, 0, Math.PI*2); ctx.fillStyle='rgba(242,180,0,0.33)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(cxS, cyS, 6.5*dpr, 0, Math.PI*2); ctx.fillStyle='#f2b400'; ctx.fill();
+      ctx.beginPath(); ctx.arc(cxS, cyS, 2.8*dpr, 0, Math.PI*2); ctx.fillStyle='#ffffff'; ctx.fill();
+    }
+  }
+  requestAnimationFrame(render);
 })();
 </script>
 </body>
