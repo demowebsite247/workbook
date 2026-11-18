@@ -1,64 +1,6 @@
 (() => {
   'use strict';
 
-  const APK_RELEASE_URL = null;
-
-  const I18N = {
-    en: {
-      gateTagline: 'Install PWT to unlock the application',
-      gateHeading: 'Installation Required Before Use',
-      gateDesc:
-        'For offline App Shell caching and standalone execution, Create Group, Join Group, and Voice Communication stay locked until PWT is installed and opened as an installed app.',
-      installPwaBtn: 'INSTALL PWT APP',
-      manualInstallTitle: 'Manual Installation Guide (Android & Desktop)',
-      apkTitle: 'Native Android APK (com.pwt.offlinetalk)',
-      apkDesc:
-        'Full routerless Wi-Fi Direct (WifiP2pManager) multi-phone communication and screen-off Foreground Service require the native Android APK built from this repository.',
-      apkPendingBtn: 'Release APK Not Uploaded Yet',
-      apkDownloadBtn: 'Download Android APK',
-      createGroupHeading: 'Create Local Group Profile',
-      groupNameLabel: 'Group Name',
-      groupIdLabel: 'Unique Group ID',
-      groupPassLabel: 'Group Password',
-      createGroupBtn: 'Apply Channel Profile',
-      joinGroupHeading: 'Secure Room & Wi-Fi Direct',
-      browserLimitTitle: 'Browser Hardware Limitation',
-      browserLimitDesc:
-        'Web browsers/PWAs cannot access Android Wi-Fi Direct (WifiP2pManager) peer discovery APIs. Install the Native Android APK (com.pwt.offlinetalk) for multi-phone routerless voice relay.',
-      tabCreate: 'Create Group Profile',
-      aboutTitle: 'Menu & Settings',
-      callsignLabel: 'Your Callsign',
-      chooseLangLabel: 'Language'
-    },
-    bn: {
-      gateTagline: 'অ্যাপ ব্যবহার করতে আগে PWT ইনস্টল করুন',
-      gateHeading: 'ব্যবহারের আগে ইনস্টলেশন বাধ্যতামূলক',
-      gateDesc:
-        'অফলাইন অ্যাপ শেল ও স্ট্যান্ডঅ্যালোন মোডে চালাতে PWT ইনস্টল না করা পর্যন্ত Create Group, Join Group এবং Voice Communication লক করা থাকবে।',
-      installPwaBtn: 'INSTALL PWT APP',
-      manualInstallTitle: 'ম্যানুয়াল ইনস্টলেশন নির্দেশনা (Android ও Computer)',
-      apkTitle: 'Native Android APK (com.pwt.offlinetalk)',
-      apkDesc:
-        'রাউটার ছাড়া প্রকৃত Wi-Fi Direct (WifiP2pManager) ভয়েস যোগাযোগ এবং স্ক্রিন বন্ধ রেখে ব্যাকগ্রাউন্ড সার্ভিসের জন্য এই প্রজেক্টের Native Android APK ব্যবহার করুন।',
-      apkPendingBtn: 'রিলিজ APK এখনো আপলোড হয়নি',
-      apkDownloadBtn: 'Android APK ডাউনলোড করুন',
-      createGroupHeading: 'লোকাল গ্রুপ প্রোফাইল তৈরি',
-      groupNameLabel: 'গ্রুপের নাম',
-      groupIdLabel: 'ইউনিক গ্রুপ আইডি',
-      groupPassLabel: 'গ্রুপ পাসওয়ার্ড',
-      createGroupBtn: 'চ্যানেল প্রোফাইল চালু করুন',
-      joinGroupHeading: 'সিকিউর রুম ও Wi-Fi Direct',
-      browserLimitTitle: 'ব্রাউজার স্যান্ডবক্স সীমাবদ্ধতা',
-      browserLimitDesc:
-        'ওয়েব ব্রাউজার/PWA সরাসরি Android Wi-Fi Direct P2P ডিভাইস খুঁজে পায় না। কাছাকাছি ফোনে অফলাইন ওয়াকি-টকি চালাতে Native Android APK (com.pwt.offlinetalk) ইনস্টল করুন।',
-      tabCreate: 'নতুন গ্রুপ প্রোফাইল',
-      aboutTitle: 'মেনু ও সেটিংস',
-      callsignLabel: 'আপনার কলসাইন / নাম',
-      chooseLangLabel: 'ভাষা'
-    }
-  };
-
-  let currentLang = 'en';
   let deferredInstallPrompt = null;
   let pttMode = 'HOLD';
   let beepOn = true;
@@ -68,8 +10,8 @@
   const gateView = document.getElementById('install-gate-view');
   const appView = document.getElementById('app-shell-view');
   const installBtn = document.getElementById('pwa-install-btn');
-  const promptStatus = document.getElementById('pwa-prompt-status');
-  const manualStepsEl = document.getElementById('manual-install-steps');
+  const installerSub = document.getElementById('installer-sub');
+  const promptHint = document.getElementById('pwa-prompt-status');
 
   function isStandaloneInstalled() {
     return (
@@ -80,114 +22,24 @@
 
   function detectPlatform() {
     const ua = navigator.userAgent || '';
-    if (/android/i.test(ua)) return 'android';
     if (/iphone|ipad|ipod/i.test(ua)) return 'ios';
+    if (/android/i.test(ua)) return 'android';
     return 'desktop';
   }
 
-  function renderManualInstructions() {
-    const platform = detectPlatform();
-    const isBn = currentLang === 'bn';
-    let html = '';
-    if (platform === 'android') {
-      html = isBn
-        ? `<ol>
-            <li>Google Chrome বা Microsoft Edge দিয়ে এই পেজটি খুলুন।</li>
-            <li>উপরের <strong>INSTALL PWT APP</strong> বাটনে চাপুন বা <strong>⋮ → Install app</strong> সিলেক্ট করুন।</li>
-            <li>ফোনের Home Screen থেকে ইনস্টল করা <strong>PWT</strong> আইকন দিয়ে চালু করুন।</li>
-          </ol>`
-        : `<ol>
-            <li>Open this page in Google Chrome or Microsoft Edge on Android.</li>
-            <li>Tap <strong>INSTALL PWT APP</strong> above or open <strong>⋮ → Install app / Add to Home screen</strong>.</li>
-            <li>Launch <strong>PWT</strong> from your Home Screen.</li>
-          </ol>`;
-    } else if (platform === 'ios') {
-      html = isBn
-        ? `<ol><li>iOS Safari-তে <strong>Share → Add to Home Screen</strong> সিলেক্ট করুন।</li></ol>`
-        : `<ol><li>In iOS Safari, tap <strong>Share → Add to Home Screen</strong>.</li></ol>`;
-    } else {
-      html = isBn
-        ? `<ol><li>Windows/Desktop Chrome বা Edge-এ address bar-এর <strong>Install app</strong> আইকনে ক্লিক করুন।</li></ol>`
-        : `<ol><li>In Chrome or Edge on Desktop, click the <strong>Install app</strong> icon in the address bar.</li></ol>`;
-    }
-    manualStepsEl.innerHTML = html;
+  function showHint(text) {
+    promptHint.textContent = text;
+    promptHint.classList.remove('hidden');
   }
 
-  function applyLanguage(lang) {
-    currentLang = lang;
-    const dict = I18N[lang] || I18N.en;
-    document.querySelectorAll('[data-i18n]').forEach((el) => {
-      const key = el.getAttribute('data-i18n');
-      if (dict[key]) el.textContent = dict[key];
-    });
-    document.querySelectorAll('.lang-btn').forEach((btn) => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
-    renderManualInstructions();
-  }
-
-  function updateGateDiagnostics(swStatus, manifestStatus) {
-    const standalone = isStandaloneInstalled();
-    document.getElementById('diag-display').textContent = standalone ? 'Standalone (Installed)' : 'Browser Tab';
-    document.getElementById('diag-https').textContent = window.isSecureContext ? 'Secure (HTTPS)' : 'Non-HTTPS';
-    if (swStatus) document.getElementById('diag-sw').textContent = swStatus;
-    if (manifestStatus) document.getElementById('diag-manifest').textContent = manifestStatus;
-  }
-
-  async function initServiceWorkerAndManifest() {
-    let manifestOk = 'Error';
-    try {
-      const res = await fetch('./manifest.json', { cache: 'no-store' });
-      if (res.ok) {
-        const data = await res.json();
-        manifestOk = data && data.start_url ? 'Valid' : 'Invalid';
-      }
-    } catch {
-      manifestOk = 'Offline/Cached';
-    }
-
-    let swState = 'Unsupported';
+  async function initServiceWorker() {
     if ('serviceWorker' in navigator) {
       try {
-        const reg = await navigator.serviceWorker.register('./service-worker.js', { scope: './' });
-        swState = reg.active ? 'Active (./)' : 'Registered (./)';
+        await navigator.serviceWorker.register('./service-worker.js', { scope: './' });
       } catch {
-        swState = 'Blocked / Error';
+        // ignore in unsupported or non-HTTPS local file context
       }
     }
-    updateGateDiagnostics(swState, manifestOk);
-  }
-
-  async function checkApkAvailability() {
-    const apkBtn = document.getElementById('apk-download-btn');
-    const apkNote = document.getElementById('apk-status-note');
-    if (APK_RELEASE_URL) {
-      apkBtn.href = APK_RELEASE_URL;
-      apkBtn.setAttribute('download', 'pwt-release.apk');
-      apkBtn.classList.remove('disabled');
-      apkBtn.setAttribute('aria-disabled', 'false');
-      apkBtn.querySelector('span').setAttribute('data-i18n', 'apkDownloadBtn');
-      applyLanguage(currentLang);
-      apkNote.textContent = 'Verified Release APK link configured.';
-      return;
-    }
-    try {
-      const res = await fetch('./downloads/pwt-release.apk', { method: 'HEAD' });
-      if (res.ok) {
-        apkBtn.href = './downloads/pwt-release.apk';
-        apkBtn.setAttribute('download', 'pwt-release.apk');
-        apkBtn.classList.remove('disabled');
-        apkBtn.setAttribute('aria-disabled', 'false');
-        apkBtn.querySelector('span').setAttribute('data-i18n', 'apkDownloadBtn');
-        applyLanguage(currentLang);
-        apkNote.textContent = 'Local APK artifact verified.';
-        return;
-      }
-    } catch {
-      // ignore
-    }
-    apkNote.textContent =
-      'No signed APK uploaded yet. Build from Android source (gradle :app:assembleRelease) and attach to GitHub Releases.';
   }
 
   function routeInitialMode() {
@@ -198,42 +50,49 @@
     } else {
       appView.classList.add('hidden');
       gateView.classList.remove('hidden');
-      promptStatus.textContent = window.isSecureContext
-        ? 'Waiting for browser install prompt or follow the manual steps below.'
-        : 'HTTPS is required for PWA installation (host via GitHub Pages or localhost).';
     }
   }
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredInstallPrompt = e;
-    promptStatus.textContent = 'Browser install prompt ready. Tap INSTALL PWT APP to install.';
+    installBtn.textContent = 'INSTALL & OPEN';
+    promptHint.classList.add('hidden');
   });
 
   window.addEventListener('appinstalled', () => {
     deferredInstallPrompt = null;
-    const pill = document.getElementById('gate-install-pill');
-    const pillText = document.getElementById('gate-install-pill-text');
-    pill.classList.remove('status-pending');
-    pill.classList.add('status-ok');
-    pillText.textContent = 'Installed — Launch PWT from Home Screen / Desktop';
-    promptStatus.textContent =
-      'PWT installed! Close this browser tab and open PWT from your Home Screen or Desktop App icon.';
+    installerSub.textContent = 'App installed';
+    installBtn.textContent = 'OPEN PWT';
+    showHint('Open PWT from your Home Screen or App icon.');
   });
 
   installBtn.addEventListener('click', async () => {
-    if (!deferredInstallPrompt) {
-      promptStatus.textContent =
-        'One-click prompt unavailable in this browser. Follow the manual installation instructions below.';
+    if (isStandaloneInstalled()) {
+      routeInitialMode();
       return;
     }
-    deferredInstallPrompt.prompt();
-    const result = await deferredInstallPrompt.userChoice;
-    promptStatus.textContent =
-      result.outcome === 'accepted'
-        ? 'Installation accepted. Waiting for OS confirmation...'
-        : 'Installation dismissed. Communication interface remains locked.';
-    deferredInstallPrompt = null;
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      const result = await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      if (result.outcome === 'accepted') {
+        installerSub.textContent = 'Installing...';
+        promptHint.classList.add('hidden');
+      } else {
+        showHint('Tap INSTALL & OPEN to install.');
+      }
+      return;
+    }
+
+    const platform = detectPlatform();
+    if (platform === 'ios') {
+      showHint('Tap Share → Add to Home Screen.');
+    } else if (platform === 'android') {
+      showHint('Tap browser menu (⋮) → Install app.');
+    } else {
+      showHint('Click the Install icon in the address bar.');
+    }
   });
 
   function playRogerBeep(start) {
@@ -292,7 +151,7 @@
       const gPass = document.getElementById('group-pass-input').value;
       const msgEl = document.getElementById('create-group-msg');
       if (gPass.length < 4) {
-        msgEl.textContent = 'Enter a password (min 4 characters).';
+        msgEl.textContent = 'Minimum 4 characters.';
         return;
       }
       const digits = gId.replace(/\D/g, '').slice(0, 2).padStart(2, '0');
@@ -332,17 +191,16 @@
       playRogerBeep(true);
       pttBtn.classList.add('transmitting');
       pttLabel.innerHTML = 'TRANSMITTING<br />LIVE';
-      channelStatus.textContent = 'CHANNEL: MIC TEST ACTIVE';
-      linkState.textContent = 'LOCAL MIC';
+      channelStatus.textContent = 'CHANNEL: MIC ACTIVE';
+      linkState.textContent = 'LIVE MIC';
       linkState.classList.add('live');
 
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         try {
           stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          pttNote.textContent =
-            'Local microphone active. For multi-phone offline Wi-Fi Direct voice relay, install Native Android APK.';
+          pttNote.textContent = 'LOCAL MIC ACTIVE • USE APK FOR P2P';
         } catch (err) {
-          pttNote.textContent = `Microphone permission denied/unavailable: ${err.message}`;
+          pttNote.textContent = `MIC UNAVAILABLE: ${err.message}`;
         }
       }
     }
@@ -360,6 +218,7 @@
         stream.getTracks().forEach((t) => t.stop());
         stream = null;
       }
+      pttNote.textContent = 'OFFLINE READY • LOCAL WIRELESS';
     }
 
     pttBtn.addEventListener('pointerdown', () => {
@@ -382,16 +241,10 @@
     });
   }
 
-  document.querySelectorAll('.lang-btn').forEach((btn) => {
-    btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang')));
-  });
-
-  applyLanguage('en');
+  initServiceWorker();
   routeInitialMode();
-  initServiceWorkerAndManifest();
-  checkApkAvailability();
 
   setTimeout(() => {
     splashEl.classList.add('fade-out');
-  }, 850);
+  }, 600);
 })();
