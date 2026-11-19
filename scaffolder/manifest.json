@@ -1,7 +1,7 @@
 {
- "name": "স্ক্যাফোল্ডার ট্রেনিং A–Z",
+ "name": "Scaffolder A to Z Training",
  "short_name": "Scaffolder",
- "description": "স্ক্যাফোল্ডিং শেখার সম্পূর্ণ গাইড",
+ "description": "Complete Scaffolding Training & Safety Guide",
  "start_url": "./index.html",
  "scope": "./",
  "display": "fullscreen",
@@ -10,8 +10,8 @@
   "standalone"
  ],
  "orientation": "portrait",
- "background_color": "#10151c",
- "theme_color": "#10151c",
+ "background_color": "#0b2545",
+ "theme_color": "#0b2545",
  "lang": "bn",
  "icons": [
   {

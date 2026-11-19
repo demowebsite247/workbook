@@ -1,22 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Scaffolder A to Z Training
 
-# Run and deploy your AI Studio app
+Complete Scaffolding Training & Safety Guide — simple Bengali with English technical terms.
+Developed by **MrTech** · https://Mrtech.nptrunamentbd.top
 
-This contains everything you need to run your app locally.
+## বৈশিষ্ট্য (Features)
+- মোবাইল-ফার্স্ট অ্যাপ, ডার্ক/লাইট মোড, লোডিং স্ক্রিন, সার্চ (বাংলা + English)
+- হোম পেজে ঘুরানো 3D স্ক্যাফোল্ড; অংশ ছুঁলে নাম আসে (ও বলে)
+- ৩০টি Parts কার্ড, ৮ রকম ক্ল্যাম্প, পাইপ ও পাট্টার মাপ, পাইপ ওজন ক্যালকুলেটর, লোড ক্যালকুলেটর
+- Saudi Aramco GI 8.001 এর মূল নিয়ম (ট্যাগ, উচ্চতা, ইন্সপেকশন, সার্টিফিকেট)
+- ৬৫টি কুইজ প্রশ্ন, টাইমারসহ পরীক্ষা, ৩৪টি ইন্টারভিউ প্রশ্ন-উত্তর
+- পাঠ পড়ার সময় ফুল স্ক্রিন, প্রোগ্রেস/বুকমার্ক (localStorage), PWA (ইনস্টল + অফলাইন)
 
-View your app in AI Studio: https://ai.studio/apps/78d818bd-ade6-4992-a3ae-acc7294d65b2
+## ফাইল কাঠামো
+```
+index.html      পুরো অ্যাপ
+manifest.json   PWA সেটিং (ফুল স্ক্রিন)
+sw.js           অফলাইন ক্যাশ
+icon-192.png, icon-512.png
+img/parts/      আপনার ছবি: 01.jpg ... 30.jpg
+.nojekyll
+```
 
-## Run Locally
+## GitHub Pages এ চালু করার ধাপ
+1. GitHub এ নতুন repository খুলুন (যেমন `scaffolder-training`)।
+2. এই ফোল্ডারের সব ফাইল (`.nojekyll` ও `img` সহ) আপলোড করুন।
+3. Settings → Pages → Branch: `main` / root → Save।
+4. কয়েক মিনিট পর লিংক পাবেন। ফোনে Chrome এ খুলে "Install app" / "Add to Home screen" দিন, আইকন থেকে ফুল স্ক্রিনে খুলবে।
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+## ছবি যোগ করা
+Parts এর আসল ছবি `img/parts/01.jpg` থেকে `30.jpg` নামে রাখুন (১ = Standard, ২ = Ledger, ৩ = Transom ...)। ছবি না থাকলে আঁকা 3D চিত্র দেখায়।
 
+## নতুন সংস্করণ দিলে
+`sw.js` এর প্রথম লাইনে `scaf-v2` এর সংখ্যা বাড়ান (যেমন `scaf-v3`), তাহলে ব্যবহারকারীরা নতুন ফাইল পাবে।
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
-7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
+## গুরুত্বপূর্ণ সতর্কতা
+- এই অ্যাপ শেখার জন্য। সব মাপ, লোড ও ওজন শিক্ষামূলক উদাহরণ; কারখানার স্পেসিফিকেশন, অনুমোদিত ডিজাইন ও সাইটের নিয়মের বিকল্প নয়।
+- Aramco অংশ GI 8.001 (ইস্যু ২৮/০৬/২০০৪) থেকে। নতুন সংস্করণ বা আপনার সাইটের নিয়ম আগে দেখুন।
+- অ্যাপের Admin ছবি-আপলোড শুধু ওই ডিভাইসের ব্রাউজারে সেভ হয় এবং এটি আসল নিরাপত্তা নয়। সবাইকে ছবি দেখাতে ফাইল আপলোড করুন।
+
+## Disclaimer (English)
+Educational use only. Always follow the manufacturer's specification, approved scaffold design and your site/company procedure.
