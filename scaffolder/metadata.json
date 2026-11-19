@@ -1,0 +1,6 @@
+{
+  "name": "পাইপ ফিটার",
+  "description": "পাইপ ফিটার ও ফেব্রিকেটার সম্পূর্ণ শেখার বই, সূত্র, টেবিল এবং ইন্টারেক্টিভ ৩D ভিউয়ার।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
