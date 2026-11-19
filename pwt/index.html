@@ -227,6 +227,27 @@
     </footer>
   </div>
 
+  <!-- PERMISSION GATE: app khulle mic permission na thakle eta dekhabe -->
+  <div id="perm-gate" class="perm-gate hidden" role="dialog" aria-modal="true" aria-labelledby="perm-gate-title">
+    <div class="perm-card">
+      <div class="perm-ico" aria-hidden="true">&#127908;</div>
+      <h2 id="perm-gate-title">অনুমতি দিন</h2>
+      <p id="perm-gate-msg" class="perm-msg">কথা বলার জন্য মাইক্রোফোনের অনুমতি লাগবে।</p>
+      <ul class="perm-list">
+        <li>&#127908; মাইক্রোফোন — কথা বলার জন্য</li>
+        <li>&#128276; Notification — কেউ কথা বললে জানার জন্য</li>
+        <li>&#128274; Storage — app-এর data সুরক্ষিত রাখতে</li>
+        <li>&#128161; Screen চালু — কথা মাঝপথে না কাটার জন্য</li>
+      </ul>
+      <div id="perm-gate-steps" class="perm-steps hidden">
+        <strong>অনুমতি বন্ধ থাকলে:</strong><br />
+        ফোনের <b>Settings &rarr; Apps &rarr; PWT (বা Chrome) &rarr; Permissions &rarr; Microphone &rarr; Allow</b> করুন,
+        তারপর app-এ ফিরে এসে নিচের বাটনে চাপ দিন।
+      </div>
+      <button id="perm-allow-btn" type="button" class="btn btn-primary perm-btn">সব অনুমতি দিন</button>
+    </div>
+  </div>
+
   <div id="remote-audio-container" class="hidden" aria-hidden="true"></div>
   <script src="./assets/app.js"></script>
 </body>
