@@ -30,6 +30,24 @@
   let activeFloorSpeakerName = '';
   let localMicStream = null;
   let localMicTrack = null;
+  let micAcquiring = null;
+  let wakeLockSentinel = null;
+  let signalQueue = Promise.resolve();
+  let presenceTimer = null;
+  let maintenanceTimer = null;
+  let brokerReconnectTimer = null;
+  let brokerRetry = 0;
+  let floorHeartbeatTimer = null;
+  let floorExpireTimer = null;
+  const pendingIce = new Map(); // peerId -> [candidates]
+
+  // TURN relay: mobile data / CGNAT-te direct connection fail hole voice ei relay diye jabe.
+  // Nijer TURN server thakle ekhane boshao (best: Metered / Cloudflare / coturn).
+  const TURN_SERVERS = [
+    { urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' },
+    { urls: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject' },
+    { urls: 'turn:openrelay.metered.ca:443?transport=tcp', username: 'openrelayproject', credential: 'openrelayproject' }
+  ];
 
   const splashEl = document.getElementById('splash-screen');
   const gateView = document.getElementById('install-gate-view');
@@ -120,10 +138,20 @@
     }
   });
 
+  let sharedAudioCtx = null;
+  function getAudioCtx() {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    if (!sharedAudioCtx || sharedAudioCtx.state === 'closed') sharedAudioCtx = new Ctx();
+    if (sharedAudioCtx.state === 'suspended') sharedAudioCtx.resume().catch(() => {});
+    return sharedAudioCtx;
+  }
+
   function playRogerBeep(start) {
     if (!beepOn) return;
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const ctx = getAudioCtx();
+      if (!ctx) return;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -133,7 +161,6 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.08);
-      setTimeout(() => ctx.close().catch(() => {}), 140);
     } catch {
       // ignore
     }
@@ -275,14 +302,7 @@
   }
 
   function unlockRemoteAudio() {
-    try {
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (Ctx) {
-        const ctx = new Ctx();
-        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-        setTimeout(() => ctx.close().catch(() => {}), 250);
-      }
-    } catch {}
+    try { getAudioCtx(); } catch {}
     peers.forEach((p) => {
       if (p.audioEl && p.audioEl.paused && p.audioEl.srcObject) {
         p.audioEl.play().catch(() => {});
@@ -381,15 +401,37 @@
     return isDesktop ? 'CLICK / SPACE<br />TO SPEAK' : 'TAP TO<br />SPEAK';
   }
 
+  function tuneOpus(desc) {
+    if (!desc || !desc.sdp) return desc;
+    const sdp = desc.sdp.replace(/a=fmtp:(\d+) ([^\r\n]*)/g, (m, pt, params) => {
+      if (!/minptime|useinbandfec|stereo|opus/i.test(params) && !/a=rtpmap:\d+ opus/i.test(desc.sdp)) return m;
+      const isOpus = new RegExp('a=rtpmap:' + pt + ' opus', 'i').test(desc.sdp);
+      if (!isOpus) return m;
+      const map = {};
+      params.split(';').forEach((kv) => {
+        const [k, v] = kv.trim().split('=');
+        if (k) map[k] = v;
+      });
+      map.usedtx = '0';           // DTX off: shuru-r shobdo kete jabe na
+      map.useinbandfec = '1';     // packet hara gele recover
+      map.stereo = '0';
+      map.maxaveragebitrate = '40000';
+      map.ptime = '20';
+      return 'a=fmtp:' + pt + ' ' + Object.entries(map).map(([k, v]) => (v === undefined ? k : k + '=' + v)).join(';');
+    });
+    return { type: desc.type, sdp };
+  }
+
   function createPeerRecord(peerId, peerName, useStun) {
     const iceServers = useStun
       ? [
           { urls: 'stun:stun.l.google.com:19302' },
           { urls: 'stun:stun1.l.google.com:19302' },
-          { urls: 'stun:stun.cloudflare.com:3478' }
+          { urls: 'stun:stun.cloudflare.com:3478' },
+          ...TURN_SERVERS
         ]
       : [];
-    const pc = new RTCPeerConnection({ iceServers });
+    const pc = new RTCPeerConnection({ iceServers, iceCandidatePoolSize: 2 });
     const transceiver = pc.addTransceiver('audio', { direction: 'sendrecv' });
     const audioEl = document.createElement('audio');
     audioEl.autoplay = true;
@@ -402,15 +444,20 @@
       dc: null,
       name: peerName || 'PEER',
       sender: transceiver.sender,
-      audioEl
+      audioEl,
+      createdAt: Date.now(),
+      lostAt: 0
     };
     peers.set(peerId, record);
 
-    if (localMicTrack && isTransmitting) {
+    // Mic track shob somoy attach thake (muted obosthay) — press korle shathe shathe kotha jabe, kono delay nai
+    if (localMicTrack) {
       record.sender.replaceTrack(localMicTrack).catch(() => {});
     }
 
     pc.ontrack = (ev) => {
+      try { ev.receiver.jitterBufferTarget = 150; } catch {}
+      try { if ('playoutDelayHint' in ev.receiver) ev.receiver.playoutDelayHint = 0.15; } catch {}
       if (ev.streams && ev.streams[0]) {
         audioEl.srcObject = ev.streams[0];
       } else {
@@ -430,9 +477,12 @@
           const msg = JSON.parse(ev.data);
           if (msg.type === 'HELLO') {
             record.name = (msg.name || 'PEER').toUpperCase();
-          } else if (msg.type === 'FLOOR_REQ') {
+          } else if (msg.type === 'FLOOR_REQ' || msg.type === 'FLOOR_BEAT') {
+            const wasIdle = activeFloorSpeakerId !== msg.id;
             activeFloorSpeakerId = msg.id;
             activeFloorSpeakerName = (msg.name || record.name).toUpperCase();
+            armFloorExpire();
+            if (wasIdle) notifyIncoming(activeFloorSpeakerName);
             updateTransceiverUi();
           } else if (msg.type === 'FLOOR_REL') {
             if (activeFloorSpeakerId === msg.id) {
@@ -452,7 +502,17 @@
       const st = pc.connectionState;
       if (st === 'failed' || st === 'closed') {
         cleanupPeer(peerId);
+      } else if (st === 'disconnected') {
+        record.lostAt = record.lostAt || Date.now();
+        // network ektu atkale ICE restart — call katbe na
+        setTimeout(() => {
+          if (peers.get(peerId) === record && pc.connectionState === 'disconnected') {
+            try { pc.restartIce(); } catch {}
+          }
+        }, 2500);
+        updateTransceiverUi();
       } else {
+        if (st === 'connected') record.lostAt = 0;
         updateTransceiverUi();
       }
     };
@@ -465,6 +525,7 @@
     const rec = peers.get(peerId);
     if (!rec) return;
     peers.delete(peerId);
+    pendingIce.delete(peerId);
     if (activeFloorSpeakerId === peerId) {
       activeFloorSpeakerId = null;
       activeFloorSpeakerName = '';
@@ -481,9 +542,14 @@
       clearInterval(mqttKeepaliveTimer);
       mqttKeepaliveTimer = null;
     }
+    if (presenceTimer) { clearInterval(presenceTimer); presenceTimer = null; }
+    if (maintenanceTimer) { clearInterval(maintenanceTimer); maintenanceTimer = null; }
+    if (brokerReconnectTimer) { clearTimeout(brokerReconnectTimer); brokerReconnectTimer = null; }
     if (mqttSocket) {
-      try { mqttSocket.close(); } catch {}
+      const old = mqttSocket;
       mqttSocket = null;
+      old.onclose = null;
+      try { old.close(); } catch {}
     }
     if (manualLanPc) {
       try { manualLanPc.close(); } catch {}
@@ -491,6 +557,15 @@
     }
     activeTransportLabel = 'OFFLINE';
     updateTransceiverUi();
+  }
+
+  async function flushPendingIce(peerId, pc) {
+    const list = pendingIce.get(peerId);
+    if (!list) return;
+    pendingIce.delete(peerId);
+    for (const c of list) {
+      try { await pc.addIceCandidate(new RTCIceCandidate(c)); } catch {}
+    }
   }
 
   async function handleIncomingSignal(msg) {
@@ -508,7 +583,7 @@
             publishSignal({ type: 'ICE', to: fromId, candidate: ev.candidate });
           }
         };
-        const offer = await record.pc.createOffer();
+        const offer = tuneOpus(await record.pc.createOffer());
         await record.pc.setLocalDescription(offer);
         await publishSignal({ type: 'OFFER', to: fromId, sdp: offer });
       } else if (!peers.has(fromId)) {
@@ -528,7 +603,7 @@
           publishSignal({ type: 'ICE', to: fromId, candidate: ev.candidate });
         }
       };
-      const offer = await record.pc.createOffer();
+      const offer = tuneOpus(await record.pc.createOffer());
       await record.pc.setLocalDescription(offer);
       await publishSignal({ type: 'OFFER', to: fromId, sdp: offer });
       return;
@@ -543,7 +618,8 @@
         }
       };
       await record.pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
-      const answer = await record.pc.createAnswer();
+      await flushPendingIce(fromId, record.pc);
+      const answer = tuneOpus(await record.pc.createAnswer());
       await record.pc.setLocalDescription(answer);
       await publishSignal({ type: 'ANSWER', to: fromId, sdp: answer });
       return;
@@ -551,18 +627,22 @@
 
     if (msg.type === 'ANSWER') {
       const rec = peers.get(fromId);
-      if (rec && rec.pc.signalingState !== 'stable') {
+      if (rec && rec.pc.signalingState === 'have-local-offer') {
         await rec.pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
+        await flushPendingIce(fromId, rec.pc);
       }
       return;
     }
 
     if (msg.type === 'ICE') {
+      if (!msg.candidate) return;
       const rec = peers.get(fromId);
-      if (rec && msg.candidate) {
-        try {
-          await rec.pc.addIceCandidate(new RTCIceCandidate(msg.candidate));
-        } catch {}
+      if (rec && rec.pc.remoteDescription) {
+        try { await rec.pc.addIceCandidate(new RTCIceCandidate(msg.candidate)); } catch {}
+      } else {
+        // remote description ashar age candidate eshe gele jomiye rakho (age eta hariye jachchilo)
+        if (!pendingIce.has(fromId)) pendingIce.set(fromId, []);
+        pendingIce.get(fromId).push(msg.candidate);
       }
     }
   }
@@ -622,13 +702,22 @@
           if (p.type === 'CONNACK') {
             settled = true;
             clearTimeout(timeout);
+            brokerRetry = 0;
             activeTransportLabel = 'WEBRTC';
             ws.send(buildMqttSubscribe(1, mqttTopic));
+            if (mqttKeepaliveTimer) clearInterval(mqttKeepaliveTimer);
             mqttKeepaliveTimer = setInterval(() => {
               if (ws.readyState === WebSocket.OPEN) {
                 ws.send(new Uint8Array([0xc0, 0x00]));
               }
-            }, 25000);
+            }, 20000);
+            // Periodic presence: kono peer hariye gele auto abar jure jabe
+            if (presenceTimer) clearInterval(presenceTimer);
+            presenceTimer = setInterval(() => {
+              if (ws.readyState === WebSocket.OPEN) publishSignal({ type: 'PRESENCE' });
+            }, 8000);
+            if (maintenanceTimer) clearInterval(maintenanceTimer);
+            maintenanceTimer = setInterval(maintainPeers, 4000);
             setTimeout(() => {
               if (peers.size === 0 && ws.readyState === WebSocket.OPEN) {
                 publishSignal({ type: 'PRESENCE' });
@@ -639,7 +728,12 @@
             await publishSignal({ type: 'PRESENCE' });
           } else if (p.type === 'PUBLISH') {
             const decoded = await decryptEnvelope(p.payload);
-            if (decoded) await handleIncomingSignal(decoded);
+            if (decoded) {
+              // signal gulo ek ek kore serial-e cholbe (offer/ice ulta-palta hobe na)
+              signalQueue = signalQueue
+                .then(() => handleIncomingSignal(decoded))
+                .catch(() => {});
+            }
           }
         }
       };
@@ -651,9 +745,56 @@
           tryBroker(idx + 1);
         }
       };
+
+      // Socket bondho hoye gele auto reconnect (age hoto na — tai signal haray jeto)
+      ws.onclose = () => {
+        if (mqttSocket !== ws || !activePassword) return;
+        if (!settled) return; // timeout/onerror already next broker try korbe
+        mqttSocket = null;
+        if (mqttKeepaliveTimer) { clearInterval(mqttKeepaliveTimer); mqttKeepaliveTimer = null; }
+        if (presenceTimer) { clearInterval(presenceTimer); presenceTimer = null; }
+        activeTransportLabel = 'LINKING';
+        updateTransceiverUi();
+        const delay = Math.min(1000 * Math.pow(2, brokerRetry++), 15000);
+        brokerReconnectTimer = setTimeout(() => {
+          if (activePassword && navigator.onLine && !mqttSocket) tryBroker(0);
+        }, delay);
+      };
     };
 
     tryBroker(0);
+  }
+
+  function maintainPeers() {
+    const now = Date.now();
+    Array.from(peers.entries()).forEach(([id, rec]) => {
+      const st = rec.pc.connectionState;
+      const stuck = (st === 'new' || st === 'connecting') && now - rec.createdAt > 15000;
+      const gone = st === 'disconnected' && rec.lostAt && now - rec.lostAt > 10000;
+      if (stuck || gone) cleanupPeer(id); // porer PRESENCE-e abar notun kore connect hobe
+    });
+  }
+
+  function armFloorExpire() {
+    if (floorExpireTimer) clearTimeout(floorExpireTimer);
+    // 5 sec kono signal na ele "CHANNEL BUSY" atke thakbe na
+    floorExpireTimer = setTimeout(() => {
+      if (activeFloorSpeakerId && activeFloorSpeakerId !== localPeerId) {
+        activeFloorSpeakerId = null;
+        activeFloorSpeakerName = '';
+        updateTransceiverUi();
+      }
+    }, 5000);
+  }
+
+  function notifyIncoming(name) {
+    try {
+      if (!document.hidden) return;
+      if (!('Notification' in window) || Notification.permission !== 'granted') return;
+      navigator.serviceWorker?.ready.then((reg) => {
+        reg.showNotification('PWT', { body: `${name} kotha bolche`, tag: 'pwt-rx', renotify: false, silent: true });
+      });
+    } catch {}
   }
 
   // ==========================================================
@@ -689,7 +830,7 @@
         bindDataChannel(record.pc.createDataChannel('pwt-floor'));
 
         const offer = await record.pc.createOffer();
-        await record.pc.setLocalDescription(offer);
+        await record.pc.setLocalDescription(tuneOpus(offer));
         status.textContent = 'Gathering local Wi-Fi address...';
         await waitForIceComplete(record.pc);
 
@@ -715,7 +856,7 @@
         manualLanPc = record.pc;
 
         await record.pc.setRemoteDescription(new RTCSessionDescription(offer));
-        const answer = await record.pc.createAnswer();
+        const answer = tuneOpus(await record.pc.createAnswer());
         await record.pc.setLocalDescription(answer);
         status.textContent = 'Creating Reply...';
         await waitForIceComplete(record.pc);
@@ -837,12 +978,186 @@
     setupOfflineLanPairing();
     setupPttDome();
     updateTransceiverUi();
+    bootPermissions();
+  }
+
+  // ==========================================================
+  // Permissions: app open hoyar shathe shathe shob permission neoa hobe
+  // ==========================================================
+  const MIC_CONSTRAINTS = {
+    audio: {
+      channelCount: 1,
+      sampleRate: 48000,
+      echoCancellation: true,
+      noiseSuppression: true,
+      autoGainControl: true
+    }
+  };
+
+  function setMicEnabled(on) {
+    if (localMicTrack) localMicTrack.enabled = Boolean(on);
+  }
+
+  function micIsLive() {
+    return Boolean(localMicTrack && localMicTrack.readyState === 'live');
+  }
+
+  // Mic ekbar khule rakhi (muted). Press korle sathe sathe kotha jay — prothom shobdo kate na.
+  async function ensureMic() {
+    if (micIsLive()) return true;
+    if (micAcquiring) return micAcquiring;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return false;
+    micAcquiring = (async () => {
+      try {
+        let stream;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia(MIC_CONSTRAINTS);
+        } catch (e) {
+          if (e && (e.name === 'NotAllowedError' || e.name === 'SecurityError')) throw e;
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        }
+        localMicStream = stream;
+        localMicTrack = stream.getAudioTracks()[0] || null;
+        if (localMicTrack) {
+          localMicTrack.enabled = isTransmitting; // default: muted
+          localMicTrack.onended = () => { localMicTrack = null; localMicStream = null; };
+          peers.forEach((p) => {
+            if (p.sender) p.sender.replaceTrack(localMicTrack).catch(() => {});
+          });
+        }
+        return true;
+      } catch (err) {
+        permUi.micError = err;
+        return false;
+      } finally {
+        micAcquiring = null;
+      }
+    })();
+    return micAcquiring;
+  }
+
+  function releaseMic() {
+    if (localMicStream) {
+      localMicStream.getTracks().forEach((t) => t.stop());
+    }
+    localMicStream = null;
+    localMicTrack = null;
+  }
+
+  async function acquireWakeLock() {
+    try {
+      if ('wakeLock' in navigator && !wakeLockSentinel && !document.hidden) {
+        wakeLockSentinel = await navigator.wakeLock.request('screen');
+        wakeLockSentinel.addEventListener('release', () => { wakeLockSentinel = null; });
+      }
+    } catch {}
+  }
+
+  async function micPermissionState() {
+    try {
+      const r = await navigator.permissions.query({ name: 'microphone' });
+      return r.state; // granted | denied | prompt
+    } catch {
+      return 'unknown';
+    }
+  }
+
+  const permUi = { micError: null };
+
+  async function requestNotifications() {
+    try {
+      if ('Notification' in window && Notification.permission === 'default') {
+        await Notification.requestPermission();
+      }
+    } catch {}
+  }
+
+  async function requestPersistentStorage() {
+    try {
+      if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
+    } catch {}
+  }
+
+  async function requestAllPermissions() {
+    const micOk = await ensureMic();
+    await requestNotifications();
+    await requestPersistentStorage();
+    await acquireWakeLock();
+    getAudioCtx();
+    unlockRemoteAudio();
+    return micOk;
+  }
+
+  function showPermGate(denied) {
+    const gate = document.getElementById('perm-gate');
+    if (!gate) return;
+    gate.classList.remove('hidden');
+    const msg = document.getElementById('perm-gate-msg');
+    const steps = document.getElementById('perm-gate-steps');
+    if (denied) {
+      msg.textContent = 'মাইক্রোফোনের অনুমতি বন্ধ করা আছে। অনুমতি ছাড়া কথা বলা যাবে না।';
+      steps.classList.remove('hidden');
+    } else {
+      msg.textContent = 'কথা বলার জন্য মাইক্রোফোনের অনুমতি লাগবে। নিচের বাটনে চাপ দিয়ে "Allow" দিন।';
+      steps.classList.add('hidden');
+    }
+  }
+
+  function hidePermGate() {
+    const gate = document.getElementById('perm-gate');
+    if (gate) gate.classList.add('hidden');
+  }
+
+  async function bootPermissions() {
+    const btn = document.getElementById('perm-allow-btn');
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        const ok = await requestAllPermissions();
+        if (ok) {
+          hidePermGate();
+          updateTransceiverUi();
+        } else {
+          showPermGate((await micPermissionState()) === 'denied');
+        }
+      });
+    }
+
+    // App khulle-i prothome ekbar try (Chrome mic-er jonno gesture lage na)
+    const ok = await requestAllPermissions();
+    if (ok) {
+      hidePermGate();
+    } else {
+      showPermGate((await micPermissionState()) === 'denied');
+    }
+
+    // Jodi kono permission (jemon notification) gesture chaye, prothom tap-e baki gulo nebe
+    const firstTap = async () => {
+      window.removeEventListener('pointerdown', firstTap, true);
+      await requestAllPermissions();
+      if (micIsLive()) hidePermGate();
+    };
+    window.addEventListener('pointerdown', firstTap, true);
+
+    // Settings theke permission dile auto dhore felbe
+    try {
+      const status = await navigator.permissions.query({ name: 'microphone' });
+      status.onchange = async () => {
+        if (status.state === 'granted') {
+          await ensureMic();
+          hidePermGate();
+        } else if (status.state === 'denied') {
+          releaseMic();
+          showPermGate(true);
+        }
+      };
+    } catch {}
   }
 
   function setupPttDome() {
     const pttBtn = document.getElementById('ptt-button');
     let spaceHeld = false;
 
+    pttBtn.style.touchAction = 'none';
     pttBtn.addEventListener('contextmenu', (e) => e.preventDefault());
     pttBtn.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
 
@@ -854,41 +1169,44 @@
       isTransmitting = true;
       activeFloorSpeakerId = localPeerId;
       activeFloorSpeakerName = localCallsign;
-      playRogerBeep(true);
       pttBtn.classList.add('transmitting');
-      broadcastFloorMsg('FLOOR_REQ');
-      updateTransceiverUi();
 
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        try {
-          localMicStream = await navigator.mediaDevices.getUserMedia({
-            audio: {
-              channelCount: 1,
-              echoCancellation: true,
-              noiseSuppression: true,
-              autoGainControl: true
-            }
-          });
-          if (!isTransmitting) {
-            localMicStream.getTracks().forEach((t) => t.stop());
-            localMicStream = null;
-            return;
-          }
-          localMicTrack = localMicStream.getAudioTracks()[0] || null;
-          if (localMicTrack) {
-            peers.forEach((p) => {
-              if (p.sender) p.sender.replaceTrack(localMicTrack).catch(() => {});
-            });
-          }
-        } catch (err) {
-          document.getElementById('ptt-status-note').textContent = `MIC UNAVAILABLE: ${err.message}`;
+      // mic ager theke ready thakle tat-khanik enable; na thakle (call/background-er por) abar nibe
+      if (micIsLive()) {
+        setMicEnabled(true);
+      } else {
+        const ok = await ensureMic();
+        if (!ok) {
+          document.getElementById('ptt-status-note').textContent = 'MIC BLOCKED — ALLOW MICROPHONE';
+          isTransmitting = false;
+          activeFloorSpeakerId = null;
+          activeFloorSpeakerName = '';
+          pttBtn.classList.remove('transmitting');
+          showPermGate((await micPermissionState()) === 'denied');
+          updateTransceiverUi();
+          return;
         }
+        if (!isTransmitting) return; // ei majhe chhere diyechhe
+        setMicEnabled(true);
       }
+
+      broadcastFloorMsg('FLOOR_REQ');
+      if (floorHeartbeatTimer) clearInterval(floorHeartbeatTimer);
+      floorHeartbeatTimer = setInterval(() => broadcastFloorMsg('FLOOR_BEAT'), 1500);
+      // beep mic-e dhukbe na: beep ager e, mic-er pore halka delay diye
+      playRogerBeep(true);
+      updateTransceiverUi();
     }
 
     function stopMic() {
       if (!isTransmitting) return;
+      // shesh shobdo kete jabe na — 250ms mic khola rakhi
+      setTimeout(() => {
+        if (isTransmitting) return; // ebar abar press hoyeche
+        setMicEnabled(false);
+      }, 250);
       isTransmitting = false;
+      if (floorHeartbeatTimer) { clearInterval(floorHeartbeatTimer); floorHeartbeatTimer = null; }
       if (activeFloorSpeakerId === localPeerId) {
         activeFloorSpeakerId = null;
         activeFloorSpeakerName = '';
@@ -896,19 +1214,13 @@
       playRogerBeep(false);
       pttBtn.classList.remove('transmitting');
       broadcastFloorMsg('FLOOR_REL');
-      peers.forEach((p) => {
-        if (p.sender) p.sender.replaceTrack(null).catch(() => {});
-      });
-      if (localMicStream) {
-        localMicStream.getTracks().forEach((t) => t.stop());
-        localMicStream = null;
-        localMicTrack = null;
-      }
       updateTransceiverUi();
     }
 
     pttBtn.addEventListener('pointerdown', (e) => {
       e.preventDefault();
+      // Angul bahire sorle-o pointer event ei button-e thakbe (kotha katbe na)
+      try { pttBtn.setPointerCapture(e.pointerId); } catch {}
       if (pttMode === 'HOLD') {
         startMic();
       } else if (isTransmitting) {
@@ -923,9 +1235,7 @@
     pttBtn.addEventListener('pointercancel', () => {
       if (pttMode === 'HOLD') stopMic();
     });
-    pttBtn.addEventListener('pointerleave', () => {
-      if (pttMode === 'HOLD') stopMic();
-    });
+    // NOTE: pointerleave / window blur ekhon ar mic bondho kore na — ei duto-i kotha kete dito.
 
     // Global Laptop / Desktop Spacebar Push-to-Talk (disabled when typing in inputs)
     window.addEventListener('keydown', (e) => {
@@ -946,23 +1256,32 @@
       }
     });
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopMic();
+    document.addEventListener('visibilitychange', async () => {
+      if (document.hidden) {
+        // background-e gele sudhu PTT chhere dei; mic stream OS nije mute kore
+        if (pttMode === 'HOLD') stopMic();
+        if (wakeLockSentinel) { try { wakeLockSentinel.release(); } catch {} wakeLockSentinel = null; }
+      } else {
+        await acquireWakeLock();
+        if ((await micPermissionState()) !== 'denied') await ensureMic();
+        unlockRemoteAudio();
+        // foreground-e fire ele signaling jhalay dekhi
+        if (activePassword && navigator.onLine && (!mqttSocket || mqttSocket.readyState !== WebSocket.OPEN)) {
+          connectOnlineRoom(activeGroupName, activePassword);
+        }
+        updateTransceiverUi();
+      }
     });
-    window.addEventListener('pagehide', stopMic);
-    window.addEventListener('blur', stopMic);
+    window.addEventListener('pagehide', () => { stopMic(); releaseMic(); });
     window.addEventListener('online', () => {
-      if (activePassword && !mqttSocket) {
+      if (activePassword && (!mqttSocket || mqttSocket.readyState !== WebSocket.OPEN)) {
         connectOnlineRoom(activeGroupName, activePassword);
       } else {
+        peers.forEach((p) => { try { p.pc.restartIce(); } catch {} });
         updateTransceiverUi();
       }
     });
     window.addEventListener('offline', () => {
-      if (mqttSocket) {
-        try { mqttSocket.close(); } catch {}
-        mqttSocket = null;
-      }
       updateTransceiverUi();
     });
   }
