@@ -1,25 +1,14 @@
 {
-  "name": "পাইপ ফিটার ও ফেব্রিকেটার – শেখার বই",
+  "name": "পাইপ ফিটার ও ফেব্রিকেটর গাইড",
   "short_name": "পাইপ ফিটার",
-  "description": "পাইপ ফিটার ও ফেব্রিকেটার সম্পূর্ণ শেখার বই, সূত্র, টেবিল এবং ইন্টারেক্টিভ ৩D ভিউয়ার।",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#1d3342",
-  "theme_color": "#1d3342",
+  "orientation": "portrait",
+  "background_color": "#24170f",
+  "theme_color": "#24170f",
   "icons": [
-    {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    {"src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
   ]
 }
